@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:loook/values/strings.dart';
+import 'package:loook/styles/style.dart';
+import 'package:loook/widgets/ads/ads.dart';
 
 class AdsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: Strings.categories.length,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
-            title: TextField(),
-            actions: [
-              //filter button
+          backgroundColor: Colors.white,
+          title: TextField(
+            decoration: Style.searchInput,
+          ),
+          actions: [
+            //filter button
+          ],
+          bottom: TabBar(
+            indicatorColor: Colors.black,
+            isScrollable: true,
+            tabs: [
+              Text('clock', style: TextStyle(color: Colors.black)),
+              Text('clock', style: TextStyle(color: Colors.black)),
+              Text('clock', style: TextStyle(color: Colors.black)),
+              Text('clock', style: TextStyle(color: Colors.black)),
             ],
-            bottom: TabBar(
-                isScrollable: true,
-                tabs: Strings.categories.map((e) => Tab(text: e)).toList())),
+          ),
+        ),
         body: TabBarView(
-          children:
-              Strings.categories.map((e) => Center(child: Text(e))).toList(),
+          children: [
+            Ads(),
+            Center(child: Text('2')),
+            Center(child: Text('3')),
+            Center(child: Text('4')),
+          ],
         ),
       ),
     );

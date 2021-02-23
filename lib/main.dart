@@ -33,6 +33,8 @@ class MyApp extends StatelessWidget {
         return Center(child: CircularProgressIndicator());
       }),
       bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: true,
+          unselectedItemColor: Colors.grey,
           onTap: (index) {
             if (index == 0) navBar.add(AdsPageEvent());
             if (index == 1) navBar.add(FavoritesPageEvent());
@@ -42,9 +44,11 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.blue,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Главная'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Избранное'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Чат'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Профиль'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: 'Избранное'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Чат'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_box_rounded), label: 'Профиль'),
           ]),
     ));
   }
