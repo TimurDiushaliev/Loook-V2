@@ -8,23 +8,45 @@ class AdsPage extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: TextField(
-            decoration: Style.searchInput,
-          ),
-          actions: [
-            //filter button
-          ],
-          bottom: TabBar(
-            indicatorColor: Colors.black,
-            isScrollable: true,
-            tabs: [
-              Text('clock', style: TextStyle(color: Colors.black)),
-              Text('clock', style: TextStyle(color: Colors.black)),
-              Text('clock', style: TextStyle(color: Colors.black)),
-              Text('clock', style: TextStyle(color: Colors.black)),
-            ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            flexibleSpace: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                        height: 50,
+                        width: 270,
+                        margin: EdgeInsets.only(top: 30),
+                        child: TextField(decoration: Style.searchInput)),
+                    Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.filter_alt,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                          onPressed: () {}),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: TabBar(
+                    indicatorColor: Colors.black,
+                    tabs: [
+                      Text('tab', style: TextStyle(color: Colors.black)),
+                      Text('tab', style: TextStyle(color: Colors.black)),
+                      Text('tab', style: TextStyle(color: Colors.black)),
+                      Text('tab', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         body: TabBarView(
@@ -35,6 +57,10 @@ class AdsPage extends StatelessWidget {
             Center(child: Text('4')),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
