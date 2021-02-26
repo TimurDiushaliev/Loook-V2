@@ -1,31 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:loook/styles/ads.dart';
 
 class Ads extends StatelessWidget {
-  const Ads({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.6,
-        builder: (context, scrollController) {
-          return Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
-            child: ListView.builder(
-                controller: scrollController,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Text(
-                      'index $index',
-                      style: TextStyle(color: Colors.black),
+    final _height = MediaQuery.of(context).size.height;
+    final _width = MediaQuery.of(context).size.width;
+    return Container(
+      height: _height * 0.4,
+      child: ListView.separated(
+          padding: EdgeInsets.only(left: _width * 0.05),
+          separatorBuilder: (context, index) {
+            return SizedBox(width: _width * 0.07);
+          },
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Card(
+                  color: Colors.white,
+                  child: Container(
+                    child: Stack(
+                      alignment: AlignmentDirectional.topEnd,
+                      children: [
+                        Container(
+                          child: Image.asset(
+                            'images/watch.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                }),
-          );
-        });
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(_height * 0.02),
+                  width: _width * 0.25,
+                  child: Text(
+                    'Продаю часы от Apple оптом дешевле',
+                    textAlign: TextAlign.center,
+                    style: AdsStyle.descriptionTextStyle,
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    '399 KGS',
+                    style: AdsStyle.priceStyle,
+                  ),
+                )
+              ],
+            );
+          }),
+    );
   }
 }
