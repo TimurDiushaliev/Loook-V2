@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AdsStyle {
+class HomePageStyle {
   static final bottomSheetStyle = BoxDecoration(
       color: Colors.grey[200],
       borderRadius: BorderRadius.only(
@@ -12,4 +12,5 @@ class AdsStyle {
   static final priceStyle =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
   static final chooseTextButtonStyle = TextStyle(color: Colors.grey[600]);
+ 
 }

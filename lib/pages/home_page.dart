@@ -11,26 +11,49 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
-      home: Scaffold(
-        drawer: Drawer(),
-        appBar: AppBar(
-          title: Text(
-            'Loook',
-            style: TextStyle(letterSpacing: 6),
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          drawer: Drawer(),
+          appBar: AppBar(
+            title: Text(
+              'Loook',
+              style: TextStyle(letterSpacing: 6),
+            ),
+            centerTitle: true,
+            actions: [
+              SearchIcon(),
+              Filter(),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(40),
+              child: Visibility(
+                visible: true,
+                child: TabBar(indicatorColor: Colors.red, tabs: [
+                  Tab(
+                    text: 'Транспорт',
+                  ),
+                  Tab(
+                    text: 'Недвижимость',
+                  ),
+                  Tab(
+                    text: 'Одежда',
+                  ),
+                  Tab(
+                    text: 'Техника',
+                  )
+                ]),
+              ),
+            ),
           ),
-          centerTitle: true,
-          actions: [
-            Search(),
-            Filter(),
-          ],
-        ),
-        body: Stack(
-          children: [
-            BlocProvider(
-               create: (context) => IndicatorBloc(Colors.white),
-              child: GoldAds()),
-            ModalBottomSheet(),
-          ],
+          body: Stack(
+            children: [
+              BlocProvider(
+                  create: (context) => IndicatorBloc(Colors.white),
+                  child: GoldAds()),
+              ModalBottomSheet(),
+            ],
+          ),
         ),
       ),
     );

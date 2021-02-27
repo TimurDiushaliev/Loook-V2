@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/styles/ads.dart';
+import 'package:loook/styles/home_page_style.dart';
 
 class Ads extends StatelessWidget {
   @override
@@ -46,13 +46,13 @@ class Ads extends StatelessWidget {
                   child: Text(
                     'Продаю часы от Apple оптом дешевле',
                     textAlign: TextAlign.center,
-                    style: AdsStyle.descriptionTextStyle,
+                    style: HomePageStyle.descriptionTextStyle,
                   ),
                 ),
                 Container(
                   child: Text(
                     '399 KGS',
-                    style: AdsStyle.priceStyle,
+                    style: HomePageStyle.priceStyle,
                   ),
                 )
               ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loook/services/search.dart';
 
-class Search extends StatelessWidget {
+class SearchIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -8,6 +9,9 @@ class Search extends StatelessWidget {
         Icons.search,
         color: Colors.white,
       ),
+      onPressed: () {
+        showSearch(context: context, delegate: Search());
+      },
     );
   }
 }

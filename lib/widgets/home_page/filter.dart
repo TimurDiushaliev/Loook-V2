@@ -5,7 +5,7 @@ class Filter extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(
-        Icons.add_shopping_cart,
+        Icons.more_vert,
         color: Colors.white,
       ),
     );

@@ -25,14 +25,13 @@ class GoldAds extends StatelessWidget {
               autoPlay: true,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
-                print(index);
                 index == 0
                     ? _indicatorBLoc.add(IndicatorEvent.first_item_selected)
                     : _indicatorBLoc.add(IndicatorEvent.second_item_selected);
               }),
         ),
         Container(
-          margin: EdgeInsets.only(left: _width * 0.45, bottom: _height * 0.02),
+          margin: EdgeInsets.only(left: _width * 0.45, bottom: _height * 0.03),
           child: Row(
             children: [
               BlocBuilder<IndicatorBloc, Color>(

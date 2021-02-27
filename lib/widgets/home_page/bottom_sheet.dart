@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/styles/ads.dart';
+import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/widgets/home_page/ads.dart';
 
 class ModalBottomSheet extends StatelessWidget {
@@ -8,11 +8,11 @@ class ModalBottomSheet extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
     return DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.6,
+        initialChildSize: 0.55,
+        minChildSize: 0.55,
         builder: (context, scrollController) {
           return Container(
-            decoration: AdsStyle.bottomSheetStyle,
+            decoration: HomePageStyle.bottomSheetStyle,
             child: ListView.builder(
                 itemCount: 4,
                 controller: scrollController,
@@ -29,14 +29,14 @@ class ModalBottomSheet extends StatelessWidget {
                                   top: _height * 0.03,
                                   bottom: _height * 0.03),
                               child: Text('Категории',
-                                  style: AdsStyle.categoriesTextStyle),
+                                  style: HomePageStyle.categoriesTextStyle),
                             ),
                             Spacer(),
                             Container(
                               margin: EdgeInsets.only(right: _width * 0.08),
                               child: Text(
                                 'Выбрать',
-                                style: AdsStyle.chooseTextButtonStyle,
+                                style: HomePageStyle.chooseTextButtonStyle,
                               ),
                             )
                           ],
