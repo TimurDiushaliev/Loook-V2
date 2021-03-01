@@ -43,7 +43,7 @@ class ModalBottomSheet extends StatelessWidget {
                         ),
                         Ads(),
                         Divider(
-                          thickness: 2,
+                          thickness: _height * 0.005,
                           color: Colors.grey[300],
                         ),
                       ],

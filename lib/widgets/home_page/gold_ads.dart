@@ -37,9 +37,10 @@ class GoldAds extends StatelessWidget {
               BlocBuilder<IndicatorBloc, Color>(
                 builder: (context, indicatorColor) {
                   return Container(
-                    height: 10,
-                    width: 10,
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                    height: _height * 0.025,
+                    width: _width * 0.025,
+                    margin: EdgeInsets.symmetric(
+                        vertical: _height * 0.025, horizontal: _width * 0.01),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle, color: indicatorColor),
                   );
@@ -48,9 +49,10 @@ class GoldAds extends StatelessWidget {
               BlocBuilder<IndicatorBloc, Color>(
                 builder: (context, indicatorColor) {
                   return Container(
-                    height: 10,
-                    width: 10,
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                    height: _height * 0.025,
+                    width: _width * 0.025,
+                    margin: EdgeInsets.symmetric(
+                        vertical: _height * 0.025, horizontal: _width * 0.01),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle, color: indicatorColor),
                   );

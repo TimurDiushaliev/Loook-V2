@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loook/pages/info_page.dart';
 import 'package:loook/styles/home_page_style.dart';
 
 class Ads extends StatelessWidget {
@@ -18,25 +19,31 @@ class Ads extends StatelessWidget {
           itemBuilder: (context, index) {
             return Column(
               children: [
-                Card(
-                  color: Colors.white,
-                  child: Container(
-                    child: Stack(
-                      alignment: AlignmentDirectional.topEnd,
-                      children: [
-                        Container(
-                          child: Image.asset(
-                            'images/watch.png',
-                            fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => InfoPage()));
+                  },
+                  child: Card(
+                    color: Colors.white,
+                    child: Container(
+                      child: Stack(
+                        alignment: AlignmentDirectional.topEnd,
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'images/watch.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.favorite_border,
-                            color: Colors.red,
+                          IconButton(
+                            icon: Icon(
+                              Icons.favorite_border,
+                              color: Colors.red,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
