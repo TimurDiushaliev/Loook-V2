@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/styles/info_page_style.dart';
+import 'package:loook/widgets/info_page/description.dart';
+import 'package:loook/widgets/info_page/information.dart';
+import 'package:loook/widgets/info_page/title.dart';
 
 class DescriptionModalBottomSheet extends StatelessWidget {
   @override
@@ -13,36 +15,40 @@ class DescriptionModalBottomSheet extends StatelessWidget {
         builder: (context, scrollController) {
           return Container(
             decoration: InfoPageStyle.bottomSheetStyle,
-            child: ListView(
+            child: ListView.builder(
+              itemCount: 1,
               controller: scrollController,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      top: _height * 0.02,
-                      right: _width * 0.05,
-                      left: _width * 0.8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.visibility_rounded,
-                        color: Colors.grey[600],
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: _height * 0.02,
+                            left: _width * 0.8,
+                            right: _width * 0.05),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(
+                              Icons.visibility,
+                              color: Colors.grey[700],
+                            ),
+                            Text(
+                              '13',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        '13',
-                        style: TextStyle(color: Colors.black),
-                      )
+                      InfoTitle(),
+                      InfoDescription(),
+                      Information(),
                     ],
                   ),
-                ),
-                Text(
-                  'Продам авто Запорожец 1982 года',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-              ],
+                );
+              },
             ),
           );
         });

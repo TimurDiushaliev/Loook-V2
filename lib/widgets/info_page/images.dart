@@ -16,7 +16,6 @@ class InfoImages extends StatelessWidget {
           options: CarouselOptions(
             height: _height * 0.35,
             enableInfiniteScroll: false,
-            autoPlay: true,
             viewportFraction: 1,
           ),
         ),

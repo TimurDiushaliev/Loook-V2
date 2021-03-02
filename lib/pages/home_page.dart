@@ -30,20 +30,23 @@ class HomePage extends StatelessWidget {
               preferredSize: Size.fromHeight(_height * 0.065),
               child: Visibility(
                 visible: true,
-                child: TabBar(indicatorColor: Colors.red, tabs: [
-                  Tab(
-                    text: 'Транспорт',
-                  ),
-                  Tab(
-                    text: 'Недвижимость',
-                  ),
-                  Tab(
-                    text: 'Одежда',
-                  ),
-                  Tab(
-                    text: 'Техника',
-                  )
-                ]),
+                child: TabBar(
+                    isScrollable: true,
+                    indicatorColor: Colors.red,
+                    tabs: [
+                      Tab(
+                        text: 'Транспорт',
+                      ),
+                      Tab(
+                        text: 'Недвижимость',
+                      ),
+                      Tab(
+                        text: 'Одежда',
+                      ),
+                      Tab(
+                        text: 'Техника',
+                      )
+                    ]),
               ),
             ),
           ),

@@ -9,15 +9,14 @@ class GoldAds extends StatelessWidget {
     IndicatorBloc _indicatorBLoc = BlocProvider.of<IndicatorBloc>(context);
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-    final String goldImage1 = 'images/gold_ad.png';
-    final String goldImage2 = 'images/gold_ad2.png';
+    final _imgList = ['images/gold_ad.png', 'images/gold_ad2.png'];
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         CarouselSlider(
           items: [
-            Image.asset(goldImage1),
-            Image.asset(goldImage2),
+            Image.asset(_imgList[0]),
+            Image.asset(_imgList[1]),
           ],
           options: CarouselOptions(
               height: _height * 0.35,
@@ -31,7 +30,7 @@ class GoldAds extends StatelessWidget {
               }),
         ),
         Container(
-          margin: EdgeInsets.only(left: _width * 0.45, bottom: _height * 0.03),
+          margin: EdgeInsets.only(left: _width * 0.45),
           child: Row(
             children: [
               BlocBuilder<IndicatorBloc, Color>(
