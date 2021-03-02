@@ -7,7 +7,6 @@ import 'package:loook/widgets/info_page/modal_bottom_sheet.dart';
 class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -40,7 +39,7 @@ class InfoPage extends StatelessWidget {
             SpeedDialChild(
               backgroundColor: Colors.green,
               labelBackgroundColor: Colors.green,
-              label: 'Позвонить',
+              label: '0779151515',
               child: Icon(
                 Icons.phone,
                 color: Colors.white,
@@ -49,7 +48,7 @@ class InfoPage extends StatelessWidget {
             SpeedDialChild(
               backgroundColor: Colors.blue,
               labelBackgroundColor: Colors.blue,
-              label: 'Написать',
+              label: '0709151515',
               child: Icon(
                 Icons.chat,
                 color: Colors.white,
@@ -58,7 +57,7 @@ class InfoPage extends StatelessWidget {
             SpeedDialChild(
               backgroundColor: Colors.red,
               labelBackgroundColor: Colors.red,
-              label: 'Добавить в избранные',
+              label: '0555151515',
               child: Icon(
                 Icons.favorite,
                 color: Colors.white,

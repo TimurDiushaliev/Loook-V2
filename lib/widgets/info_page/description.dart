@@ -9,7 +9,7 @@ class InfoDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: _height * 0.1, left: _width * 0.05),
+          margin: EdgeInsets.only(top: _height * 0.05, left: _width * 0.05),
           child: Text(
             'Описание:',
             style: TextStyle(color: Colors.black, fontSize: 18),

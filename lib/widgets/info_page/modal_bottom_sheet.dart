@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loook/styles/info_page_style.dart';
 import 'package:loook/widgets/info_page/description.dart';
 import 'package:loook/widgets/info_page/information.dart';
@@ -43,6 +44,53 @@ class DescriptionModalBottomSheet extends StatelessWidget {
                         ),
                       ),
                       InfoTitle(),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: _width * 0.1),
+                            child: Text(
+                              '230 KGS',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(
+                            width: _width * 0.25,
+                          ),
+                          Container(
+                            width: _width * 0.4,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  height: _height * 0.1,
+                                  width: _width * 0.1,
+                                  child: SvgPicture.asset(
+                                    'images/instagram.svg',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Container(
+                                    height: _height * 0.1,
+                                    width: _width * 0.1,
+                                    child: SvgPicture.asset(
+                                      'images/telegram_icon.svg',
+                                      fit: BoxFit.contain,
+                                    )),
+                                Container(
+                                    height: _height * 0.1,
+                                    width: _width * 0.1,
+                                    child: SvgPicture.asset(
+                                      'images/whatsapp_icon.svg',
+                                      fit: BoxFit.contain,
+                                    )),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                       InfoDescription(),
                       Information(),
                     ],

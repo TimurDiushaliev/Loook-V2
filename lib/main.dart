@@ -1,70 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/bottom_app_bar/bottom_app_bar_bloc.dart';
+import 'package:loook/bloc/bottom_app_bar/bottom_app_bar_states.dart';
 import 'package:loook/pages/chat_page.dart';
 import 'package:loook/pages/home_page.dart';
+import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
 
-void main() => runApp(MaterialApp(home:MyApp()));
+void main() => runApp(MaterialApp(home: MyApp()));
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool visible = true;
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _width = MediaQuery.of(context).size.width;
-    PageController _pageViewController = PageController(initialPage: 0);
-    return Scaffold(
-      extendBody: true,
-      body: PageView(
-        controller: _pageViewController,
-        children: [
-          HomePage(),
-          ChatPage(),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red,
-          child: Icon(Icons.add),
-          onPressed: () {}),
-      bottomNavigationBar: Visibility(
-        visible: visible,
-        child: BottomAppBar(
-            color: Colors.black87,
-            shape: CircularNotchedRectangle(),
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: _width * 0.001),
-                  IconButton(
-                      icon: Icon(Icons.home, color: Colors.grey[500]),
-                      onPressed: () {
-                        setState(() {
-                          _pageViewController.jumpToPage(0);
-                        });
-                      }),
-                  IconButton(
-                      icon: Icon(Icons.favorite, color: Colors.grey[500]),
-                      onPressed: () {}),
-                  SizedBox(width: _width * 0.2),
-                  IconButton(
-                      icon: Icon(Icons.message, color: Colors.grey[500]),
-                      onPressed: () {
-                        setState(() {
-                          _pageViewController.jumpToPage(1);
-                        });
-                      }),
-                  IconButton(
-                      icon: Icon(Icons.account_circle, color: Colors.grey[500]),
-                      onPressed: () {}),
-                  SizedBox(width: _width * 0.001),
-                ],
-              ),
-            )),
-      ),
+    final homePageState = HomePageState();
+    return BlocProvider(
+      create: (context) => BottomAppBarBloc(homePageState),
+      child: Scaffold(
+          extendBody: true,
+          body: BlocBuilder<BottomAppBarBloc, BottomAppBarStates>(
+            builder: (context, state) {
+              if (state is HomePageState) return HomePage();
+              if (state is ChatPageState) return ChatPage();
+              return null;
+            },
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.red,
+              child: Icon(Icons.add),
+              onPressed: () {}),
+          bottomNavigationBar: BottomAppBarActions()),
     );
   }
 }
