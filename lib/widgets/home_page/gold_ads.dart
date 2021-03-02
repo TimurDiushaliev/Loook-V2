@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
 
 class GoldAds extends StatelessWidget {
   @override

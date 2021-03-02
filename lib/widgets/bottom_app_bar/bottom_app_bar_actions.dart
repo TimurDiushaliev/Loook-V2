@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar/bottom_app_bar_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar/bottom_app_bar_events.dart';
+import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_bloc.dart';
+import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_events.dart';
 
 class BottomAppBarActions extends StatelessWidget {
   @override

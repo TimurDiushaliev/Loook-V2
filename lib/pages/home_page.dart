@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
 import 'package:loook/widgets/home_page/modal_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
 import 'package:loook/widgets/home_page/gold_ads.dart';
