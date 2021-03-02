@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_states.dart';
 import 'package:loook/widgets/home_page/modal_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
 import 'package:loook/widgets/home_page/gold_ads.dart';
@@ -10,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
+    final firstItemSelected = FirstItemSelectedState();
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: DefaultTabController(
@@ -53,7 +55,7 @@ class HomePage extends StatelessWidget {
           body: Stack(
             children: [
               BlocProvider(
-                  create: (context) => IndicatorBloc(Colors.white),
+                  create: (context) => IndicatorBloc(firstItemSelected),
                   child: GoldAds()),
               ModalBottomSheet(),
             ],

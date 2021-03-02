@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_events.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_states.dart';
 
 class GoldAds extends StatelessWidget {
   @override
@@ -24,42 +26,67 @@ class GoldAds extends StatelessWidget {
               autoPlay: true,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
-                index == 0
-                    ? _indicatorBLoc.add(IndicatorEvent.first_item_selected)
-                    : _indicatorBLoc.add(IndicatorEvent.second_item_selected);
+                switch (index) {
+                  case 0:
+                    _indicatorBLoc.add(FirstItemSelectedEvent());
+                    break;
+                  case 1:
+                    _indicatorBLoc.add(SecondItemSelectedEvent());
+                    break;
+                }
               }),
         ),
         Container(
-          margin: EdgeInsets.only(left: _width * 0.45),
-          child: Row(
-            children: [
-              BlocBuilder<IndicatorBloc, Color>(
-                builder: (context, indicatorColor) {
-                  return Container(
-                    height: _height * 0.025,
-                    width: _width * 0.025,
-                    margin: EdgeInsets.symmetric(
-                        vertical: _height * 0.025, horizontal: _width * 0.01),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: indicatorColor),
+            margin: EdgeInsets.only(left: _width * 0.45),
+            child: BlocBuilder<IndicatorBloc, IndicatorStates>(
+              builder: (context, state) {
+                if (state is FirstItemSelectedState)
+                  return Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.white),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.grey),
+                      ),
+                    ],
                   );
-                },
-              ),
-              BlocBuilder<IndicatorBloc, Color>(
-                builder: (context, indicatorColor) {
-                  return Container(
-                    height: _height * 0.025,
-                    width: _width * 0.025,
-                    margin: EdgeInsets.symmetric(
-                        vertical: _height * 0.025, horizontal: _width * 0.01),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: indicatorColor),
+                if (state is SecondItemSelectedState)
+                  return Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.grey),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.white),
+                      ),
+                    ],
                   );
-                },
-              ),
-            ],
-          ),
-        )
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ))
       ],
     );
   }

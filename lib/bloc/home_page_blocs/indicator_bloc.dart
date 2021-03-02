@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_events.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_states.dart';
 
-enum IndicatorEvent {
-  first_item_selected,
-  second_item_selected,
-  item_not_selected
-}
-
-class IndicatorBloc extends Bloc<IndicatorEvent, Color> {
-  Color _indicatorColor = Colors.grey;
-  IndicatorBloc(Color _indicatorColor) : super(Colors.grey);
+class IndicatorBloc extends Bloc<IndicatorEvents, IndicatorStates> {
+  FirstItemSelectedState firstItemState = FirstItemSelectedState();
+  IndicatorBloc(IndicatorStates initialState) : super(initialState);
 
   @override
-  Stream<Color> mapEventToState(IndicatorEvent event) async* {
-    _indicatorColor = (event == IndicatorEvent.first_item_selected)
-        ? Colors.white
-        : Colors.grey;
-    yield _indicatorColor;
+  Stream<IndicatorStates> mapEventToState(IndicatorEvents event) async* {
+    if (event is FirstItemSelectedEvent) yield FirstItemSelectedState();
+    if (event is SecondItemSelectedEvent) yield SecondItemSelectedState();
   }
 }
