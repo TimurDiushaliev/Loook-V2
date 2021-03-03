@@ -12,5 +12,4 @@ class HomePageStyle {
   static final priceStyle =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
   static final chooseTextButtonStyle = TextStyle(color: Colors.grey[600]);
- 
 }

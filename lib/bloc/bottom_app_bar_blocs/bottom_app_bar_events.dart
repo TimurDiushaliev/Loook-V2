@@ -6,4 +6,4 @@ class FavoritesPageEvent extends BottomAppBarEvents {}
 
 class ChatPageEvent extends BottomAppBarEvents {}
 
-class ProfilePageEvent extends BottomAppBarEvents {}
+class AccountPageEvent extends BottomAppBarEvents {}

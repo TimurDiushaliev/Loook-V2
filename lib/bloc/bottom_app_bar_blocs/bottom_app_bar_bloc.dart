@@ -11,6 +11,6 @@ class BottomAppBarBloc extends Bloc<BottomAppBarEvents, BottomAppBarStates> {
     if (event is HomePageEvent) yield HomePageState();
     if (event is FavoritesPageEvent) yield FavoritesPageState();
     if (event is ChatPageEvent) yield ChatPageState();
-    if (event is ProfilePageEvent) yield ProfilePageState();
+    if (event is AccountPageEvent) yield AccountPageState();
   }
 }

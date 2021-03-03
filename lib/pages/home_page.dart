@@ -10,7 +10,9 @@ import 'package:loook/widgets/home_page/search.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
+    final _height = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        kTextTabBarHeight;
     final firstItemSelected = FirstItemSelectedState();
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),

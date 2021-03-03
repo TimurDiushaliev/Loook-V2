@@ -4,6 +4,7 @@ import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_states.dart';
 import 'package:loook/pages/chat_page.dart';
 import 'package:loook/pages/home_page.dart';
+import 'package:loook/pages/account_page.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
             builder: (context, state) {
               if (state is HomePageState) return HomePage();
               if (state is ChatPageState) return ChatPage();
+              if(state is AccountPageState) return AccountPage();
               return Center(
                 child: CircularProgressIndicator(),
               );

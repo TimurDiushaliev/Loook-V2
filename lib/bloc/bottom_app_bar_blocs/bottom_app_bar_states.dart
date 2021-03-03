@@ -6,4 +6,4 @@ class FavoritesPageState extends BottomAppBarStates {}
 
 class ChatPageState extends BottomAppBarStates {}
 
-class ProfilePageState extends BottomAppBarStates {}
+class AccountPageState extends BottomAppBarStates {}
