@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_states.dart';
-import 'package:loook/widgets/home_page/modal_bottom_sheet.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_states.dart';
+import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
+import 'package:loook/widgets/home_page/categories_tab_bar.dart';
+import 'package:loook/widgets/home_page/home_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
 import 'package:loook/widgets/home_page/gold_ads.dart';
 import 'package:loook/widgets/home_page/search.dart';
@@ -19,6 +21,7 @@ class HomePage extends StatelessWidget {
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
+          extendBody: true,
           drawer: Drawer(),
           appBar: AppBar(
             title: Text(
@@ -32,26 +35,7 @@ class HomePage extends StatelessWidget {
             ],
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(_height * 0.065),
-              child: Visibility(
-                visible: true,
-                child: TabBar(
-                    isScrollable: true,
-                    indicatorColor: Colors.red,
-                    tabs: [
-                      Tab(
-                        text: 'Транспорт',
-                      ),
-                      Tab(
-                        text: 'Недвижимость',
-                      ),
-                      Tab(
-                        text: 'Одежда',
-                      ),
-                      Tab(
-                        text: 'Техника',
-                      )
-                    ]),
-              ),
+              child: CategoriesTabBar(),
             ),
           ),
           body: Stack(
@@ -59,9 +43,19 @@ class HomePage extends StatelessWidget {
               BlocProvider(
                   create: (context) => IndicatorBloc(firstItemSelected),
                   child: GoldAds()),
-              ModalBottomSheet(),
+              HomeBottomSheet(),
             ],
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.red,
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          bottomNavigationBar: BottomAppBarActions(),
         ),
       ),
     );

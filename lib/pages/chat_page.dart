@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
 
 class ChatPage extends StatelessWidget {
   @override
@@ -8,6 +9,7 @@ class ChatPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
+        extendBody: true,
         appBar: AppBar(
           title: Text('Чаты'),
         ),
@@ -44,6 +46,15 @@ class ChatPage extends StatelessWidget {
             );
           },
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.red,
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () {}),
+        bottomNavigationBar: BottomAppBarActions(),
       ),
     );
   }

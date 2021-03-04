@@ -5,7 +5,7 @@ import 'package:loook/widgets/info_page/description.dart';
 import 'package:loook/widgets/info_page/information.dart';
 import 'package:loook/widgets/info_page/title.dart';
 
-class DescriptionModalBottomSheet extends StatelessWidget {
+class InfoModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;

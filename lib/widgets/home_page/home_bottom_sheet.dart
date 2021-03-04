@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/widgets/home_page/ads.dart';
 
-class ModalBottomSheet extends StatelessWidget {
+class HomeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height -
@@ -20,7 +20,7 @@ class ModalBottomSheet extends StatelessWidget {
                 controller: scrollController,
                 itemBuilder: (context, index) {
                   return Container(
-                    height: _height * 0.6,
+                    height: _height * 0.7,
                     child: Column(
                       children: [
                         Row(
@@ -44,10 +44,7 @@ class ModalBottomSheet extends StatelessWidget {
                           ],
                         ),
                         Ads(),
-                        Divider(
-                          thickness: _height * 0.005,
-                          color: Colors.grey[300],
-                        ),
+                        Divider(),
                       ],
                     ),
                   );

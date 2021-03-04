@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_events.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_states.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_events.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_states.dart';
 
 class GoldAds extends StatelessWidget {
   @override
@@ -45,17 +45,19 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        width: 10,
-                        height: 10,
+                            vertical: _height * 0.01,
+                            horizontal: _width * 0.01),
+                        width: _width * 0.02,
+                        height: _height * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        width: 10,
-                        height: 10,
+                            vertical: _height * 0.01,
+                            horizontal: _width * 0.01),
+                        width: _width * 0.02,
+                        height: _height * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
@@ -66,17 +68,19 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        width: 10,
-                        height: 10,
+                            vertical: _height * 0.01,
+                            horizontal: _width * 0.01),
+                        width: _width * 0.02,
+                        height: _height * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        width: 10,
-                        height: 10,
+                            vertical: _height * 0.01,
+                            horizontal: _width * 0.01),
+                        width: _width * 0.02,
+                        height: _height * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),

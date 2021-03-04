@@ -1,105 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:loook/widgets/account_page/account_balance.dart';
+import 'package:loook/widgets/account_page/account_bottom_sheet.dart';
 import 'package:loook/widgets/account_page/account_information.dart';
-
+import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
 
 class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.top -
-        kTextTabBarHeight;
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
+          extendBody: true,
           appBar: AppBar(),
-          body: Column(
+          body: Stack(
             children: [
-              AccountInformation(),
-              AccountBalance(),
-              Container(
-                margin: EdgeInsets.only(top: _height * 0.05),
-                height: _height * 0.1,
-                child: AppBar(
-                  bottom: TabBar(
-                    indicatorColor: Colors.red,
-                    tabs: [
-                      Text('Активные'),
-                      Text('Неактивные'),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                  child: TabBarView(
+              Column(
                 children: [
-                  GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 0.6, crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              Card(
-                                color: Colors.grey[700],
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.white)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.asset(
-                                          'images/watch.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.all(8),
-                                        child: Text(
-                                          'Продаю часы от Apple оптом дешевле',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(color: Colors.white)),
-                                  color: Colors.red[600],
-                                  child: Text('Улучшить'),
-                                  onPressed: () {})
-                            ],
-                          ),
-                        );
-                      }),
-                  GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 1.5, crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Card(
-                          color: Colors.white,
-                          child: Container(
-                              child: Container(
-                            child: Image.asset(
-                              'images/watch.png',
-                              fit: BoxFit.contain,
-                            ),
-                          )),
-                        );
-                      }),
+                  AccountInformation(),
+                  AccountBalance(),
                 ],
-              )),
+              ),
+              AccountBottomSheet()
             ],
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.red,
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          bottomNavigationBar: BottomAppBarActions(),
         ),
       ),
     );
