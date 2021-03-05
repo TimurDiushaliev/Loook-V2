@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_events.dart';
-import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_states.dart';
+import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
+import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 
 class BottomAppBarBloc extends Bloc<BottomAppBarEvents, BottomAppBarStates> {
   final homePageState = HomePageState();

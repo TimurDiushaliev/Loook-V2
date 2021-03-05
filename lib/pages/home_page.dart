@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_blocs/indicator_states.dart';
+import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
+import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_states.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_actions.dart';
 import 'package:loook/widgets/home_page/categories_tab_bar.dart';
 import 'package:loook/widgets/home_page/home_bottom_sheet.dart';
@@ -15,7 +17,8 @@ class HomePage extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kTextTabBarHeight;
-    final firstItemSelected = FirstItemSelectedState();
+    final _firstItemSelected = FirstItemSelectedState();
+    final _withRoundedCorners = WithRoundedCornersState();
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: DefaultTabController(
@@ -41,9 +44,9 @@ class HomePage extends StatelessWidget {
           body: Stack(
             children: [
               BlocProvider(
-                  create: (context) => IndicatorBloc(firstItemSelected),
+                  create: (context) => IndicatorBloc(_firstItemSelected),
                   child: GoldAds()),
-              HomeBottomSheet(),
+              BlocProvider(create: (context)=> BottomSheetBloc(_withRoundedCorners),child: HomeBottomSheet()),
             ],
           ),
           floatingActionButtonLocation:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar_blocs/bottom_app_bar_events.dart';
+import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
+import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
 
 class BottomAppBarActions extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class BottomAppBarActions extends StatelessWidget {
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
     final _width = MediaQuery.of(context).size.width;
-    BottomAppBarBloc bottomAppBarBloc = BlocProvider.of(context);
+    BottomAppBarBloc _bottomAppBarBloc = BlocProvider.of(context);
     return Container(
       height: _height * 0.075,
       child: BottomAppBar(
@@ -24,7 +24,7 @@ class BottomAppBarActions extends StatelessWidget {
               IconButton(
                   icon: Icon(Icons.home, color: Colors.grey[500]),
                   onPressed: () {
-                    bottomAppBarBloc.add(HomePageEvent());
+                    _bottomAppBarBloc.add(HomePageEvent());
                   }),
               IconButton(
                   icon: Icon(Icons.favorite, color: Colors.grey[500]),
@@ -33,12 +33,12 @@ class BottomAppBarActions extends StatelessWidget {
               IconButton(
                   icon: Icon(Icons.message, color: Colors.grey[500]),
                   onPressed: () {
-                    bottomAppBarBloc.add(ChatPageEvent());
+                    _bottomAppBarBloc.add(ChatPageEvent());
                   }),
               IconButton(
                   icon: Icon(Icons.account_circle, color: Colors.grey[500]),
                   onPressed: () {
-                    bottomAppBarBloc.add(AccountPageEvent());
+                    _bottomAppBarBloc.add(AccountPageEvent());
                   }),
               SizedBox(width: _width * 0.001),
             ],

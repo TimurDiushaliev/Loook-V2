@@ -6,6 +6,7 @@ class AccountBottomSheet extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kTextTabBarHeight;
+    final _width = MediaQuery.of(context).size.width;
     return DraggableScrollableSheet(
         initialChildSize: 0.6,
         minChildSize: 0.6,
@@ -33,7 +34,9 @@ class AccountBottomSheet extends StatelessWidget {
                           childAspectRatio: 0.6, crossAxisCount: 2),
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: EdgeInsets.symmetric(
+                              vertical: _height * 0.01,
+                              horizontal: _width * 0.05),
                           child: Column(
                             children: [
                               Card(

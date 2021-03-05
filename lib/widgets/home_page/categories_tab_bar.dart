@@ -5,7 +5,11 @@ class CategoriesTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  TabBar(isScrollable: true, indicatorColor: Colors.red, tabs: [
+    return TabBar(
+        indicatorSize: TabBarIndicatorSize.label,
+        isScrollable: true,
+        indicatorColor: Colors.red,
+        tabs: [
           Tab(
             text: 'Транспорт',
           ),
@@ -19,7 +23,5 @@ class CategoriesTabBar extends StatelessWidget {
             text: 'Техника',
           )
         ]);
-      
-   
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
+import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/widgets/home_page/filter.dart';
 import 'package:loook/widgets/info_page/images.dart';
 import 'package:loook/widgets/info_page/info_bottom_sheet.dart';
@@ -7,6 +10,7 @@ import 'package:loook/widgets/info_page/info_bottom_sheet.dart';
 class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _withRoundedCorners = WithRoundedCornersState();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -27,7 +31,7 @@ class InfoPage extends StatelessWidget {
       body: Stack(
         children: [
           InfoImages(),
-          InfoModalBottomSheet(),
+          BlocProvider(create: (context)=> BottomSheetBloc(_withRoundedCorners),child: InfoModalBottomSheet()),
         ],
       ),
       floatingActionButton: SpeedDial(
