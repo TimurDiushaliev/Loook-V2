@@ -4,7 +4,8 @@ import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/styles/home_page_style.dart';
-import 'package:loook/widgets/home_page/ads.dart';
+import 'package:loook/values/strings.dart';
+import 'package:loook/widgets/home_page/adverts.dart';
 
 class HomeBottomSheet extends StatelessWidget {
   @override
@@ -32,7 +33,7 @@ class HomeBottomSheet extends StatelessWidget {
                       ? HomePageStyle.bottomSheetStyleWithRoundedCorners
                       : HomePageStyle.bottomSheetStyleWithUsualCorners,
                   child: ListView.builder(
-                      itemCount: 4,
+                      itemCount: Strings.categoriesList.length,
                       controller: scrollController,
                       itemBuilder: (context, index) {
                         return Container(
@@ -49,7 +50,7 @@ class HomeBottomSheet extends StatelessWidget {
                                           left: _width * 0.05,
                                           top: _height * 0.03,
                                           bottom: _height * 0.03),
-                                      child: Text('Категории',
+                                      child: Text(Strings.categoriesList[index],
                                           style: HomePageStyle
                                               .categoriesTextStyle),
                                     ),
@@ -66,7 +67,7 @@ class HomeBottomSheet extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Expanded(child: Ads()),
+                              Expanded(child: Adverts()),
                               Divider(
                                 color: Colors.grey[400],
                                 thickness: 2,

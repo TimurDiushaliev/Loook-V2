@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
+import 'package:loook/responsive_size/media_query.dart';
 
-class BottomAppBarActions extends StatelessWidget {
+class BottomAppBarNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.top -
-        kToolbarHeight;
-    final _width = MediaQuery.of(context).size.width;
     BottomAppBarBloc _bottomAppBarBloc = BlocProvider.of(context);
     return Container(
-      height: _height * 0.075,
+      height: MediaQuerySize.height(context) * 0.075,
       child: BottomAppBar(
         color: Colors.black87,
         shape: CircularNotchedRectangle(),
@@ -20,7 +17,7 @@ class BottomAppBarActions extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: _width * 0.001),
+              SizedBox(width: MediaQuerySize.width(context) * 0.001),
               IconButton(
                   icon: Icon(Icons.home, color: Colors.grey[500]),
                   onPressed: () {
@@ -29,7 +26,7 @@ class BottomAppBarActions extends StatelessWidget {
               IconButton(
                   icon: Icon(Icons.favorite, color: Colors.grey[500]),
                   onPressed: () {}),
-              SizedBox(width: _width * 0.2),
+              SizedBox(width: MediaQuerySize.width(context) * 0.2),
               IconButton(
                   icon: Icon(Icons.message, color: Colors.grey[500]),
                   onPressed: () {
@@ -40,7 +37,7 @@ class BottomAppBarActions extends StatelessWidget {
                   onPressed: () {
                     _bottomAppBarBloc.add(AccountPageEvent());
                   }),
-              SizedBox(width: _width * 0.001),
+              SizedBox(width: MediaQuerySize.width(context) * 0.001),
             ],
           ),
         ),

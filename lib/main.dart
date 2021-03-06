@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
-import 'package:loook/pages/chat_page.dart';
-import 'package:loook/pages/home_page.dart';
-import 'package:loook/pages/account_page.dart';
+import 'package:loook/pages/chat/chat_page.dart';
+import 'package:loook/pages/home/home_page.dart';
+import 'package:loook/pages/account/account_page.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 

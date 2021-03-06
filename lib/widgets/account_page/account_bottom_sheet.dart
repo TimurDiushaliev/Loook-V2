@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/widgets/account_page/account_active_adverts.dart';
+import 'package:loook/widgets/account_page/account_not_active_adverts.dart';
 
 class AccountBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.top -
-        kTextTabBarHeight;
-    final _width = MediaQuery.of(context).size.width;
     return DraggableScrollableSheet(
         initialChildSize: 0.6,
         minChildSize: 0.6,
@@ -15,12 +14,17 @@ class AccountBottomSheet extends StatelessWidget {
             length: 2,
             child: Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(_height * 0.08),
+                preferredSize: Size.fromHeight(MediaQuerySize.height(context) * 0.07),
                 child: AppBar(
                   bottom: TabBar(
+                    labelColor: Colors.red,
+                    unselectedLabelColor: Colors.grey,
+                    indicatorSize: TabBarIndicatorSize.label,
                     indicatorColor: Colors.red,
                     tabs: [
-                      Text('Активные'),
+                      Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: Text('Активные')),
                       Text('Неактивные'),
                     ],
                   ),
@@ -28,96 +32,8 @@ class AccountBottomSheet extends StatelessWidget {
               ),
               body: TabBarView(
                 children: [
-                  GridView.builder(
-                      controller: scrollController,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 0.6, crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: _height * 0.01,
-                              horizontal: _width * 0.05),
-                          child: Column(
-                            children: [
-                              Card(
-                                color: Colors.grey[700],
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.white)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.asset(
-                                          'images/watch.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.all(8),
-                                        child: Text(
-                                          'Продаю часы от Apple оптом дешевле',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(color: Colors.white)),
-                                  color: Colors.red[600],
-                                  child: Text('Улучшить'),
-                                  onPressed: () {})
-                            ],
-                          ),
-                        );
-                      }),
-                  GridView.builder(
-                    controller: scrollController,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.7, crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            Card(
-                              color: Colors.grey[700],
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.white)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.asset(
-                                        'images/watch.png',
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.all(8),
-                                      child: Text(
-                                        'Продаю часы от Apple оптом дешевле',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                  AccountActiveAdverts(scrollController: scrollController),
+                  AccountNotActiveAdverts(scrollController: scrollController),
                 ],
               ),
             ),

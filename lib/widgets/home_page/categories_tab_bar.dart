@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:loook/values/strings.dart';
 
 class CategoriesTabBar extends StatelessWidget {
-  const CategoriesTabBar({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> tabs =
+        Strings.categoriesList.map((e) => Tab(text: e)).toList();
     return TabBar(
+        onTap: (index) {
+          print(index.toString());
+        },
         indicatorSize: TabBarIndicatorSize.label,
         isScrollable: true,
         indicatorColor: Colors.red,
-        tabs: [
-          Tab(
-            text: 'Транспорт',
-          ),
-          Tab(
-            text: 'Недвижимость',
-          ),
-          Tab(
-            text: 'Одежда',
-          ),
-          Tab(
-            text: 'Техника',
-          )
-        ]);
+        tabs: tabs);
   }
 }

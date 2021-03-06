@@ -4,13 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_events.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_states.dart';
+import 'package:loook/responsive_size/media_query.dart';
 
 class GoldAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IndicatorBloc _indicatorBLoc = BlocProvider.of<IndicatorBloc>(context);
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
     final _imgList = ['images/gold_ad.png', 'images/gold_ad2.png'];
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
@@ -21,7 +20,7 @@ class GoldAds extends StatelessWidget {
             Image.asset(_imgList[1]),
           ],
           options: CarouselOptions(
-              height: _height * 0.35,
+              height: MediaQuerySize.height(context) * 0.4,
               enableInfiniteScroll: false,
               autoPlay: true,
               viewportFraction: 1,
@@ -37,7 +36,9 @@ class GoldAds extends StatelessWidget {
               }),
         ),
         Container(
-            margin: EdgeInsets.only(left: _width * 0.45),
+            margin: EdgeInsets.only(
+                left: MediaQuerySize.width(context) * 0.45,
+                bottom: MediaQuerySize.height(context) * 0.05),
             child: BlocBuilder<IndicatorBloc, IndicatorStates>(
               builder: (context, state) {
                 if (state is FirstItemSelectedState)
@@ -45,19 +46,19 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: _height * 0.01,
-                            horizontal: _width * 0.01),
-                        width: _width * 0.02,
-                        height: _height * 0.02,
+                            vertical: MediaQuerySize.height(context) * 0.01,
+                            horizontal: MediaQuerySize.width(context) * 0.01),
+                        width: MediaQuerySize.width(context) * 0.02,
+                        height: MediaQuerySize.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: _height * 0.01,
-                            horizontal: _width * 0.01),
-                        width: _width * 0.02,
-                        height: _height * 0.02,
+                            vertical: MediaQuerySize.height(context) * 0.01,
+                            horizontal: MediaQuerySize.width(context) * 0.01),
+                        width: MediaQuerySize.width(context) * 0.02,
+                        height: MediaQuerySize.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
@@ -68,19 +69,19 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: _height * 0.01,
-                            horizontal: _width * 0.01),
-                        width: _width * 0.02,
-                        height: _height * 0.02,
+                            vertical: MediaQuerySize.height(context) * 0.01,
+                            horizontal: MediaQuerySize.width(context) * 0.01),
+                        width: MediaQuerySize.width(context) * 0.02,
+                        height: MediaQuerySize.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: _height * 0.01,
-                            horizontal: _width * 0.01),
-                        width: _width * 0.02,
-                        height: _height * 0.02,
+                            vertical: MediaQuerySize.height(context) * 0.01,
+                            horizontal: MediaQuerySize.width(context) * 0.01),
+                        width: MediaQuerySize.width(context) * 0.02,
+                        height: MediaQuerySize.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),
