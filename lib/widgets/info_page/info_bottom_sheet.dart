@@ -14,21 +14,24 @@ class InfoModalBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-    BottomSheetBloc _bottomSheetBloc = BlocProvider.of<BottomSheetBloc>(context);
+    BottomSheetBloc _bottomSheetBloc =
+        BlocProvider.of<BottomSheetBloc>(context);
     return BlocBuilder<BottomSheetBloc, BottomSheetStates>(
-      builder: (context,state){
-        return NotificationListener<DraggableScrollableNotification>(
-          onNotification: (notification){
-            notification.extent == 1.0
-            ? _bottomSheetBloc.add(WithUsualCornersEvent())
-            : _bottomSheetBloc.add(WithRoundedCornersEvent());
-          },
-                  child: DraggableScrollableSheet(
+        builder: (context, state) {
+      return NotificationListener<DraggableScrollableNotification>(
+        onNotification: (notification) {
+          notification.extent == 1.0
+              ? _bottomSheetBloc.add(WithUsualCornersEvent())
+              : _bottomSheetBloc.add(WithRoundedCornersEvent());
+        },
+        child: DraggableScrollableSheet(
             initialChildSize: 0.5,
             minChildSize: 0.5,
             builder: (context, scrollController) {
               return Container(
-                decoration: state is WithRoundedCornersState ? InfoPageStyle.bottomSheetStyleWithRoundedCorners : InfoPageStyle.bottomSheetStyleWithUsualCorners,
+                decoration: state is WithRoundedCornersState
+                    ? InfoPageStyle.bottomSheetStyleWithRoundedCorners
+                    : InfoPageStyle.bottomSheetStyleWithUsualCorners,
                 child: ListView.builder(
                   itemCount: 1,
                   controller: scrollController,
@@ -75,13 +78,14 @@ class InfoModalBottomSheet extends StatelessWidget {
                               Container(
                                 width: _width * 0.4,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Container(
                                       height: _height * 0.1,
                                       width: _width * 0.1,
                                       child: SvgPicture.asset(
-                                        'images/instagram.svg',
+                                        'images/social_network_icons/instagram_icon.svg',
                                         fit: BoxFit.contain,
                                       ),
                                     ),
@@ -89,14 +93,14 @@ class InfoModalBottomSheet extends StatelessWidget {
                                         height: _height * 0.1,
                                         width: _width * 0.1,
                                         child: SvgPicture.asset(
-                                          'images/telegram_icon.svg',
+                                          'images/social_network_icons/telegram_icon.svg',
                                           fit: BoxFit.contain,
                                         )),
                                     Container(
                                         height: _height * 0.1,
                                         width: _width * 0.1,
                                         child: SvgPicture.asset(
-                                          'images/whatsapp_icon.svg',
+                                          'images/social_network_icons/whatsapp_icon.svg',
                                           fit: BoxFit.contain,
                                         )),
                                   ],
@@ -113,8 +117,7 @@ class InfoModalBottomSheet extends StatelessWidget {
                 ),
               );
             }),
-        );
-      }
-    );
+      );
+    });
   }
 }

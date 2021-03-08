@@ -27,7 +27,6 @@ dependencies:
   carousel_slider: ^3.0.0
   flutter_speed_dial: ^2.1.1
   flutter_svg: ^0.19.3
-  scrollable_positioned_list: ^0.1.10
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,8 +50,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-
-  - images/
+    - 'images/'
+    - 'images/gold_ads/'
+    - 'images/categories_images/'
+    - 'images/social_network_icons/'
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages

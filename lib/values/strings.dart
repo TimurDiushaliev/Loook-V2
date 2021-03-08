@@ -17,4 +17,22 @@ class Strings {
     'Мед-Товары',
     'Другое',
   ];
+  static const List<String> categoriesImages = [
+    'images/categories_images/transport.svg',
+    'images/categories_images/realty.svg',
+    'images/categories_images/electronics.svg',
+    'images/categories_images/job.svg',
+    'images/categories_images/clothes.svg',
+    'images/categories_images/services.svg',
+    'images/categories_images/games.svg',
+    'images/categories_images/house_and_garden.svg',
+    'images/categories_images/animals.svg',
+    'images/categories_images/rest.svg',
+    'images/categories_images/give_it_away.svg',
+    'images/categories_images/help.svg',
+    'images/categories_images/education.svg',
+    'images/categories_images/products.svg',
+    'images/categories_images/medicine.svg',
+    'images/categories_images/other.svg',
+  ];
 }

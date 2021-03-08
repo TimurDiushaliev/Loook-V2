@@ -37,7 +37,6 @@ class HomeBottomSheet extends StatelessWidget {
                       controller: scrollController,
                       itemBuilder: (context, index) {
                         return Container(
-                          // color: index % 2 == 0 ? Colors.red : Colors.blue,
                           height: _height * 0.7,
                           child: Column(
                             children: [

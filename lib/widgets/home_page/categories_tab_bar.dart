@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loook/values/strings.dart';
+import 'package:loook/values/widgets.dart';
 
 class CategoriesTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabs =
-        Strings.categoriesList.map((e) => Tab(text: e)).toList();
     return TabBar(
         onTap: (index) {
           print(index.toString());
@@ -13,6 +11,6 @@ class CategoriesTabBar extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.label,
         isScrollable: true,
         indicatorColor: Colors.red,
-        tabs: tabs);
+        tabs: Widgets.tabs);
   }
 }

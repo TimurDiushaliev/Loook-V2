@@ -10,7 +10,10 @@ class GoldAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IndicatorBloc _indicatorBLoc = BlocProvider.of<IndicatorBloc>(context);
-    final _imgList = ['images/gold_ad.png', 'images/gold_ad2.png'];
+    final _imgList = [
+      'images/gold_ads/gold_ad.png',
+      'images/gold_ads/gold_ad2.png'
+    ];
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [

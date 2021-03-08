@@ -10,7 +10,7 @@ class AccountNotActiveAdverts extends StatelessWidget {
     return GridView.builder(
         controller: scrollController,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 0.6, crossAxisCount: 2),
+            childAspectRatio: 0.7, crossAxisCount: 2),
         itemBuilder: (context, index) {
           return Container(
               child: Column(
@@ -32,12 +32,6 @@ class AccountNotActiveAdverts extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
-              MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0)),
-                  color: Colors.red[600],
-                  child: Text('Улучшить'),
-                  onPressed: () {})
             ],
           ));
         });

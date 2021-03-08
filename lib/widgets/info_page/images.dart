@@ -5,13 +5,16 @@ class InfoImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
+    final _imgList = [
+      'images/gold_ads/gold_ad.png',
+      'images/gold_ads/gold_ad2.png'
+    ];
     return Stack(
       children: [
         CarouselSlider(
           items: [
-            Image.asset('images/gold_ad.png'),
-            Image.asset('images/gold_ad2.png'),
-            Image.asset('images/watch.png'),
+            Image.asset('images/gold_ads/gold_ad.png'),
+            Image.asset('images/gold_ads/gold_ad2.png'),
           ],
           options: CarouselOptions(
             height: _height * 0.35,
