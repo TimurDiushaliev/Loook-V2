@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DialogPage extends StatelessWidget {
-  const DialogPage({Key key}) : super(key: key);
-
+class ConversationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +26,6 @@ class DialogPage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 50,
               color: Colors.grey[800],
               child: Row(
                 children: [
@@ -38,18 +35,31 @@ class DialogPage extends StatelessWidget {
                   Icon(
                     Icons.add,
                     color: Colors.blue,
+                    size: 25,
                   ),
                   SizedBox(
                     width: 20,
                   ),
                   Expanded(
-                      child: TextField(
-                    decoration: InputDecoration(
-                        focusColor: Colors.blue, hintText: 'Написать...'),
-                  )),
+                    child: TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                        hintText: 'Написать...',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
                   Icon(
                     Icons.send,
                     color: Colors.blue,
+                    size: 25,
                   ),
                   SizedBox(width: 10)
                 ],

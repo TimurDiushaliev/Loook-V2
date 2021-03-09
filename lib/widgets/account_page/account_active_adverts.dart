@@ -26,11 +26,14 @@ class AccountActiveAdverts extends StatelessWidget {
                       fit: BoxFit.cover,
                     )),
               ),
-              Text(
-                'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
+              Container(
+                width: MediaQuerySize.width(context) * 0.4,
+                child: Text(
+                  'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                ),
               ),
               MaterialButton(
                   shape: RoundedRectangleBorder(

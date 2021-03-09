@@ -6,6 +6,8 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
         itemCount: Strings.categoriesList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 8, crossAxisSpacing: 8, crossAxisCount: 2),

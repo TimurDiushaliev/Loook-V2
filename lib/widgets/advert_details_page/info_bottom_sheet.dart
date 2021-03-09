@@ -5,9 +5,9 @@ import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/styles/info_page_style.dart';
-import 'package:loook/widgets/info_page/description.dart';
-import 'package:loook/widgets/info_page/information.dart';
-import 'package:loook/widgets/info_page/title.dart';
+import 'package:loook/widgets/advert_details_page/description.dart';
+import 'package:loook/widgets/advert_details_page/information.dart';
+import 'package:loook/widgets/advert_details_page/title.dart';
 
 class InfoModalBottomSheet extends StatelessWidget {
   @override

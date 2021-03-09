@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/pages/chat/dialog_page.dart';
+import 'package:loook/pages/chat/conversation_page.dart';
 import 'package:loook/responsive_size/media_query.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
 import 'package:loook/widgets/floating_action_buttom/add_advert_action_button.dart';
@@ -20,7 +20,7 @@ class ChatPage extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DialogPage()));
+                    MaterialPageRoute(builder: (context) => ConversationPage()));
               },
               child: Column(
                 children: [

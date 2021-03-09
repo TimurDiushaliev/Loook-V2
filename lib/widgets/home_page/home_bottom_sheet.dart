@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
+import 'package:loook/pages/home/adverts_by_category.dart';
 import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page/adverts.dart';
@@ -14,6 +18,7 @@ class HomeBottomSheet extends StatelessWidget {
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
     final _width = MediaQuery.of(context).size.width;
+    final _advertNotLikedState = AdvertNotLikedState();
     BottomSheetBloc _bottomSheetBloc =
         BlocProvider.of<BottomSheetBloc>(context);
     return NotificationListener<DraggableScrollableNotification>(
@@ -37,7 +42,7 @@ class HomeBottomSheet extends StatelessWidget {
                       controller: scrollController,
                       itemBuilder: (context, index) {
                         return Container(
-                          height: _height * 0.7,
+                          height: _height * 0.6,
                           child: Column(
                             children: [
                               Container(
@@ -46,27 +51,37 @@ class HomeBottomSheet extends StatelessWidget {
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(
-                                          left: _width * 0.05,
-                                          top: _height * 0.03,
-                                          bottom: _height * 0.03),
+                                        left: _width * 0.05,
+                                        top: _height * 0.03,
+                                        bottom: _height * 0.03,
+                                      ),
                                       child: Text(Strings.categoriesList[index],
                                           style: HomePageStyle
                                               .categoriesTextStyle),
                                     ),
                                     Spacer(),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(right: _width * 0.08),
-                                      child: Text(
-                                        'Выбрать',
-                                        style:
-                                            HomePageStyle.chooseTextButtonStyle,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AdvertsByCategory(categorie: Strings.categoriesList[index],)));
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(
+                                            right: _width * 0.08),
+                                        child: Text(
+                                          'Выбрать',
+                                          style: HomePageStyle
+                                              .chooseTextButtonStyle,
+                                        ),
                                       ),
                                     )
                                   ],
                                 ),
                               ),
-                              Expanded(child: Adverts()),
+                              Expanded(child: BlocProvider(create: (context)=> FavoriteListBloc(_advertNotLikedState),child: Adverts())),
                               Divider(
                                 color: Colors.grey[400],
                                 thickness: 2,

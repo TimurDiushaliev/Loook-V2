@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
+import 'package:loook/widgets/advert_details_page/images.dart';
+import 'package:loook/widgets/advert_details_page/info_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
-import 'package:loook/widgets/info_page/images.dart';
-import 'package:loook/widgets/info_page/info_bottom_sheet.dart';
 
-class InfoPage extends StatelessWidget {
+
+class AdvertDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _withRoundedCorners = WithRoundedCornersState();
