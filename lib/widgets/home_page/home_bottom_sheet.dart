@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
+import 'package:loook/bloc/tab_bar_bloc/tab_bar_bloc.dart';
+import 'package:loook/bloc/tab_bar_bloc/tab_bar_states.dart';
 import 'package:loook/pages/home/adverts_by_category.dart';
 import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page/adverts.dart';
+import 'package:loook/widgets/home_page/categories_tab_bar.dart';
 
 class HomeBottomSheet extends StatelessWidget {
   @override
@@ -19,6 +21,7 @@ class HomeBottomSheet extends StatelessWidget {
         kToolbarHeight;
     final _width = MediaQuery.of(context).size.width;
     final _advertNotLikedState = AdvertNotLikedState();
+    final _categoriesTabBarState = CategoriesTabBarState();
     BottomSheetBloc _bottomSheetBloc =
         BlocProvider.of<BottomSheetBloc>(context);
     return NotificationListener<DraggableScrollableNotification>(
@@ -41,12 +44,12 @@ class HomeBottomSheet extends StatelessWidget {
                       itemCount: Strings.categoriesList.length,
                       controller: scrollController,
                       itemBuilder: (context, index) {
-                        return Container(
-                          height: _height * 0.6,
+                        return AspectRatio(
+                          aspectRatio: 1,
                           child: Column(
                             children: [
-                              Container(
-                                height: _height * 0.1,
+                              AspectRatio(
+                                aspectRatio: 5.5,
                                 child: Row(
                                   children: [
                                     Container(
@@ -66,7 +69,22 @@ class HomeBottomSheet extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AdvertsByCategory(categorie: Strings.categoriesList[index],)));
+                                                    BlocProvider(
+                                                      create: (context) =>
+                                                          TabBarBloc(
+                                                              _categoriesTabBarState),
+                                                      child: BlocProvider(
+                                                        create: (context) =>
+                                                            FavoriteListBloc(
+                                                                _advertNotLikedState),
+                                                        child:
+                                                            AdvertsByCategory(
+                                                          categorie: Strings
+                                                                  .categoriesList[
+                                                              index],
+                                                        ),
+                                                      ),
+                                                    )));
                                       },
                                       child: Container(
                                         margin: EdgeInsets.only(
@@ -81,7 +99,12 @@ class HomeBottomSheet extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Expanded(child: BlocProvider(create: (context)=> FavoriteListBloc(_advertNotLikedState),child: Adverts())),
+                              Expanded(
+                                child: BlocProvider(
+                                    create: (context) =>
+                                        FavoriteListBloc(_advertNotLikedState),
+                                    child: Adverts()),
+                              ),
                               Divider(
                                 color: Colors.grey[400],
                                 thickness: 2,

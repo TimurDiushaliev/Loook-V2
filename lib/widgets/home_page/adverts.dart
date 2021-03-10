@@ -12,29 +12,28 @@ class Adverts extends StatelessWidget {
   Widget build(BuildContext context) {
     FavoriteListBloc _favoriteListBloc =
         BlocProvider.of<FavoriteListBloc>(context);
-    return Container(
-      margin: EdgeInsets.only(top: MediaQuerySize.height(context) * 0.03),
-      child: ListView.separated(
-          padding: EdgeInsets.only(
-              left: MediaQuerySize.width(context) * 0.04,
-              right: MediaQuerySize.width(context) * 0.04),
-          separatorBuilder: (context, index) {
-            return SizedBox(width: MediaQuerySize.width(context) * 0.07);
-          },
-          scrollDirection: Axis.horizontal,
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AdvertDetails())),
-              child: Column(
-                children: [
-                  Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      Container(
-                        width: MediaQuerySize.width(context) * 0.43,
-                        height: MediaQuerySize.height(context) * 0.3,
+    return ListView.separated(
+        padding: EdgeInsets.only(
+            left: MediaQuerySize.width(context) * 0.04,
+            right: MediaQuerySize.width(context) * 0.04),
+        separatorBuilder: (context, index) {
+          return SizedBox(width: MediaQuerySize.width(context) * 0.07);
+        },
+        scrollDirection: Axis.horizontal,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AdvertDetails())),
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Container(
+                      width: MediaQuerySize.width(context) * 0.43,
+                      child: AspectRatio(
+                        aspectRatio: 4 / 4.5,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.network(
@@ -42,56 +41,56 @@ class Adverts extends StatelessWidget {
                               fit: BoxFit.cover,
                             )),
                       ),
-                      BlocBuilder<FavoriteListBloc, FavoriteListStates>(
-                          builder: (context, state) {
-                        if (state is AdvertLikedState)
-                          return IconButton(
-                              icon: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                              onPressed: () {
-                                _favoriteListBloc.add(AdvertNotLikedEvent());
-                              });
+                    ),
+                    BlocBuilder<FavoriteListBloc, FavoriteListStates>(
+                        builder: (context, state) {
+                      if (state is AdvertLikedState) if (state.index == index)
                         return IconButton(
                             icon: Icon(
-                              Icons.favorite_outline,
+                              Icons.favorite,
                               color: Colors.red,
                             ),
                             onPressed: () {
-                              _favoriteListBloc.add(AdvertLikedEvent());
+                              _favoriteListBloc.add(AdvertNotLikedEvent());
                             });
-                      })
-                    ],
+                      return IconButton(
+                          icon: Icon(
+                            Icons.favorite_outline,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            _favoriteListBloc
+                                .add(AdvertLikedEvent(index: index));
+                          });
+                    })
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuerySize.height(context) * 0.03,
+                    bottom: MediaQuerySize.height(context) * 0.02,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: MediaQuerySize.height(context) * 0.03,
-                      bottom: MediaQuerySize.height(context) * 0.02,
-                    ),
-                    width: MediaQuerySize.width(context) * 0.4,
-                    height: MediaQuerySize.height(context) * 0.05,
-                    child: Text(
-                      'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: HomePageStyle.descriptionTextStyle,
-                    ),
+                  width: MediaQuerySize.width(context) * 0.4,
+                  child: Text(
+                    'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: HomePageStyle.descriptionTextStyle,
                   ),
-                  Container(
-                    width: MediaQuerySize.width(context) * 0.4,
-                    child: Text(
-                      '312215 KGS',
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: HomePageStyle.priceStyle,
-                    ),
-                  )
-                ],
-              ),
-            );
-          }),
-    );
+                ),
+                Container(
+                  width: MediaQuerySize.width(context) * 0.4,
+                  child: Text(
+                    '312215 KGS',
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: HomePageStyle.priceStyle,
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 }

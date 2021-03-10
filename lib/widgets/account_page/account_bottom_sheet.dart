@@ -14,7 +14,8 @@ class AccountBottomSheet extends StatelessWidget {
             length: 2,
             child: Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(MediaQuerySize.height(context) * 0.07),
+                preferredSize:
+                    Size.fromHeight(MediaQuerySize.height(context) * 0.07),
                 child: AppBar(
                   bottom: TabBar(
                     labelColor: Colors.red,
@@ -22,10 +23,8 @@ class AccountBottomSheet extends StatelessWidget {
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorColor: Colors.red,
                     tabs: [
-                      Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Text('Активные')),
-                      Text('Неактивные'),
+                      Tab(text: 'Активные'),
+                      Tab(text: 'Неактивные'),
                     ],
                   ),
                 ),

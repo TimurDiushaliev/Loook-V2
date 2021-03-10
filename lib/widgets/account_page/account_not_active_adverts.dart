@@ -18,13 +18,15 @@ class AccountNotActiveAdverts extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuerySize.width(context) * 0.43,
-                height: MediaQuerySize.height(context) * 0.3,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.network(
-                      'https://24tv.ua/resources/photos/news/1200x675_DIR/202011/1467558.jpg?202011105451',
-                      fit: BoxFit.cover,
-                    )),
+                child: AspectRatio(
+                  aspectRatio: 4 / 5,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        'https://24tv.ua/resources/photos/news/1200x675_DIR/202011/1467558.jpg?202011105451',
+                        fit: BoxFit.cover,
+                      )),
+                ),
               ),
               Container(
                 width: MediaQuerySize.width(context) * 0.4,

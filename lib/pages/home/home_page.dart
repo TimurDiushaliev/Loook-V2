@@ -7,7 +7,7 @@ import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_states.dart'
 import 'package:loook/responsive_size/media_query.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
-import 'package:loook/widgets/floating_action_buttom/add_advert_action_button.dart';
+import 'package:loook/widgets/floating_action_button/add_advert_action_button.dart';
 import 'package:loook/widgets/home_page/categories_tab_bar.dart';
 import 'package:loook/widgets/home_page/home_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
