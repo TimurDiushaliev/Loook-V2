@@ -1,6 +1,9 @@
-abstract class TabBarStates {}
+abstract class SubCategoriesTabBarStates {}
 
-class SubCategoriesTabBarState extends TabBarStates {
+class CategoriesTabBarState extends SubCategoriesTabBarStates {}
+
+
+class SubCategoriesTabBarState extends SubCategoriesTabBarStates {
   List subCategoriesList = [
     'Подкатегории',
     'Подкатегории',
@@ -20,5 +23,3 @@ class SubCategoriesTabBarState extends TabBarStates {
     'Подкатегории',
   ];
 }
-
-class CategoriesTabBarState extends TabBarStates {}

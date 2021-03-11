@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
-import 'package:loook/bloc/tab_bar_bloc/tab_bar_bloc.dart';
-import 'package:loook/bloc/tab_bar_bloc/tab_bar_events.dart';
-import 'package:loook/bloc/tab_bar_bloc/tab_bar_states.dart';
+import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_events.dart';
+import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_states.dart';
 import 'package:loook/responsive_size/media_query.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page/categories_tab_bar.dart';
@@ -20,7 +20,7 @@ class AdvertsByCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     FavoriteListBloc _favoriteListBloc =
         BlocProvider.of<FavoriteListBloc>(context);
-    TabBarBloc _tabBarBloc = BlocProvider.of<TabBarBloc>(context);
+    SubCategoriesTabBarBloc _subCategoriesTabBarBloc = BlocProvider.of<SubCategoriesTabBarBloc>(context);
     return DefaultTabController(
       length: Strings.categoriesList.length,
       child: Scaffold(
@@ -38,7 +38,7 @@ class AdvertsByCategory extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize:
                 Size.fromHeight(MediaQuerySize.height(context) * 0.065),
-            child: BlocBuilder<TabBarBloc, TabBarStates>(
+            child: BlocBuilder<SubCategoriesTabBarBloc, SubCategoriesTabBarStates>(
               builder: (context, state) {
                 if (state is SubCategoriesTabBarState)
                   return TabBar(
@@ -48,6 +48,7 @@ class AdvertsByCategory extends StatelessWidget {
                                 text: e,
                               ))
                           .toList());
+                if (state is CategoriesTabBarState) return CategoriesTabBar();
                 return CategoriesTabBar();
               },
             ),
@@ -59,9 +60,11 @@ class AdvertsByCategory extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 0.7, crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      if (index == 8) {
-                        _tabBarBloc.add(SubCategoriesTabBarEvent());
-                      }
+                      print('$e');
+                      if (index == 10)
+                        _subCategoriesTabBarBloc.add(SubCategoriesTabBarEvent());
+                      if (index == 0) if (e == Strings.categoriesList[0])
+                        _subCategoriesTabBarBloc.add(CategoriesTabBarEvent());
                       return Container(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

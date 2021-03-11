@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
-import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
+
+import 'bottom_sheet_events.dart';
 
 
 

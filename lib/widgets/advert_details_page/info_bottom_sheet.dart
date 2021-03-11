@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_bloc.dart';
-import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_events.dart';
-import 'package:loook/bloc/bottom_sheet_bloc/bottom_sheet_states.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_events.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/styles/info_page_style.dart';
 import 'package:loook/widgets/advert_details_page/description.dart';
 import 'package:loook/widgets/advert_details_page/information.dart';

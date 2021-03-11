@@ -21,17 +21,15 @@ class ChooseCategoriePage extends StatelessWidget {
                   style: TextStyle(fontSize: 21),
                 ),
               ),
-              Container(
-                child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(18)),
-                    child: Text(
-                      'Любимые',
-                      style: TextStyle(fontSize: 13),
-                    ),
-                    onPressed: () {}),
-              ),
+              MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(18)),
+                  child: Text(
+                    'Любимые',
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  onPressed: () {}),
             ],
           ),
           SizedBox(

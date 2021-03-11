@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:loook/widgets/account_page/account_balance.dart';
 import 'package:loook/widgets/account_page/account_bottom_sheet.dart';
 import 'package:loook/widgets/account_page/account_information.dart';
+import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
-import 'package:loook/widgets/floating_action_button/add_advert_action_button.dart';
+
 
 class AccountPage extends StatelessWidget {
   @override

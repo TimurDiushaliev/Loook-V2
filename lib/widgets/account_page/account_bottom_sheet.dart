@@ -15,7 +15,7 @@ class AccountBottomSheet extends StatelessWidget {
             child: Scaffold(
               appBar: PreferredSize(
                 preferredSize:
-                    Size.fromHeight(MediaQuerySize.height(context) * 0.07),
+                    Size.fromHeight(MediaQuerySize.height(context) * 0.1),
                 child: AppBar(
                   bottom: TabBar(
                     labelColor: Colors.red,
