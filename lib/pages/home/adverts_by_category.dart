@@ -60,7 +60,6 @@ class AdvertsByCategory extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 0.7, crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      print('$e');
                       if (index == 10)
                         _subCategoriesTabBarBloc.add(SubCategoriesTabBarEvent());
                       if (index == 0) if (e == Strings.categoriesList[0])

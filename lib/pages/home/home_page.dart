@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_states.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_states.dart';
 import 'package:loook/responsive_size/media_query.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
+import 'package:loook/widgets/app_bar/app_bar_title.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
 import 'package:loook/widgets/home_page/categories_tab_bar.dart';
 import 'package:loook/widgets/home_page/home_bottom_sheet.dart';
@@ -19,8 +16,6 @@ import 'package:loook/widgets/home_page/search.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _firstItemSelected = FirstItemSelectedState();
-    final _withRoundedCorners = WithRoundedCornersState();
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: DefaultTabController(
@@ -31,10 +26,7 @@ class HomePage extends StatelessWidget {
               extendBody: true,
               drawer: Drawer(),
               appBar: AppBar(
-                title: Text(
-                  'Loook',
-                  style: TextStyle(letterSpacing: 6),
-                ),
+                title: AppBarTitle(),
                 centerTitle: true,
                 actions: [
                   SearchIcon(),
@@ -51,12 +43,8 @@ class HomePage extends StatelessWidget {
               ),
               body: Stack(
                 children: [
-                  BlocProvider(
-                      create: (context) => IndicatorBloc(_firstItemSelected),
-                      child: GoldAds()),
-                  BlocProvider(
-                      create: (context) => BottomSheetBloc(_withRoundedCorners),
-                      child: HomeBottomSheet()),
+                  GoldAds(),
+                  HomeBottomSheet(),
                 ],
               ),
               floatingActionButtonLocation:

@@ -5,18 +5,18 @@ import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_events
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_events.dart';
-import 'package:loook/pages/home/adverts_by_category.dart';
-import 'package:loook/responsive_size/media_query.dart';
 import 'package:loook/styles/home_page_style.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page/adverts.dart';
+import 'package:loook/widgets/home_page/adverts_categorie_title.dart';
 
 class HomeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BottomSheetBloc _bottomSheetBloc =
         BlocProvider.of<BottomSheetBloc>(context);
-    CategoriesTabBarBloc _categoriesTabBarBloc = BlocProvider.of<CategoriesTabBarBloc>(context);
+    CategoriesTabBarBloc _categoriesTabBarBloc =
+        BlocProvider.of<CategoriesTabBarBloc>(context);
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (notification) {
         if (notification.extent == 1) {
@@ -47,48 +47,7 @@ class HomeBottomSheet extends StatelessWidget {
                             children: [
                               AspectRatio(
                                 aspectRatio: 5.5,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                        left: MediaQuerySize.width(context) *
-                                            0.05,
-                                        top: MediaQuerySize.height(context) *
-                                            0.03,
-                                        bottom: MediaQuerySize.height(context) *
-                                            0.03,
-                                      ),
-                                      child: Text(Strings.categoriesList[index],
-                                          style: HomePageStyle
-                                              .categoriesTextStyle),
-                                    ),
-                                    Spacer(),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AdvertsByCategory(
-                                                categorie: Strings
-                                                    .categoriesList[index],
-                                              ),
-                                            ));
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                            right:
-                                                MediaQuerySize.width(context) *
-                                                    0.08),
-                                        child: Text(
-                                          'Выбрать',
-                                          style: HomePageStyle
-                                              .chooseTextButtonStyle,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                child: AdvertsCategorieTitle(index: index),
                               ),
                               Expanded(child: Adverts()),
                               Divider(

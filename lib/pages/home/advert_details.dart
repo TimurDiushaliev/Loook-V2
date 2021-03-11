@@ -18,6 +18,7 @@ class AdvertDetails extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
+            onPressed: (){},
             icon: Icon(
               Icons.favorite,
               color: Colors.red,

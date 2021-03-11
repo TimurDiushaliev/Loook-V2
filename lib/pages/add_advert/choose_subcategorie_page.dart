@@ -17,12 +17,15 @@ class ChooseSubCategoriePage extends StatelessWidget {
           Row(
             children: [
               Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Center(child: Text(title))),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(5)),
+                child: Center(
+                  child: Text(title),
+                ),
+              ),
             ],
           ),
           SizedBox(

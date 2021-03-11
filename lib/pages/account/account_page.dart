@@ -3,6 +3,7 @@ import 'package:loook/widgets/account_page/account_balance.dart';
 import 'package:loook/widgets/account_page/account_bottom_sheet.dart';
 import 'package:loook/widgets/account_page/account_information.dart';
 import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
+import 'package:loook/widgets/app_bar/app_bar_title.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
 
 
@@ -14,6 +15,8 @@ class AccountPage extends StatelessWidget {
       home: Scaffold(
         extendBody: true,
         appBar: AppBar(
+          title: AppBarTitle(),
+          centerTitle: true,
           backgroundColor: Colors.transparent,
         ),
         body: Stack(
