@@ -25,8 +25,8 @@ class InfoModalBottomSheet extends StatelessWidget {
               : _bottomSheetBloc.add(WithRoundedCornersEvent());
         },
         child: DraggableScrollableSheet(
-            initialChildSize: 0.5,
-            minChildSize: 0.5,
+            initialChildSize: 0.6,
+            minChildSize: 0.6,
             builder: (context, scrollController) {
               return Container(
                 decoration: state is WithRoundedCornersState

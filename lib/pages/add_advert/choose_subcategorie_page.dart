@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_bloc/image_picker_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_bloc/image_picker_states.dart';
+import 'package:loook/pages/add_advert/add_media_page.dart';
 import 'package:loook/responsive_size/media_query.dart';
 
 class ChooseSubCategoriePage extends StatelessWidget {
-  final title;
-  ChooseSubCategoriePage({@required this.title});
+  final categorie;
+  ChooseSubCategoriePage({@required this.categorie});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class ChooseSubCategoriePage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(5)),
                 child: Center(
-                  child: Text(title),
+                  child: Text(categorie),
                 ),
               ),
             ],
@@ -42,17 +46,20 @@ class ChooseSubCategoriePage extends StatelessWidget {
             physics: ScrollPhysics(),
             shrinkWrap: true,
             itemCount: 20,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8),
             itemBuilder: (context, index) {
-              return Card(
-                  color: Color(0x252837),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: Colors.white)),
-                  child: Center(
-                    child: Text('Подкатегории'),
-                  ));
+              return GestureDetector(
+                onTap: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(create: (context)=>ImagePickerBloc(ImageNotSelectedState()),child: AddMediaPage()))),
+                              child: Card(
+                    color: Color(0x252837),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Colors.white)),
+                    child: Center(
+                      child: Text('Подкатегории'),
+                    )),
+              );
             },
           ),
         ],

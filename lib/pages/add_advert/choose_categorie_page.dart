@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loook/responsive_size/media_query.dart';
-import 'package:loook/widgets/add_advert_pages/choose_categorie_page/categories.dart';
+import 'package:loook/widgets/add_advert_pages/choose_categorie_page/categories_list.dart';
 
 class ChooseCategoriePage extends StatelessWidget {
   @override
@@ -35,7 +35,7 @@ class ChooseCategoriePage extends StatelessWidget {
           SizedBox(
             height: MediaQuerySize.height(context) * 0.05,
           ),
-          Categories(),
+          CategoriesList(),
         ],
       ),
     );

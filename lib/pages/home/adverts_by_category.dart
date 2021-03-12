@@ -20,7 +20,8 @@ class AdvertsByCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     FavoriteListBloc _favoriteListBloc =
         BlocProvider.of<FavoriteListBloc>(context);
-    SubCategoriesTabBarBloc _subCategoriesTabBarBloc = BlocProvider.of<SubCategoriesTabBarBloc>(context);
+    SubCategoriesTabBarBloc _subCategoriesTabBarBloc =
+        BlocProvider.of<SubCategoriesTabBarBloc>(context);
     return DefaultTabController(
       length: Strings.categoriesList.length,
       child: Scaffold(
@@ -38,7 +39,8 @@ class AdvertsByCategory extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize:
                 Size.fromHeight(MediaQuerySize.height(context) * 0.065),
-            child: BlocBuilder<SubCategoriesTabBarBloc, SubCategoriesTabBarStates>(
+            child:
+                BlocBuilder<SubCategoriesTabBarBloc, SubCategoriesTabBarStates>(
               builder: (context, state) {
                 if (state is SubCategoriesTabBarState)
                   return TabBar(
@@ -58,10 +60,11 @@ class AdvertsByCategory extends StatelessWidget {
             children: Strings.categoriesList
                 .map((e) => GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.7, crossAxisCount: 2),
+                        childAspectRatio: 0.65, crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       if (index == 10)
-                        _subCategoriesTabBarBloc.add(SubCategoriesTabBarEvent());
+                        _subCategoriesTabBarBloc
+                            .add(SubCategoriesTabBarEvent());
                       if (index == 0) if (e == Strings.categoriesList[0])
                         _subCategoriesTabBarBloc.add(CategoriesTabBarEvent());
                       return Container(
@@ -119,6 +122,12 @@ class AdvertsByCategory extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.black),
                             ),
+                          ),
+                          Text(
+                            '312 KGS',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ));

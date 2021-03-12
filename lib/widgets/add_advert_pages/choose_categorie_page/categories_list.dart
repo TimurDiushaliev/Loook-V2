@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loook/pages/add_advert/choose_subcategorie_page.dart';
 import 'package:loook/values/strings.dart';
 
-class Categories extends StatelessWidget {
+class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -18,7 +18,7 @@ class Categories extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ChooseSubCategoriePage(
-                title: Strings.categoriesList[index],
+                categorie: Strings.categoriesList[index],
               ),
             ),
           ),
