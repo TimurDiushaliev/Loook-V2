@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_events.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_states.dart';
+import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/services/image_picker_provider.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 class AddMediaPage extends StatelessWidget {
   @override
@@ -76,9 +79,7 @@ class AddMediaPage extends StatelessWidget {
                 height: 120,
                 width: 170,
                 child: GestureDetector(
-                  onTap: () => _imagePickerBloc.add(
-                    PickImageEvent(),
-                  ),
+                  onTap: () => _imagePickerBloc.add(PickImageEvent()),
                   child: Card(
                     color: Color(0x252837),
                     shape: RoundedRectangleBorder(
@@ -113,17 +114,51 @@ class AddMediaPage extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: MediaQuerySize.height(context) * 0.05,
+          ),
           BlocBuilder<ImagePickerBloc, ImagePickerStates>(
             builder: (context, state) {
+              print('$state');
               if (state is ImagePickedState) {
-                state.imageList.map((e) => GridView.builder(
+                return Container(
+                  margin: EdgeInsets.only(
+                      left: MediaQuerySize.width(context) * 0.05,
+                      right: MediaQuerySize.width(context) * 0.05),
+                  child: GridView.builder(
+                    itemCount: state.imageList.length,
                     shrinkWrap: true,
+                    physics: ScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
                         crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      print('$e');
-                      return Image.file(e);
-                    }));
+                      return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white)),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            AssetThumb(
+                                asset: state.imageList[index],
+                                width: 300,
+                                height: 300),
+                            IconButton(
+                              icon: Icon(
+                                Icons.remove_circle,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                _imagePickerBloc.add(DeletePickedImageEvent(index: index, refreshImageList: state.imageList));
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                );
               }
               return Container();
             },

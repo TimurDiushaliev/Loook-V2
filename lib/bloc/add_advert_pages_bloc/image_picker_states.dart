@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 
 abstract class ImagePickerStates {}
@@ -7,7 +7,7 @@ abstract class ImagePickerStates {}
 class ImageNotSelectedState extends ImagePickerStates {}
 
 class ImagePickedState extends ImagePickerStates {
-  List<File> imageList;
+  List<Asset> imageList;
   ImagePickedState({@required this.imageList}) : assert(imageList!=null);
 }
 

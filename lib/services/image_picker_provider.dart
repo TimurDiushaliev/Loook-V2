@@ -1,17 +1,27 @@
-import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 class ImagePickerProvider {
-  static Future<File> getImage() async {
-    File _image;
-    final _picker = ImagePicker();
-    final _pickedImage = await _picker.getImage(source: ImageSource.gallery);
-    if (_pickedImage != null)
-      _image = File(_pickedImage.path);
-    else
-      throw Exception('image = $_pickedImage');
-    print('$_image');
-    return _image;
+  static Future<List<Asset>> pickImages() async {
+    List<Asset> imageList = <Asset>[];
+    try {
+      imageList = await MultiImagePicker.pickImages(
+        maxImages: 300,
+        enableCamera: true,
+        selectedAssets: imageList,
+        cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+        materialOptions: MaterialOptions(
+          statusBarColor: '#212121',
+          actionBarColor: '#212121',
+          actionBarTitle: 'Выберите фотографии',
+          allViewTitle: "All Photos",
+          useDetailsView: false,
+          selectCircleStrokeColor: "#000000",
+        ),
+      );
+      return imageList;
+    } catch (e) {
+      print('exc $e');
+    }
+    return imageList;
   }
 }

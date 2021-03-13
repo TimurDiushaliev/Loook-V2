@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
+import 'package:loook/bloc/chat_page_blocs/chatting_bloc.dart';
+import 'package:loook/bloc/chat_page_blocs/chatting_states.dart';
 import 'package:loook/pages/chat/chat_page.dart';
 import 'package:loook/pages/home/home_page.dart';
 import 'package:loook/pages/account/account_page.dart';
@@ -52,7 +54,10 @@ class MyApp extends StatelessWidget {
               ],
               child: HomePage(),
             );
-          if (state is ChatPageState) return ChatPage();
+          if (state is ChatPageState)
+            return BlocProvider(
+                create: (context) => ChatttingBloc(NoMessagesState()),
+                child: ChatPage());
           if (state is AccountPageState) return AccountPage();
           return Center(
             child: CircularProgressIndicator(),
