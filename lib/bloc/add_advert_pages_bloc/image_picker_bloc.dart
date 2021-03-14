@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_events.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_states.dart';

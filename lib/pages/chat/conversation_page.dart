@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/chat_page_blocs/chatting_bloc.dart';
-import 'package:loook/bloc/chat_page_blocs/chatting_events.dart';
-import 'package:loook/bloc/chat_page_blocs/chatting_states.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ConversationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ChatttingBloc _chattingBloc = BlocProvider.of<ChatttingBloc>(context);
-    TextEditingController _sendMessage = TextEditingController();
+    TextEditingController _messageController = TextEditingController();
+    WebSocketChannel _webSocketChannel =
+        IOWebSocketChannel.connect('wss://echo.websocket.org');
+    List<String> _messages = [];
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -29,36 +29,17 @@ class ConversationPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          BlocBuilder<ChatttingBloc, ChattingStates>(
-            builder: (context, state) {
-              if (state is SendMessageState) {
-                return ListView.builder(
-                  itemCount: state.messages.length,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    print('${state.messages[index].messageContent}');
-                    return Container(
-                      child: Align(
-                        alignment: state.messages[index].messageType == 'sender'
-                            ? Alignment.topRight
-                            : Alignment.topLeft,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: state.messages[index].messageType == 'sender'
-                                ? Colors.blue
-                                : Colors.blueGrey[500],
-                          ),
-                          padding: EdgeInsets.all(10),
-                          child: Text(state.messages[index].messageContent),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              }
-              return Container();
+          StreamBuilder(
+            stream: _webSocketChannel.stream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) _messages.add(snapshot.data);
+              return ListView(
+                children: _messages
+                    .map((e) => Container(
+                          child: Text(e),
+                        ))
+                    .toList(),
+              );
             },
           ),
           Align(
@@ -80,7 +61,7 @@ class ConversationPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
-                      controller: _sendMessage,
+                      controller: _messageController,
                       keyboardType: TextInputType.multiline,
                       minLines: 1,
                       maxLines: 5,
@@ -102,8 +83,10 @@ class ConversationPage extends StatelessWidget {
                       size: 25,
                     ),
                     onPressed: () {
-                      _chattingBloc.add(
-                          SendMessageEvent(senderMessage: _sendMessage.text));
+                      if (_messageController.text.isNotEmpty) {
+                        _webSocketChannel.sink.add(_messageController.text);
+                        _messageController.text = '';
+                      }
                     },
                   ),
                   SizedBox(width: 10)

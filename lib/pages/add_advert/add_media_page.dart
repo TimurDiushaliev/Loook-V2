@@ -4,7 +4,6 @@ import 'package:loook/bloc/add_advert_pages_bloc/image_picker_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_events.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/image_picker_states.dart';
 import 'package:loook/responsive_size/media_query.dart';
-import 'package:loook/services/image_picker_provider.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 class AddMediaPage extends StatelessWidget {
