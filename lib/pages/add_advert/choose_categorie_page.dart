@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/add_advert_pages/choose_categorie_page/categories_list.dart';
 
 class ChooseCategoriePage extends StatelessWidget {
@@ -10,7 +10,7 @@ class ChooseCategoriePage extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(
-            height: MediaQuerySize.height(context) * 0.05,
+            height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,7 +33,7 @@ class ChooseCategoriePage extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: MediaQuerySize.height(context) * 0.05,
+            height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
           CategoriesList(),
         ],

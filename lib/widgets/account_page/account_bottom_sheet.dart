@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/account_page/account_active_adverts.dart';
 import 'package:loook/widgets/account_page/account_not_active_adverts.dart';
 
@@ -15,7 +15,7 @@ class AccountBottomSheet extends StatelessWidget {
             child: Scaffold(
               appBar: PreferredSize(
                 preferredSize:
-                    Size.fromHeight(MediaQuerySize.height(context) * 0.1),
+                    Size.fromHeight(ResponsiveSizeProvider.height(context) * 0.1),
                 child: AppBar(
                   bottom: TabBar(
                     labelColor: Colors.red,

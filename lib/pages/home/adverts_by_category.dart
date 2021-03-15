@@ -6,7 +6,7 @@ import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
 import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_events.dart';
 import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_states.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page/categories_tab_bar.dart';
 import 'package:loook/widgets/home_page/filter.dart';
@@ -38,7 +38,7 @@ class AdvertsByCategory extends StatelessWidget {
           ],
           bottom: PreferredSize(
             preferredSize:
-                Size.fromHeight(MediaQuerySize.height(context) * 0.065),
+                Size.fromHeight(ResponsiveSizeProvider.height(context) * 0.065),
             child:
                 BlocBuilder<SubCategoriesTabBarBloc, SubCategoriesTabBarStates>(
               builder: (context, state) {
@@ -75,7 +75,7 @@ class AdvertsByCategory extends StatelessWidget {
                             alignment: Alignment.topRight,
                             children: [
                               Container(
-                                width: MediaQuerySize.width(context) * 0.43,
+                                width: ResponsiveSizeProvider.width(context) * 0.43,
                                 child: AspectRatio(
                                   aspectRatio: 4 / 4.5,
                                   child: ClipRRect(
@@ -114,7 +114,7 @@ class AdvertsByCategory extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            width: MediaQuerySize.width(context) * 0.4,
+                            width: ResponsiveSizeProvider.width(context) * 0.4,
                             child: Text(
                               'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
                               maxLines: 2,

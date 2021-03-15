@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class AccountBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuerySize.height(context) * 0.07),
+      margin: EdgeInsets.only(top: ResponsiveSizeProvider.height(context) * 0.07),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

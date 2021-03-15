@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/image_picker_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/image_picker_states.dart';
+import 'package:loook/bloc/add_advert_pages_bloc/media_picker_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_bloc/media_picker_states.dart';
 import 'package:loook/pages/add_advert/add_media_page.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class ChooseSubCategoriePage extends StatelessWidget {
   final categorie;
@@ -16,7 +16,7 @@ class ChooseSubCategoriePage extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(
-            height: MediaQuerySize.height(context) * 0.05,
+            height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
           Row(
             children: [
@@ -33,14 +33,14 @@ class ChooseSubCategoriePage extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: MediaQuerySize.height(context) * 0.05,
+            height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
           Text(
             'Выберите подкатегорию',
             style: TextStyle(fontSize: 21),
           ),
           SizedBox(
-            height: MediaQuerySize.height(context) * 0.05,
+            height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
           GridView.builder(
             physics: ScrollPhysics(),
@@ -50,7 +50,7 @@ class ChooseSubCategoriePage extends StatelessWidget {
                 crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(create: (context)=>ImagePickerBloc(ImageNotSelectedState()),child: AddMediaPage()))),
+                onTap: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(create: (context)=>MediaPickerBloc(ImageNotSelectedState()),child: AddMediaPage()))),
                               child: Card(
                     color: Color(0x252837),
                     shape: RoundedRectangleBorder(

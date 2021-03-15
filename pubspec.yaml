@@ -30,6 +30,7 @@ dependencies:
   image_picker: ^0.7.2+1
   multi_image_picker: ^4.8.0
   web_socket_channel: ^2.0.0
+  flutter_absolute_path: ^1.0.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -57,6 +58,7 @@ flutter:
     - 'images/gold_ads/'
     - 'images/categories_images/'
     - 'images/social_network_icons/'
+    - 'images/premium/'
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MediaQuerySize {
+class ResponsiveSizeProvider {
   static width(context) {
     final _width = MediaQuery.of(context).size.width;
     return _width;

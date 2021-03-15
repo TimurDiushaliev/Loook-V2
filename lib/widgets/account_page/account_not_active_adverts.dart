@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class AccountNotActiveAdverts extends StatelessWidget {
   final scrollController;
@@ -17,7 +17,7 @@ class AccountNotActiveAdverts extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: MediaQuerySize.width(context) * 0.43,
+                width: ResponsiveSizeProvider.width(context) * 0.43,
                 child: AspectRatio(
                   aspectRatio: 4 / 5,
                   child: ClipRRect(
@@ -29,7 +29,7 @@ class AccountNotActiveAdverts extends StatelessWidget {
                 ),
               ),
               Container(
-                width: MediaQuerySize.width(context) * 0.4,
+                width: ResponsiveSizeProvider.width(context) * 0.4,
                 child: Text(
                   'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
                   maxLines: 2,

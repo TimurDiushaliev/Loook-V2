@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class AccountInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-          top: MediaQuerySize.height(context) * 0.05,
-          left: MediaQuerySize.width(context) * 0.1),
+          top: ResponsiveSizeProvider.height(context) * 0.05,
+          left: ResponsiveSizeProvider.width(context) * 0.1),
       child: Row(
         children: [
           Container(
-            height: MediaQuerySize.height(context) * 0.1,
-            width: MediaQuerySize.width(context) * 0.15,
+            height: ResponsiveSizeProvider.height(context) * 0.1,
+            width: ResponsiveSizeProvider.width(context) * 0.15,
             child: CircleAvatar(
               backgroundImage: NetworkImage(
                 'https://www.buro247.ua/thumb/670x830_0/images/2021/01/elon-musk-now-richest-person-01.jpg',
@@ -20,8 +20,8 @@ class AccountInformation extends StatelessWidget {
             ),
           ),
           Container(
-            height: MediaQuerySize.height(context) * 0.1,
-            margin: EdgeInsets.only(left: MediaQuerySize.width(context) * 0.07),
+            height: ResponsiveSizeProvider.height(context) * 0.1,
+            margin: EdgeInsets.only(left: ResponsiveSizeProvider.width(context) * 0.07),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

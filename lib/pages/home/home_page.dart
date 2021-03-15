@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/tab_bar_bloc/tab_bar_states.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(state is HideTabBarState
                       ? 0
-                      : MediaQuerySize.height(context) * 0.065),
+                      : ResponsiveSizeProvider.height(context) * 0.065),
                   child: state is HideTabBarState
                       ? Container()
                       : CategoriesTabBar(),

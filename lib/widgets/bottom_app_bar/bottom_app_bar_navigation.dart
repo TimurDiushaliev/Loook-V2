@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_events.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class BottomAppBarNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BottomAppBarBloc _bottomAppBarBloc = BlocProvider.of(context);
     return Container(
-      height: MediaQuerySize.height(context) * 0.075,
+      height: ResponsiveSizeProvider.height(context) * 0.075,
       child: BottomAppBar(
         color: Colors.black87,
         shape: CircularNotchedRectangle(),
@@ -17,7 +17,7 @@ class BottomAppBarNavigation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: MediaQuerySize.width(context) * 0.001),
+              SizedBox(width: ResponsiveSizeProvider.width(context) * 0.001),
               IconButton(
                   icon: Icon(Icons.home, color: Colors.grey[500]),
                   onPressed: () {
@@ -26,7 +26,7 @@ class BottomAppBarNavigation extends StatelessWidget {
               IconButton(
                   icon: Icon(Icons.favorite, color: Colors.grey[500]),
                   onPressed: () {}),
-              SizedBox(width: MediaQuerySize.width(context) * 0.2),
+              SizedBox(width: ResponsiveSizeProvider.width(context) * 0.2),
               IconButton(
                   icon: Icon(Icons.message, color: Colors.grey[500]),
                   onPressed: () {
@@ -37,7 +37,7 @@ class BottomAppBarNavigation extends StatelessWidget {
                   onPressed: () {
                     _bottomAppBarBloc.add(AccountPageEvent());
                   }),
-              SizedBox(width: MediaQuerySize.width(context) * 0.001),
+              SizedBox(width: ResponsiveSizeProvider.width(context) * 0.001),
             ],
           ),
         ),

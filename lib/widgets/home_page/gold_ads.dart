@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_events.dart';
 import 'package:loook/bloc/home_page_blocs/indicator_bloc/indicator_states.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class GoldAds extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class GoldAds extends StatelessWidget {
             Image.asset(_imgList[1]),
           ],
           options: CarouselOptions(
-              height: MediaQuerySize.height(context) * 0.4,
+              height: ResponsiveSizeProvider.height(context) * 0.4,
               enableInfiniteScroll: false,
               autoPlay: true,
               viewportFraction: 1,
@@ -40,8 +40,8 @@ class GoldAds extends StatelessWidget {
         ),
         Container(
             margin: EdgeInsets.only(
-                left: MediaQuerySize.width(context) * 0.45,
-                bottom: MediaQuerySize.height(context) * 0.05),
+                left: ResponsiveSizeProvider.width(context) * 0.45,
+                bottom: ResponsiveSizeProvider.height(context) * 0.05),
             child: BlocBuilder<IndicatorBloc, IndicatorStates>(
               builder: (context, state) {
                 if (state is FirstItemSelectedState)
@@ -49,19 +49,23 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: MediaQuerySize.height(context) * 0.01,
-                            horizontal: MediaQuerySize.width(context) * 0.01),
-                        width: MediaQuerySize.width(context) * 0.02,
-                        height: MediaQuerySize.height(context) * 0.02,
+                            vertical:
+                                ResponsiveSizeProvider.height(context) * 0.01,
+                            horizontal:
+                                ResponsiveSizeProvider.width(context) * 0.01),
+                        width: ResponsiveSizeProvider.width(context) * 0.02,
+                        height: ResponsiveSizeProvider.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: MediaQuerySize.height(context) * 0.01,
-                            horizontal: MediaQuerySize.width(context) * 0.01),
-                        width: MediaQuerySize.width(context) * 0.02,
-                        height: MediaQuerySize.height(context) * 0.02,
+                            vertical:
+                                ResponsiveSizeProvider.height(context) * 0.01,
+                            horizontal:
+                                ResponsiveSizeProvider.width(context) * 0.01),
+                        width: ResponsiveSizeProvider.width(context) * 0.02,
+                        height: ResponsiveSizeProvider.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
@@ -72,19 +76,23 @@ class GoldAds extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: MediaQuerySize.height(context) * 0.01,
-                            horizontal: MediaQuerySize.width(context) * 0.01),
-                        width: MediaQuerySize.width(context) * 0.02,
-                        height: MediaQuerySize.height(context) * 0.02,
+                            vertical:
+                                ResponsiveSizeProvider.height(context) * 0.01,
+                            horizontal:
+                                ResponsiveSizeProvider.width(context) * 0.01),
+                        width: ResponsiveSizeProvider.width(context) * 0.02,
+                        height: ResponsiveSizeProvider.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.grey),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
-                            vertical: MediaQuerySize.height(context) * 0.01,
-                            horizontal: MediaQuerySize.width(context) * 0.01),
-                        width: MediaQuerySize.width(context) * 0.02,
-                        height: MediaQuerySize.height(context) * 0.02,
+                            vertical:
+                                ResponsiveSizeProvider.height(context) * 0.01,
+                            horizontal:
+                                ResponsiveSizeProvider.width(context) * 0.01),
+                        width: ResponsiveSizeProvider.width(context) * 0.02,
+                        height: ResponsiveSizeProvider.height(context) * 0.02,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
                       ),

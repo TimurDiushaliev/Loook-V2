@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loook/pages/chat/conversation_page.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
 import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
 
@@ -34,8 +34,8 @@ class ChatPage extends StatelessWidget {
                       title: Text('Мария Ивановна'),
                       subtitle: Text('Привет'),
                       trailing: Container(
-                          width: MediaQuerySize.width(context) * 0.1,
-                          height: MediaQuerySize.height(context) * 0.04,
+                          width: ResponsiveSizeProvider.width(context) * 0.1,
+                          height: ResponsiveSizeProvider.height(context) * 0.04,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle, color: Colors.red[400]),
                           child: Center(child: Text('13'))),

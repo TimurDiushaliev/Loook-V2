@@ -39,21 +39,14 @@ class MyApp extends StatelessWidget {
                         FavoriteListBloc(AdvertNotLikedState())),
                 BlocProvider(
                     create: (context) =>
-                        FavoriteListBloc(AdvertNotLikedState())),
-                BlocProvider(
-                    create: (context) =>
                         BottomSheetBloc(WithRoundedCornersState())),
                 BlocProvider(
                     create: (context) =>
                         IndicatorBloc(FirstItemSelectedState())),
-                BlocProvider(
-                    create: (context) =>
-                        BottomSheetBloc(WithRoundedCornersState())),
               ],
               child: HomePage(),
             );
-          if (state is ChatPageState)
-           return ChatPage();
+          if (state is ChatPageState) return ChatPage();
           if (state is AccountPageState) return AccountPage();
           return Center(
             child: CircularProgressIndicator(),

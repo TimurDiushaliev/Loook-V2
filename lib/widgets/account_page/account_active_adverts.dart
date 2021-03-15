@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
+import 'package:loook/pages/account/premium_account.dart';
 
 class AccountActiveAdverts extends StatelessWidget {
   final scrollController;
@@ -17,7 +18,7 @@ class AccountActiveAdverts extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: MediaQuerySize.width(context) * 0.43,
+                width: ResponsiveSizeProvider.width(context) * 0.43,
                 child: AspectRatio(
                   aspectRatio: 4 / 5,
                   child: ClipRRect(
@@ -29,7 +30,7 @@ class AccountActiveAdverts extends StatelessWidget {
                 ),
               ),
               Container(
-                width: MediaQuerySize.width(context) * 0.4,
+                width: ResponsiveSizeProvider.width(context) * 0.4,
                 child: Text(
                   'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
                   maxLines: 2,
@@ -42,7 +43,12 @@ class AccountActiveAdverts extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18.0)),
                   color: Colors.red[600],
                   child: Text('Улучшить'),
-                  onPressed: () {})
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PremiumAccountPage()));
+                  })
             ],
           ));
         });

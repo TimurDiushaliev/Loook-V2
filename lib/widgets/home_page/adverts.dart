@@ -4,7 +4,7 @@ import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
 import 'package:loook/pages/home/advert_details.dart';
-import 'package:loook/responsive_size/media_query.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/styles/home_page_style.dart';
 
 class Adverts extends StatelessWidget {
@@ -14,10 +14,10 @@ class Adverts extends StatelessWidget {
         BlocProvider.of<FavoriteListBloc>(context);
     return ListView.separated(
         padding: EdgeInsets.only(
-            left: MediaQuerySize.width(context) * 0.04,
-            right: MediaQuerySize.width(context) * 0.04),
+            left: ResponsiveSizeProvider.width(context) * 0.04,
+            right: ResponsiveSizeProvider.width(context) * 0.04),
         separatorBuilder: (context, index) {
-          return SizedBox(width: MediaQuerySize.width(context) * 0.07);
+          return SizedBox(width: ResponsiveSizeProvider.width(context) * 0.07);
         },
         scrollDirection: Axis.horizontal,
         itemCount: 10,
@@ -31,7 +31,7 @@ class Adverts extends StatelessWidget {
                   alignment: Alignment.topRight,
                   children: [
                     Container(
-                      width: MediaQuerySize.width(context) * 0.43,
+                      width: ResponsiveSizeProvider.width(context) * 0.43,
                       child: AspectRatio(
                         aspectRatio: 4 / 4.5,
                         child: ClipRRect(
@@ -67,10 +67,10 @@ class Adverts extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.only(
-                    top: MediaQuerySize.height(context) * 0.03,
-                    bottom: MediaQuerySize.height(context) * 0.02,
+                    top: ResponsiveSizeProvider.height(context) * 0.03,
+                    bottom: ResponsiveSizeProvider.height(context) * 0.02,
                   ),
-                  width: MediaQuerySize.width(context) * 0.4,
+                  width: ResponsiveSizeProvider.width(context) * 0.4,
                   child: Text(
                     'Продаю часы от Apple оптом дешевле fdfsdfdfsfsd',
                     maxLines: 2,
@@ -80,7 +80,7 @@ class Adverts extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: MediaQuerySize.width(context) * 0.4,
+                  width: ResponsiveSizeProvider.width(context) * 0.4,
                   child: Text(
                     '312215 KGS',
                     overflow: TextOverflow.ellipsis,
