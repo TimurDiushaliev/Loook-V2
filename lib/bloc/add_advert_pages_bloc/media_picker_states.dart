@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:video_player/video_player.dart';
 
 
 
@@ -6,16 +7,16 @@ abstract class MediaPickerStates {}
 
 class ImageNotSelectedState extends MediaPickerStates {}
 
-class MediaPickedState extends MediaPickerStates {
-  List<String> mediaList;
-  MediaPickedState({@required this.mediaList}) : assert(mediaList!=null);
+class ImagesPickedState extends MediaPickerStates {
+  List<String> imageList;
+  ImagesPickedState({@required this.imageList}) : assert(imageList!=null);
 }
 
 class DeletedImageState extends MediaPickerStates {}
 
-// class VideoPickedState extends MediaPickerStates {
-//   String videoFilePath;
-//   VideoPickedState({@required this.videoFilePath}) : assert(videoFilePath != null);
-// }
+class VideoPickedState extends MediaPickerStates {
+  VideoPlayerController videoPlayerController;
+  VideoPickedState({@required this.videoPlayerController}) : assert(videoPlayerController != null);
+}
 
 class MediaPickerError extends MediaPickerStates {}

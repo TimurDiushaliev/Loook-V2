@@ -2,9 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loook/bloc/account_page_blocs/vip_page_bloc/vip_page_bloc.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/premium_pages/vip_page/vip_description.dart';
-import 'package:loook/bloc/vip_page_bloc/vip_page_bloc.dart';
+
 
 class VipPage extends StatelessWidget {
   @override

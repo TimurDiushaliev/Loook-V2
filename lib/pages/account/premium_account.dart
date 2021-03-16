@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/vip_page_bloc/vip_page_bloc.dart';
 import 'package:loook/pages/account/vip_page.dart';
-import 'package:loook/bloc/vip_page_bloc/vip_page_bloc.dart';
+
 
 class PremiumAccountPage extends StatelessWidget {
   @override
@@ -27,7 +28,7 @@ class PremiumAccountPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            BlocProvider(create: (context)=> VipPageBloc(2),child: VipPage()),
+             VipPage(),
             Center(child: Text('ELITE')),
             Center(child: Text('GOLD')),
           ],

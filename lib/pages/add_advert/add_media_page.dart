@@ -6,7 +6,7 @@ import 'package:loook/bloc/add_advert_pages_bloc/media_picker_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/media_picker_events.dart';
 import 'package:loook/bloc/add_advert_pages_bloc/media_picker_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:video_player/video_player.dart';
 
 class AddMediaPage extends StatelessWidget {
   @override
@@ -98,7 +98,7 @@ class AddMediaPage extends StatelessWidget {
                 Container(
                   width: ResponsiveSizeProvider.width(context) * 0.45,
                   child: GestureDetector(
-                    // onTap: () => _imagePickerBloc.add(PickVideoEvent()),
+                    onTap: () => _imagePickerBloc.add(PickVideoEvent()),
                     child: Card(
                       color: Color(0x252837),
                       shape: RoundedRectangleBorder(
@@ -123,13 +123,13 @@ class AddMediaPage extends StatelessWidget {
           BlocBuilder<MediaPickerBloc, MediaPickerStates>(
             builder: (context, state) {
               print('$state');
-              if (state is MediaPickedState) {
+              if (state is ImagesPickedState) {
                 return Container(
                   margin: EdgeInsets.only(
                       left: ResponsiveSizeProvider.width(context) * 0.05,
                       right: ResponsiveSizeProvider.width(context) * 0.05),
                   child: GridView.builder(
-                    itemCount: state.mediaList.length,
+                    itemCount: state.imageList.length,
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -146,7 +146,7 @@ class AddMediaPage extends StatelessWidget {
                             ),
                             width: ResponsiveSizeProvider.width(context) * 0.4,
                             child: Image.file(
-                              File(state.mediaList[index]),
+                              File(state.imageList[index]),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -165,6 +165,23 @@ class AddMediaPage extends StatelessWidget {
                     },
                   ),
                 );
+              }
+              if (state is VideoPickedState) {
+                if (state.videoPlayerController.value.isInitialized) {
+                  try {
+                    state.videoPlayerController.play();
+                    return GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: 1,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemBuilder: (context, index) {
+                          return VideoPlayer(state.videoPlayerController);
+                        });
+                  } catch (e) {
+                    print('video exception $e');
+                  }
+                }
               }
               return Container();
             },
