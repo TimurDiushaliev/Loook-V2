@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
 import 'package:loook/widgets/advert_details_page/images.dart';
 import 'package:loook/widgets/advert_details_page/info_bottom_sheet.dart';
 import 'package:loook/widgets/home_page/filter.dart';
 
-
 class AdvertDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
+    FavoriteListBloc _favoriteListBloc =
+        BlocProvider.of<FavoriteListBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -17,13 +21,22 @@ class AdvertDetails extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: (){},
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.red,
-            ),
-          ),
+          BlocBuilder<FavoriteListBloc, FavoriteListStates>(
+              builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                _favoriteListBloc.add(state is AdvertNotLikedState
+                    ? AdvertLikedEvent()
+                    : AdvertNotLikedEvent());
+              },
+              icon: Icon(
+                state is AdvertNotLikedState
+                    ? Icons.favorite_outline
+                    : Icons.favorite,
+                color: Colors.red,
+              ),
+            );
+          }),
           Filter(),
         ],
       ),

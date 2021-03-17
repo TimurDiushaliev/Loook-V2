@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_bloc/check_box_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
-import 'package:loook/pages/account/authentication_page.dart';
+import 'package:loook/pages/account/authentication/authentication_page.dart';
 import 'package:loook/pages/chat/chat_page.dart';
 import 'package:loook/pages/home/home_page.dart';
 import 'package:path_provider/path_provider.dart';
