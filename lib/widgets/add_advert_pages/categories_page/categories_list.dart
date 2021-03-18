@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loook/pages/add_advert/choose_subcategorie_page.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/categories_details_bloc/categories_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/categories_details_bloc/categories_details_events.dart';
+import 'package:loook/pages/add_advert/categories_details_page.dart';
 import 'package:loook/values/strings.dart';
 
 class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CategoriesDetailsBloc _categoriesDetailsBloc =
+        BlocProvider.of<CategoriesDetailsBloc>(context);
     return GridView.builder(
       shrinkWrap: true,
       physics: ScrollPhysics(),
@@ -14,14 +19,15 @@ class CategoriesList extends StatelessWidget {
           mainAxisSpacing: 8, crossAxisSpacing: 8, crossAxisCount: 2),
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChooseSubCategoriePage(
-                categorie: Strings.categoriesList[index],
+          onTap: () {
+            _categoriesDetailsBloc.add(CategorieTappedEvent());
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoriesDetailsPage(),
               ),
-            ),
-          ),
+            );
+          },
           child: Card(
             color: Color(0x252837),
             shape: RoundedRectangleBorder(

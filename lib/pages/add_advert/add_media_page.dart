@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/media_picker_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/media_picker_events.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/media_picker_states.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_events.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:video_player/video_player.dart';
 

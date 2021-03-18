@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
-import 'package:loook/widgets/add_advert_pages/choose_categorie_page/categories_list.dart';
+import 'package:loook/widgets/add_advert_pages/categories_page/categories_list.dart';
 
-class ChooseCategoriePage extends StatelessWidget {
+class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/media_picker_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_bloc/media_picker_states.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'package:loook/pages/add_advert/add_media_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class ChooseSubCategoriePage extends StatelessWidget {
-  final categorie;
-  ChooseSubCategoriePage({@required this.categorie});
-
+class CategoriesDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +23,9 @@ class ChooseSubCategoriePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                     borderRadius: BorderRadius.circular(5)),
-                child: Center(
-                  child: Text(categorie),
-                ),
+                // child: Center(
+                //   child: Text(categorie),
+                // ),
               ),
             ],
           ),
@@ -50,8 +47,14 @@ class ChooseSubCategoriePage extends StatelessWidget {
                 crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(create: (context)=>MediaPickerBloc(ImageNotSelectedState()),child: AddMediaPage()))),
-                              child: Card(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                            create: (context) =>
+                                MediaPickerBloc(ImageNotSelectedState()),
+                            child: AddMediaPage()))),
+                child: Card(
                     color: Color(0x252837),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
