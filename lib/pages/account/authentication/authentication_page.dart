@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_bloc/check_box_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_events.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
 import 'package:loook/pages/account/authentication/sign_up_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/services/authentification_provider.dart';
@@ -9,11 +11,11 @@ import 'package:loook/services/hex_color_converter.dart';
 class AuthenticationPage extends StatelessWidget {
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final AuthenticationProvider _authenticationProvider =
-      AuthenticationProvider();
   @override
   Widget build(BuildContext context) {
     CheckBoxBloc _checkBoxBloc = BlocProvider.of<CheckBoxBloc>(context);
+    AuthenticationBloc _authenticationBloc =
+        BlocProvider.of<AuthenticationBloc>(context);
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
@@ -109,18 +111,18 @@ class AuthenticationPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25),
                     side: BorderSide(color: Colors.white),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: ResponsiveSizeProvider.width(context) * 0.3,
-                        right: ResponsiveSizeProvider.width(context) * 0.3),
-                    child: Text(
-                      'Войти',
-                      style: TextStyle(color: Colors.black),
-                    ),
+                  padding: EdgeInsets.only(
+                      left: ResponsiveSizeProvider.width(context) * 0.3,
+                      right: ResponsiveSizeProvider.width(context) * 0.3),
+                  child: Text(
+                    'Войти',
+                    style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () {
-                    _authenticationProvider.signUp(
-                        _username.text, _password.text);
+                    _authenticationBloc.add(
+                      SignInEvent(
+                          username: _username.text, password: _password.text),
+                    );
                   },
                 ),
               ),
@@ -134,7 +136,7 @@ class AuthenticationPage extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SignUpPage(),
+                    builder: (context) => SignUpWithPhonePage(),
                   ),
                 ),
                 child: Text(

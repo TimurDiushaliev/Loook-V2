@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class CategoriesDetailsModel {
   final String name;
-  final List<dynamic> children;
+  final List<CategoriesDetailsModel> children;
   final String url;
   final int count;
   CategoriesDetailsModel(
@@ -16,7 +16,7 @@ class CategoriesDetailsModel {
   factory CategoriesDetailsModel.fromJson(Map<String, dynamic> json) {
     return CategoriesDetailsModel(
       name: json['name'],
-      children: json['children'],
+      children: json['children'] ,
       url: json['url'],
       count: json['count'],
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/services/hex_color_converter.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpWithPhonePage extends StatelessWidget {
   final TextEditingController _controller = TextEditingController(text: '996');
   @override
   Widget build(BuildContext context) {
