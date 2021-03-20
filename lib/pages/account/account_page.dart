@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:loook/pages/account/authentication/authentication_page.dart';
-import 'package:loook/repository/authentication_repository.dart';
-import 'package:loook/widgets/account_page/account_balance.dart';
-import 'package:loook/widgets/account_page/account_bottom_sheet.dart';
-import 'package:loook/widgets/account_page/account_information.dart';
-import 'package:loook/widgets/add_advert_action_button_button/add_advert_action_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
+import 'package:loook/pages/account/no_account_page.dart';
+import 'package:loook/widgets/account_page_widgets/account_page/account_balance.dart';
+import 'package:loook/widgets/account_page_widgets/account_page/account_bottom_sheet.dart';
+import 'package:loook/widgets/account_page_widgets/account_page/account_information.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
-import 'package:loook/widgets/bottom_app_bar/bottom_app_bar_navigation.dart';
+import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.dart';
+import 'package:loook/widgets/navigate_to_add_advert_pages_button/navigate_to_add_advert_pages_button.dart';
 
 class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
-      home: AuthenticationRepository.accesToken != null
-          ? Scaffold(
+      home: BlocBuilder<AuthenticationBloc, AuthenticationStates>(
+        builder: (context, state) {
+          if (state is SignedInState)
+            return Scaffold(
               extendBody: true,
               appBar: AppBar(
                 title: AppBarTitle(),
@@ -34,10 +38,12 @@ class AccountPage extends StatelessWidget {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: AddAdvertActionButton(),
+              floatingActionButton: NavigateToAddAdvertPages(),
               bottomNavigationBar: BottomAppBarNavigation(),
-            )
-          : AuthenticationPage(),
+            );
+            return NoAccountPage();
+        },
+      ),
     );
   }
 }

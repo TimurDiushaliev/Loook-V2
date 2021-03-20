@@ -7,8 +7,8 @@ import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_bo
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 import 'package:loook/pages/account/account_page.dart';
-import 'package:loook/pages/account/authentication/authentication_page.dart';
-import 'package:loook/pages/chat/chat_page.dart';
+import 'package:loook/pages/account/no_account_page.dart';
+import 'package:loook/pages/chat/chats_page.dart';
 import 'package:loook/pages/home/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
@@ -28,11 +28,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory document = await getApplicationDocumentsDirectory();
   Hive.init(document.path);
-  Box<dynamic> box = await Hive.openBox('tokensBox');
+  await Hive.openBox('tokensBox');
   runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  final box = Hive.box('tokensBox');
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -60,13 +61,15 @@ class MyApp extends StatelessWidget {
               ],
               child: HomePage(),
             );
-          if (state is ChatPageState) return ChatPage();
+          if (state is ChatPageState) return ChatsPage();
           if (state is AccountPageState)
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) =>
-                      AuthenticationBloc(NotAuthenticatedState()),
+                  create: (context) => AuthenticationBloc(
+                      box.get('accessToken') != null
+                          ? SignedInState()
+                          : NotAuthenticatedState()),
                 ),
                 BlocProvider(
                   create: (context) => CheckBoxBloc(false),
@@ -78,7 +81,7 @@ class MyApp extends StatelessWidget {
               child: AccountPage(),
             );
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text('Возникла непредвиденная ошибка!'),
           );
         },
       ),

@@ -8,9 +8,10 @@ import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_
 import 'package:loook/bloc/home_page_blocs/subcategories_tab_bloc/subcategories_tab_bar_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/values/strings.dart';
-import 'package:loook/widgets/home_page/categories_tab_bar.dart';
-import 'package:loook/widgets/home_page/filter.dart';
-import 'package:loook/widgets/home_page/search.dart';
+import 'package:loook/widgets/app_bar/app_bar_title.dart';
+import 'package:loook/widgets/home_page_widgets/home_page/categories_tab_bar.dart';
+import 'package:loook/widgets/home_page_widgets/home_page/filter.dart';
+import 'package:loook/widgets/home_page_widgets/home_page/search.dart';
 
 class AdvertsByCategory extends StatelessWidget {
   final String categorie;
@@ -27,10 +28,7 @@ class AdvertsByCategory extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(
-            'Loook',
-            style: TextStyle(letterSpacing: 6),
-          ),
+          title: AppBarTitle(),
           centerTitle: true,
           actions: [
             SearchIcon(),
@@ -75,7 +73,8 @@ class AdvertsByCategory extends StatelessWidget {
                             alignment: Alignment.topRight,
                             children: [
                               Container(
-                                width: ResponsiveSizeProvider.width(context) * 0.43,
+                                width: ResponsiveSizeProvider.width(context) *
+                                    0.43,
                                 child: AspectRatio(
                                   aspectRatio: 4 / 4.5,
                                   child: ClipRRect(

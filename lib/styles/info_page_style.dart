@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class InfoPageStyle {
+class AdvertDetailsPageStyle {
   static final bottomSheetStyleWithRoundedCorners = BoxDecoration(
       color: Colors.grey[200],
       borderRadius: BorderRadius.only(

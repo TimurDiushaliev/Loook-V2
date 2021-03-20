@@ -3,9 +3,9 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ConversationPage extends StatelessWidget {
+  final TextEditingController _messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController _messageController = TextEditingController();
     WebSocketChannel _webSocketChannel =
         IOWebSocketChannel.connect('wss://echo.websocket.org');
     List<String> _messages = [];

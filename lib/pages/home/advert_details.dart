@@ -4,9 +4,9 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
-import 'package:loook/widgets/advert_details_page/images.dart';
-import 'package:loook/widgets/advert_details_page/info_bottom_sheet.dart';
-import 'package:loook/widgets/home_page/filter.dart';
+import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_bottom_sheet.dart';
+import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_images.dart';
+import 'package:loook/widgets/home_page_widgets/home_page/filter.dart';
 
 class AdvertDetails extends StatelessWidget {
   @override
@@ -42,8 +42,8 @@ class AdvertDetails extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          InfoImages(),
-          InfoModalBottomSheet(),
+          AdvertDetailsImages(),
+          AdvertDetailsBottomSheet(),
         ],
       ),
       floatingActionButton: SpeedDial(
