@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
 import 'package:loook/pages/account/no_account_page.dart';
@@ -17,7 +18,9 @@ class AccountPage extends StatelessWidget {
       theme: ThemeData(brightness: Brightness.dark),
       home: BlocBuilder<AuthenticationBloc, AuthenticationStates>(
         builder: (context, state) {
-          if (state is SignedInState)
+          if (state is SignedInState) if (Hive.box('tokensBox')
+                  .get('accessToken') !=
+              null)
             return Scaffold(
               extendBody: true,
               appBar: AppBar(
@@ -41,7 +44,7 @@ class AccountPage extends StatelessWidget {
               floatingActionButton: NavigateToAddAdvertPages(),
               bottomNavigationBar: BottomAppBarNavigation(),
             );
-            return NoAccountPage();
+          return NoAccountPage();
         },
       ),
     );

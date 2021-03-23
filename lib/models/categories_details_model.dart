@@ -2,23 +2,26 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 
-class CategoriesDetailsModel {
+class AdvertDetailsModel {
   final String name;
-  final List<CategoriesDetailsModel> children;
+  final List<dynamic> children;
   final String url;
   final int count;
-  CategoriesDetailsModel(
+  AdvertDetailsModel(
       {@required this.name,
       @required this.children,
       @required this.url,
       @required this.count});
 
-  factory CategoriesDetailsModel.fromJson(Map<String, dynamic> json) {
-    return CategoriesDetailsModel(
+  factory AdvertDetailsModel.fromJson(Map<String, dynamic> json) {
+    List children = json['children']
+        .map((e) => AdvertDetailsModel.fromJson(e))
+        .toList();
+    return AdvertDetailsModel(
       name: json['name'],
-      children: json['children'] ,
+      children: children,
       url: json['url'],
-      count: json['count'],
+      count: json['count']
     );
   }
 }

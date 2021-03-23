@@ -9,12 +9,12 @@ import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:video_player/video_player.dart';
 
 class AddedMediaList extends StatelessWidget {
+  final dynamic state;
+  AddedMediaList({@required this.state});
   @override
   Widget build(BuildContext context) {
     MediaPickerBloc _imagePickerBloc =
         BlocProvider.of<MediaPickerBloc>(context);
-    return BlocBuilder<MediaPickerBloc, MediaPickerStates>(
-      builder: (context, state) {
         print('$state');
         if (state is ImagesPickedState) {
           return Container(
@@ -28,30 +28,37 @@ class AddedMediaList extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 20, mainAxisSpacing: 20, crossAxisCount: 2),
               itemBuilder: (context, index) {
-                return Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
+                print('${state.imageList}');
+                return Container(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                        ),
+                        width: ResponsiveSizeProvider.width(context) * 0.4,
+                        child: Image.file(
+                          File(state.imageList[index]),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      width: ResponsiveSizeProvider.width(context) * 0.4,
-                      child: Image.file(
-                        File(state.imageList[index]),
-                        fit: BoxFit.cover,
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.remove_circle,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            _imagePickerBloc
+                                .add(DeletePickedImageEvent(index: index));
+                          },
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.remove_circle,
-                        color: Colors.red,
-                      ),
-                      onPressed: () {
-                        _imagePickerBloc
-                            .add(DeletePickedImageEvent(index: index));
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
@@ -75,7 +82,7 @@ class AddedMediaList extends StatelessWidget {
           }
         }
         return Container();
-      },
-    );
+  
+   
   }
 }

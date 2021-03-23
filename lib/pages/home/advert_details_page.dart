@@ -8,7 +8,7 @@ import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_detai
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_images.dart';
 import 'package:loook/widgets/home_page_widgets/home_page/filter.dart';
 
-class AdvertDetails extends StatelessWidget {
+class AdvertDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FavoriteListBloc _favoriteListBloc =

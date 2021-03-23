@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loook/pages/chat/conversation_page.dart';
-import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.dart';
 import 'package:loook/widgets/chat_page_widgets/chats_page/read_chats.dart';
 import 'package:loook/widgets/chat_page_widgets/chats_page/unread_chats.dart';
@@ -38,7 +37,7 @@ class ChatsPage extends StatelessWidget {
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: NavigateToAddAdvertPages(),
+        floatingActionButton:NavigateToAddAdvertPages(),
         bottomNavigationBar: BottomAppBarNavigation(),
       ),
     );

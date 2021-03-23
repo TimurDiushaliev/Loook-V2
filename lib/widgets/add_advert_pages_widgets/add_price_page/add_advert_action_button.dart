@@ -10,7 +10,9 @@ class AddAdvertActionButton extends StatelessWidget {
         'Подать',
         style: TextStyle(color: Colors.black),
       ),
-      onPressed: () {},
+      // onPressed: () => _advertDetailsBloc.add(
+      //   AddAdvertEvent(advertDetail: 1),
+      // ),
     );
   }
 }

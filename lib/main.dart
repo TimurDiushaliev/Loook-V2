@@ -4,15 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 import 'package:loook/pages/account/account_page.dart';
-import 'package:loook/pages/account/no_account_page.dart';
 import 'package:loook/pages/chat/chats_page.dart';
 import 'package:loook/pages/home/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
 import 'bloc/account_page_blocs/vip_page_bloc/vip_page_bloc.dart';
+import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
+import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'bloc/favorites_page_blocs/favorite_list_states.dart';
 import 'bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
@@ -58,6 +61,14 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                     create: (context) =>
                         IndicatorBloc(FirstItemSelectedState())),
+                BlocProvider(
+                  create: (context) => AdvertDetailsBloc(
+                    CategoriesDetailsIsNotFetchedState(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => MediaPickerBloc(ImageNotSelectedState()),
+                )
               ],
               child: HomePage(),
             );

@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: NavigateToAddAdvertPages(),
+              floatingActionButton:  NavigateToAddAdvertPages(),
               bottomNavigationBar: BottomAppBarNavigation(),
             );
           },

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
-import 'package:loook/pages/home/advert_details.dart';
+import 'package:loook/pages/home/advert_details_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/styles/home_page_style.dart';
 
@@ -24,7 +24,7 @@ class Adverts extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AdvertDetails())),
+                MaterialPageRoute(builder: (context) => AdvertDetailsPage())),
             child: Column(
               children: [
                 Stack(
@@ -37,7 +37,7 @@ class Adverts extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.network(
-                              'https://24tv.ua/resources/photos/news/1200x675_DIR/202011/1467558.jpg?202011105451',
+                              'https://crimeandrelativedimensioninspace.files.wordpress.com/2020/11/queens-gambit-chess-player-review.jpg',
                               fit: BoxFit.cover,
                             )),
                       ),

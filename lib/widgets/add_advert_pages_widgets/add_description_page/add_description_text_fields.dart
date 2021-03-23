@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class AddDescriptionTextFields extends StatelessWidget {
-  const AddDescriptionTextFields({Key key}) : super(key: key);
-
+  final TextEditingController title;
+  final TextEditingController description;
+  AddDescriptionTextFields({@required this.title, @required this.description});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,6 +13,7 @@ class AddDescriptionTextFields extends StatelessWidget {
         Container(
           width: ResponsiveSizeProvider.width(context) * 0.9,
           child: TextFormField(
+            controller: title,
             keyboardType: TextInputType.multiline,
             minLines: 1,
             maxLines: 4,
@@ -25,6 +27,7 @@ class AddDescriptionTextFields extends StatelessWidget {
         Container(
           width: ResponsiveSizeProvider.width(context) * 0.9,
           child: TextFormField(
+            controller: description,
             keyboardType: TextInputType.multiline,
             minLines: 1,
             maxLines: 4,

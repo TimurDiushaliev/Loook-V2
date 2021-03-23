@@ -7,18 +7,16 @@ class AddPriceTitleAndNavigationButton extends StatelessWidget {
     return Row(
       children: [
         Text('Укажите цену'),
-        Spacer(),
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.white),
-              borderRadius: BorderRadius.circular(18)),
-          child: Text(
-            'Дальше',
-            style: TextStyle(fontSize: 13),
-          ),
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddPricePage())),
-        ),
+        // Spacer(),
+        // MaterialButton(
+        //   shape: RoundedRectangleBorder(
+        //       side: BorderSide(color: Colors.white),
+        //       borderRadius: BorderRadius.circular(18)),
+        //   child: Text(
+        //     'Дальше',
+        //     style: TextStyle(fontSize: 13),
+        //   ),
+        // ),
       ],
     );
   }
