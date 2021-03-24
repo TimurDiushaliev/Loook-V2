@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_events.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
 import 'package:loook/pages/account/no_account_page.dart';
+import 'package:loook/services/sign_out_controller.dart';
 import 'package:loook/widgets/account_page_widgets/account_page/account_balance.dart';
 import 'package:loook/widgets/account_page_widgets/account_page/account_bottom_sheet.dart';
 import 'package:loook/widgets/account_page_widgets/account_page/account_information.dart';
@@ -12,8 +14,11 @@ import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.da
 import 'package:loook/widgets/navigate_to_add_advert_pages_button/navigate_to_add_advert_pages_button.dart';
 
 class AccountPage extends StatelessWidget {
+  final List<String> popUpMenuList = ['Редактировать', 'Выйти'];
   @override
   Widget build(BuildContext context) {
+    AuthenticationBloc _authenticationBloc =
+        BlocProvider.of<AuthenticationBloc>(context);
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.dark),
       home: BlocBuilder<AuthenticationBloc, AuthenticationStates>(
@@ -26,7 +31,23 @@ class AccountPage extends StatelessWidget {
               appBar: AppBar(
                 title: AppBarTitle(),
                 centerTitle: true,
-                backgroundColor: Colors.transparent,
+                actions: [
+                  PopupMenuButton(onSelected: (value) {
+                    if (value == 'Выйти') {
+                      SignOutController.signOut();
+                      _authenticationBloc.add(SignOutEvent());
+                    }
+                  }, itemBuilder: (context) {
+                    return popUpMenuList
+                        .map(
+                          (e) => PopupMenuItem(
+                            value: e,
+                            child: Text(e),
+                          ),
+                        )
+                        .toList();
+                  })
+                ],
               ),
               body: Stack(
                 children: [

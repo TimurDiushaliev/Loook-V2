@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_events.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
@@ -10,7 +12,20 @@ import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page_widgets/home_page/adverts.dart';
 import 'package:loook/widgets/home_page_widgets/home_page/adverts_categorie_title.dart';
 
-class HomeBottomSheet extends StatelessWidget {
+class HomeBottomSheet extends StatefulWidget {
+  @override
+  _HomeBottomSheetState createState() => _HomeBottomSheetState();
+}
+
+class _HomeBottomSheetState extends State<HomeBottomSheet> {
+  @override
+  void initState() {
+    AdvertsListBloc _advertsListBloc =
+        BlocProvider.of<AdvertsListBloc>(context);
+    _advertsListBloc.add(FetchAdvertsListEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     BottomSheetBloc _bottomSheetBloc =

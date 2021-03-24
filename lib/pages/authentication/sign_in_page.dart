@@ -10,6 +10,7 @@ import 'package:loook/widgets/authentication_widgets/authentication_pages_title.
 class SignInPage extends StatelessWidget {
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +28,18 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
-          SignInInputs(username: username, password: password),
+          SignInInputs(
+            username: username,
+            password: password,
+            formKey: formKey,
+          ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.06,
           ),
           SignInActionButton(
             username: username,
             password: password,
+            formKey: formKey,
           ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.25,

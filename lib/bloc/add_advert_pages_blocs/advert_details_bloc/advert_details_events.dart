@@ -1,18 +1,15 @@
 import 'package:flutter/foundation.dart';
 
-abstract class AdvertDetailsEvents {}
-
-class FetchCategoryDetailsEvent extends AdvertDetailsEvents {}
-
-class FetchSubCategoriesListEvent extends AdvertDetailsEvents {}
-
-class NavigateToAddMediaPageEvent extends AdvertDetailsEvents {}
-
-class NavigateToAddDescriptionEvent extends AdvertDetailsEvents {}
-
-class NavigateToAddPricePageEvent extends AdvertDetailsEvents {}
+abstract class AdvertDetailsEvents{}
 
 class AddDetailEvent extends AdvertDetailsEvents {
   Map<dynamic, dynamic> advertDetail;
   AddDetailEvent({@required this.advertDetail});
 }
+
+class ChangeCurrencyEvent extends AdvertDetailsEvents {
+  String currency;
+  ChangeCurrencyEvent({@required this.currency});
+}
+
+class UploadAdvertEvent extends AdvertDetailsEvents {}

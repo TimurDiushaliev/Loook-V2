@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/pages/add_advert/advert_details_page.dart';
+import 'package:loook/pages/add_advert/add_category_page.dart';
 
 class NavigateToAddAdvertPages extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class NavigateToAddAdvertPages extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AdvertDetailsPage(),
+              builder: (context) => AddCategoryPage(),
             ),
           );
         });

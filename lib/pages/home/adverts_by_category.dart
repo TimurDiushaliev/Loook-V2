@@ -63,7 +63,7 @@ class AdvertsByCategory extends StatelessWidget {
                       if (index == 10)
                         _subCategoriesTabBarBloc
                             .add(SubCategoriesTabBarEvent());
-                      if (index == 0) if (e == Strings.categoriesList[0])
+                      if (index == 0)
                         _subCategoriesTabBarBloc.add(CategoriesTabBarEvent());
                       return Container(
                           child: Column(

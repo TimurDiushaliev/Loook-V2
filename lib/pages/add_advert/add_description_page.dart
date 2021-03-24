@@ -9,24 +9,27 @@ class AddDescriptionPage extends StatelessWidget {
   final TextEditingController description = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: ResponsiveSizeProvider.height(context) * 0.05,
-        ),
-        ChosenDetailsList(),
-        SizedBox(
-          height: ResponsiveSizeProvider.height(context) * 0.1,
-        ),
-        AutoFillSwitchAndNavigationButton(
-          title: title,
-          description: description,
-        ),
-        SizedBox(
-          height: ResponsiveSizeProvider.height(context) * 0.1,
-        ),
-        AddDescriptionTextFields(title: title, description: description),
-      ],
+    return Scaffold(
+      appBar: AppBar(),
+          body: Column(
+        children: [
+          SizedBox(
+            height: ResponsiveSizeProvider.height(context) * 0.05,
+          ),
+          ChosenDetailsList(),
+          SizedBox(
+            height: ResponsiveSizeProvider.height(context) * 0.1,
+          ),
+          AutoFillSwitchAndNavigationButton(
+            title: title,
+            description: description,
+          ),
+          SizedBox(
+            height: ResponsiveSizeProvider.height(context) * 0.1,
+          ),
+          AddDescriptionTextFields(title: title, description: description),
+        ],
+      ),
     );
   }
 }

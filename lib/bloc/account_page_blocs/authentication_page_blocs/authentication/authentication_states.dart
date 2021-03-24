@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 abstract class AuthenticationStates {}
 
 class SignedInState extends AuthenticationStates {}

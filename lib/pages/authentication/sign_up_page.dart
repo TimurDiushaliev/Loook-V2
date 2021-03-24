@@ -8,6 +8,9 @@ import 'package:loook/widgets/authentication_widgets/sign_up_page/sign_up_inputs
 class SignUpPage extends StatelessWidget {
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final TextEditingController phoneCode = TextEditingController(text: '996');
+  final TextEditingController phoneNumber = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,13 @@ class SignUpPage extends StatelessWidget {
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.1,
           ),
-          SignUpInputs(username: username, password: password),
+          SignUpInputs(
+            username: username,
+            password: password,
+            formKey: formKey,
+            phoneCode: phoneCode,
+            phoneNumber: phoneNumber,
+          ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.03,
           ),
@@ -33,7 +42,13 @@ class SignUpPage extends StatelessWidget {
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
-          SignUpActionButton(username: username, password: password),
+          SignUpActionButton(
+            username: username,
+            password: password,
+            phoneCode: phoneCode,
+            phoneNumber: phoneNumber,
+            formKey: formKey,
+          ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.15,
           ),

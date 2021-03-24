@@ -15,25 +15,30 @@ class AddMediaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MediaPickerBloc, MediaPickerStates>(
-      builder: (context, state){
-          return ListView(
-        children: [
-          SizedBox(height: ResponsiveSizeProvider.height(context) * 0.03),
-          ChosenDetailsList(),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.07,
-          ),
-          AddMediaTitleAndNavigation(state: state,),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.04,
-          ),
-          AddMediaActions(),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          AddedMediaList(state: state),
-        ],
-      );}
-    );
+        builder: (context, state) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: ListView(
+          children: [
+            SizedBox(height: ResponsiveSizeProvider.height(context) * 0.03),
+            ChosenDetailsList(),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.07,
+            ),
+            AddMediaTitleAndNavigation(
+              state: state,
+            ),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.04,
+            ),
+            AddMediaActions(),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.05,
+            ),
+            AddedMediaList(state: state),
+          ],
+        ),
+      );
+    });
   }
 }

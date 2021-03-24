@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
+import 'package:loook/pages/add_advert/add_description_page.dart';
 
 class AddMediaTitleAndNavigation extends StatelessWidget {
   final dynamic state;
@@ -30,9 +31,12 @@ class AddMediaTitleAndNavigation extends StatelessWidget {
               style: TextStyle(fontSize: 13),
             ),
             onPressed: () {
-              _advertDetailsBloc.add(NavigateToAddDescriptionEvent());
               _advertDetailsBloc.add(
                   AddDetailEvent(advertDetail: {'images': state.imageList}));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddDescriptionPage()));
             })
       ],
     );

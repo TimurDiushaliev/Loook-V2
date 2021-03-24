@@ -8,7 +8,7 @@ import 'package:video_player/video_player.dart';
 
 class MediaPickerBloc extends Bloc<MediaPickerEvents, MediaPickerStates> {
   MediaPickerBloc(MediaPickerStates initialState) : super(initialState);
-  List<String> imageList = [];
+  List<File> imageList = [];
   VideoPlayerController videoPlayerController;
 
   @override

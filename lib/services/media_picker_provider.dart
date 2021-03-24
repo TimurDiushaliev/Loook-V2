@@ -1,11 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 class MediaPickerProvider {
-  static Future<List<String>> pickImages() async {
+  static Future<List<File>> pickImages() async {
     List<Asset> imageList = <Asset>[];
-    List<String> imageListPaths = <String>[];
+    List<File> imageListFiles = <File>[];
     try {
       imageList = await MultiImagePicker.pickImages(
         maxImages: 300,
@@ -25,14 +27,14 @@ class MediaPickerProvider {
         String path =
             await FlutterAbsolutePath.getAbsolutePath(imageList[i].identifier);
         print('path $path');
-        imageListPaths.add(path);
+        imageListFiles.add(File(path));
       }
 
-      return imageListPaths;
+      return imageListFiles;
     } catch (e) {
       print('multi image picker exception $e');
     }
-    return imageListPaths;
+    return imageListFiles;
   }
 
   static Future<String> pickVideo() async {

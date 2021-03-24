@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loook/pages/authentication/sign_up_phone_page.dart';
+import 'package:loook/pages/authentication/sign_up_page.dart';
 
 class NavigateToSignUpActionButton extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class NavigateToSignUpActionButton extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SignUpPhonePage(),
+            builder: (context) => SignUpPage(),
           ),
         ),
         child: Text(

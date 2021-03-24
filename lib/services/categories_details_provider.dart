@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:loook/models/advert_details_model.dart';
 import 'package:loook/models/categories_details_model.dart';
 
 class CategoriesDetailsProvider {
@@ -14,22 +13,21 @@ class CategoriesDetailsProvider {
     try {
       final response =
           await http.get(Uri.http(baseUrl, apiUrl), headers: headers);
-      print('${json.decode(response.body)}');
-      print('${response.statusCode}');
       if (response.statusCode == 200) {
         List<dynamic> _categoriesDetailsListJson = json.decode(response.body);
         if (_categoriesDetailsListJson.isNotEmpty) {
-          print('1$_categoriesDetailsListJson');
+          print('categoriesList $_categoriesDetailsListJson');
           return _categoriesDetailsListJson
               .map((e) => AdvertDetailsModel.fromJson(e))
               .toList();
         } else {
-          print('objects');
+          print('_categoriesDetailsListJson is empty');
         }
       } else
         throw Exception('Failed to load categories details');
     } catch (e) {
       print('$e');
     }
+    return null;
   }
 }

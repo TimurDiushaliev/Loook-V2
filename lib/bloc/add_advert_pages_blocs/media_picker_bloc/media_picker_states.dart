@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:video_player/video_player.dart';
 
@@ -8,7 +10,7 @@ abstract class MediaPickerStates {}
 class ImageNotSelectedState extends MediaPickerStates {}
 
 class ImagesPickedState extends MediaPickerStates {
-  List<String> imageList;
+  List<File> imageList;
   ImagesPickedState({@required this.imageList}) : assert(imageList!=null);
 }
 

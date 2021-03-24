@@ -20,7 +20,9 @@ class AuthenticationBloc
       yield SignedInState();
     }
     if (event is SignUpEvent) {
+      AuthenticationProvider.signUp(username: event.username, password: event.password, phoneNumber: event.phoneNumber);
       yield SignedUpState();
     }
+    if(event is SignOutEvent) yield NotAuthenticatedState();
   }
 }
