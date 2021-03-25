@@ -17,6 +17,7 @@ import 'bloc/account_page_blocs/authentication_page_blocs/authentication/authent
 import 'bloc/account_page_blocs/vip_page_bloc/vip_page_bloc.dart';
 import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
 import 'bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_states.dart';
 import 'bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'bloc/favorites_page_blocs/favorite_list_bloc.dart';
@@ -36,7 +37,6 @@ void main() async {
   Directory document = await getApplicationDocumentsDirectory();
   Hive.init(document.path);
   await Hive.openBox('tokensBox');
-  
   runApp(MaterialApp(home: MyApp()));
 }
 
@@ -51,30 +51,50 @@ class MyApp extends StatelessWidget {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
-                    create: (context) =>
-                        CategoriesTabBarBloc(HideTabBarState())),
+                  create: (context) => CategoriesTabBarBloc(
+                    HideTabBarState(),
+                  ),
+                ),
                 BlocProvider(
-                    create: (context) =>
-                        SubCategoriesTabBarBloc(CategoriesTabBarState())),
+                  create: (context) => SubCategoriesTabBarBloc(
+                    CategoriesTabBarState(),
+                  ),
+                ),
                 BlocProvider(
-                    create: (context) =>
-                        FavoriteListBloc(AdvertNotLikedState())),
+                  create: (context) => FavoriteListBloc(
+                    AdvertNotLikedState(),
+                  ),
+                ),
                 BlocProvider(
-                    create: (context) =>
-                        BottomSheetBloc(WithRoundedCornersState())),
+                  create: (context) => BottomSheetBloc(
+                    WithRoundedCornersState(),
+                  ),
+                ),
                 BlocProvider(
-                    create: (context) =>
-                        IndicatorBloc(FirstItemSelectedState())),
+                  create: (context) => IndicatorBloc(
+                    FirstItemSelectedState(),
+                  ),
+                ),
                 BlocProvider(
                   create: (context) => AdvertDetailsBloc(
                     AdvertDetailsIsEmptyState(),
                   ),
                 ),
                 BlocProvider(
-                  create: (context) => MediaPickerBloc(ImageNotSelectedState()),
+                  create: (context) => MediaPickerBloc(
+                    ImageNotSelectedState(),
+                  ),
                 ),
-                BlocProvider(create: (context) => AdvertsListBloc(AdvertsListFetchedState()),),
-                BlocProvider(create: (context)=> FetchingCategoriesBloc(CategoriesDetailsIsNotFetchedState(),))
+                BlocProvider(
+                  create: (context) => AdvertsListBloc(
+                    AdvertsListFetchedState(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => FetchingCategoriesBloc(
+                    CategoriesDetailsIsNotFetchedState(),
+                  ),
+                ),
               ],
               child: HomePage(),
             );

@@ -5,6 +5,7 @@ import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_det
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_states.dart';
+import 'package:loook/pages/add_advert/add_category_details_page.dart';
 import 'package:loook/pages/add_advert/add_media_page.dart';
 import 'package:loook/pages/add_advert/add_subcategory_page.dart';
 
@@ -32,7 +33,7 @@ class CategoriesList extends StatelessWidget {
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddSubCategoryPage()))
+                              builder: (context) => AddSubCategoryPage(index: index)))
                       : Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_states.dart';
-import 'package:loook/pages/add_advert/add_media_page.dart';
+import 'package:loook/pages/add_advert/add_category_details_page.dart';
 
 class SubCategoriesList extends StatelessWidget {
+  final int index;
+  SubCategoriesList({@required this.index});
   @override
   Widget build(BuildContext context) {
     FetchingCategoriesBloc _fetchingCategoriesBloc =
@@ -35,10 +36,12 @@ class SubCategoriesList extends StatelessWidget {
                     _advertDetailsBloc.add(AddDetailEvent(advertDetail: {
                       'category': state.subCategoriesDetailsList[index].name
                     }));
+                    _fetchingCategoriesBloc
+                        .add(FetchingCategoriesDetailsEvent(index: index));
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddMediaPage()));
+                            builder: (context) => AddCategoryDetailsPage(index: index)));
                   },
                   child: Card(
                     color: Color(0x252837),

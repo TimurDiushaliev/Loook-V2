@@ -7,6 +7,8 @@ import 'package:loook/widgets/add_advert_pages_widgets/add_subcategory_page/sub_
 import 'package:loook/widgets/add_advert_pages_widgets/chosen_details_list.dart';
 
 class AddSubCategoryPage extends StatelessWidget {
+  final int index;
+  AddSubCategoryPage({@required this.index});
   @override
   Widget build(BuildContext context) {
     FetchingCategoriesBloc _advertDetailsBloc =
@@ -29,7 +31,7 @@ class AddSubCategoryPage extends StatelessWidget {
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
-          SubCategoriesList(),
+          SubCategoriesList(index: index),
         ],
       ),
     );

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:loook/models/adverts_list_model.dart';
 
 class AdvertsListProvider {
-  static fetchAdvertsList() async {
+  static Future<List<dynamic>> fetchAdvertsList() async {
     final String baseUrl = '192.168.88.208:8000';
     final String apiUrl = 'api/v1/ads/';
     Map<String, String> headers = {
@@ -11,7 +12,7 @@ class AdvertsListProvider {
     };
     final response =
         await http.get(Uri.http(baseUrl, apiUrl), headers: headers);
-    print('${response.statusCode}');
-    print('adverts list response ${jsonDecode(response.body)}');
+    List<dynamic> adverts = jsonDecode(response.body);
+    return adverts.map((json) => AdvertsListModel.fromJson(json)).toList();
   }
 }

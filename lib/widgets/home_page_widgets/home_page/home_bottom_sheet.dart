@@ -12,20 +12,7 @@ import 'package:loook/values/strings.dart';
 import 'package:loook/widgets/home_page_widgets/home_page/adverts.dart';
 import 'package:loook/widgets/home_page_widgets/home_page/adverts_categorie_title.dart';
 
-class HomeBottomSheet extends StatefulWidget {
-  @override
-  _HomeBottomSheetState createState() => _HomeBottomSheetState();
-}
-
-class _HomeBottomSheetState extends State<HomeBottomSheet> {
-  @override
-  void initState() {
-    AdvertsListBloc _advertsListBloc =
-        BlocProvider.of<AdvertsListBloc>(context);
-    _advertsListBloc.add(FetchAdvertsListEvent());
-    super.initState();
-  }
-
+class HomeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BottomSheetBloc _bottomSheetBloc =
@@ -56,6 +43,7 @@ class _HomeBottomSheetState extends State<HomeBottomSheet> {
                       itemCount: Strings.categoriesList.length,
                       controller: scrollController,
                       itemBuilder: (context, index) {
+                        print(index.toString());
                         return AspectRatio(
                           aspectRatio: 1,
                           child: Column(
@@ -64,7 +52,10 @@ class _HomeBottomSheetState extends State<HomeBottomSheet> {
                                 aspectRatio: 5.5,
                                 child: AdvertsByCategorieTitle(index: index),
                               ),
-                              Expanded(child: Adverts()),
+                              Expanded(
+                                  child: Adverts(
+                                index: index,
+                              )),
                               Divider(
                                 color: Colors.grey[400],
                                 thickness: 2,

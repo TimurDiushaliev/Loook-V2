@@ -16,7 +16,6 @@ class CategoriesDetailsProvider {
       if (response.statusCode == 200) {
         List<dynamic> _categoriesDetailsListJson = json.decode(response.body);
         if (_categoriesDetailsListJson.isNotEmpty) {
-          print('categoriesList $_categoriesDetailsListJson');
           return _categoriesDetailsListJson
               .map((e) => AdvertDetailsModel.fromJson(e))
               .toList();
