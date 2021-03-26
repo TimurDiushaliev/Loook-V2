@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
-import 'package:loook/pages/add_advert/add_category_page.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
+import 'package:loook/pages/add_advert/add_advert_details_page.dart';
 
 class NavigateToAddAdvertPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchingCategoriesBloc _fetchingCategoriesBloc = BlocProvider.of<FetchingCategoriesBloc>(context);
+    AdvertDetailsBloc _advertDetailsBloc = BlocProvider.of<AdvertDetailsBloc>(context);
     return FloatingActionButton(
         backgroundColor: Colors.red,
         child: Icon(
@@ -15,13 +15,16 @@ class NavigateToAddAdvertPages extends StatelessWidget {
           color: Colors.white,
         ),
         onPressed: () {
-          _fetchingCategoriesBloc.add(FetchCategoriesListEvent());
+          _advertDetailsBloc.add(FetchCategoriesListEvent());
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddCategoryPage(),
+              builder: (context) => AddAdvertDetailsPage(),
             ),
           );
         });
   }
+}
+
+class FetchingCategoriesBloc {
 }

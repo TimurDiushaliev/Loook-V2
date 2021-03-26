@@ -11,9 +11,6 @@ class AdvertsListBloc extends Bloc<AdvertsListEvents, AdvertsListStates> {
   Stream<AdvertsListStates> mapEventToState(AdvertsListEvents event) async* {
     if (event is FetchAdvertsListEvent) {
       List<AdvertsListModel> adverts = await AdvertsListRepository.adverts;
-      print('${adverts[0].price}');
-      print('${adverts[0].currency}');
-      print('${adverts[0].title}');
       yield AdvertsListFetchedState(adverts: adverts);
     }
   }

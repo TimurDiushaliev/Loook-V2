@@ -43,7 +43,6 @@ class HomeBottomSheet extends StatelessWidget {
                       itemCount: Strings.categoriesList.length,
                       controller: scrollController,
                       itemBuilder: (context, index) {
-                        print(index.toString());
                         return AspectRatio(
                           aspectRatio: 1,
                           child: Column(

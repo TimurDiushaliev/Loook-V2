@@ -13,3 +13,15 @@ class ChangeCurrencyEvent extends AdvertDetailsEvents {
 }
 
 class UploadAdvertEvent extends AdvertDetailsEvents {}
+
+class FetchCategoriesListEvent extends AdvertDetailsEvents {}
+
+class FetchSubCategoriesListEvent extends AdvertDetailsEvents {
+  int index;
+  FetchSubCategoriesListEvent({@required this.index});
+}
+
+class FetchCategoryDetailsEvent extends AdvertDetailsEvents {
+  int index;
+  FetchCategoryDetailsEvent({@required this.index});
+}

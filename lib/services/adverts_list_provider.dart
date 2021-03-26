@@ -5,7 +5,7 @@ import 'package:loook/models/adverts_list_model.dart';
 
 class AdvertsListProvider {
   static Future<List<dynamic>> fetchAdvertsList() async {
-    final String baseUrl = '192.168.88.208:8000';
+    final String baseUrl = '192.168.88.208';
     final String apiUrl = 'api/v1/ads/';
     Map<String, String> headers = {
       'Content-type': 'application/json; charset=UTF-8'

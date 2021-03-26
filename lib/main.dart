@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
@@ -17,8 +16,6 @@ import 'bloc/account_page_blocs/authentication_page_blocs/authentication/authent
 import 'bloc/account_page_blocs/vip_page_bloc/vip_page_bloc.dart';
 import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
-import 'bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
-import 'bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_states.dart';
 import 'bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'bloc/favorites_page_blocs/favorite_list_states.dart';
@@ -88,11 +85,6 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (context) => AdvertsListBloc(
                     AdvertsListFetchedState(),
-                  ),
-                ),
-                BlocProvider(
-                  create: (context) => FetchingCategoriesBloc(
-                    CategoriesDetailsIsNotFetchedState(),
                   ),
                 ),
               ],

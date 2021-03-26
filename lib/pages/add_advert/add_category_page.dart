@@ -6,23 +6,20 @@ import 'package:loook/widgets/add_advert_pages_widgets/chosen_details_list.dart'
 class AddCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        children: [
-          SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
-          ChosenDetailsList(),
-          SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
-          Text(
-            'Выберите Категорию',
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          CategoriesList()
-        ],
-      ),
+    return ListView(
+      children: [
+        SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
+        ChosenDetailsList(),
+        SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
+        Text(
+          'Выберите Категорию',
+          style: TextStyle(fontSize: 20),
+        ),
+        SizedBox(
+          height: ResponsiveSizeProvider.height(context) * 0.05,
+        ),
+        CategoriesList()
+      ],
     );
   }
 }

@@ -1,62 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_events.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/fetching_categories_bloc/fetching_categories_states.dart';
-import 'package:loook/responsive_size/responsive_size_provider.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
+import 'package:loook/widgets/add_advert_pages_widgets/add_category_details_page/category_details_list.dart';
+import 'package:loook/widgets/add_advert_pages_widgets/add_category_details_page/category_details_title.dart';
+import 'package:loook/widgets/add_advert_pages_widgets/chosen_details_list.dart';
 
 class AddCategoryDetailsPage extends StatelessWidget {
-  final int index;
-  AddCategoryDetailsPage({@required this.index});
   @override
   Widget build(BuildContext context) {
-    FetchingCategoriesBloc _fetchingCategoriesBloc =
-        BlocProvider.of<FetchingCategoriesBloc>(context);
-    print('123');
-    print(index);
+    AdvertDetailsBloc _advertDetailsBloc =
+        BlocProvider.of<AdvertDetailsBloc>(context);
     return WillPopScope(
       onWillPop: () {
-        _fetchingCategoriesBloc.add(FetchSubCategoriesListEvent(index: index));
-        Navigator.pop(context);
+        _advertDetailsBloc.add(FetchSubCategoriesListEvent());
       },
       child: Scaffold(
-        appBar: AppBar(),
-        body: BlocBuilder<FetchingCategoriesBloc, FetchingCategoriesStates>(
-          builder: (context, state) {
-            if (state is CategoryDetailsFetchedState) {
-              print('${state.categoryDetailsMap}');
-              return ListView(
-                children: [
-                  SizedBox(
-                    height: ResponsiveSizeProvider.height(context) * 0.05,
-                  ),
-                  Text(
-                    state.categoryDetailsMap.keys.elementAt(0).toString(),
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  SizedBox(
-                    height: ResponsiveSizeProvider.height(context) * 0.05,
-                  ),
-                  ListView.builder(
-                    itemCount:
-                        state.categoryDetailsMap.values.elementAt(0).length,
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(state.categoryDetailsMap.values
-                            .elementAt(0)[index]
-                            .toString()),
-                      );
-                    },
-                  ),
-                ],
-              );
-            }
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+        body: Column(
+          children: [
+            ChosenDetailsList(),
+            CategoryDetailsTitle(),
+            CategoryDetailsList(),
+          ],
         ),
       ),
     );
