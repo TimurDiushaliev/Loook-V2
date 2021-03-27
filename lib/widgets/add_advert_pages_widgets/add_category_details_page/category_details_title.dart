@@ -8,7 +8,12 @@ class CategoryDetailsTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
       builder: (context, state) {
-        return state is CategoryDetailsFetchedState ? Text(state.key) : '';
+        return state is CategoryDetailsFetchedState
+            ? Text(
+                state.key,
+                style: TextStyle(fontSize: 20),
+              )
+            : '';
       },
     );
   }

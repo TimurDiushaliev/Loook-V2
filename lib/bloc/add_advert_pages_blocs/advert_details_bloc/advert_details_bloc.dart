@@ -10,7 +10,7 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
   Map<dynamic, dynamic> advertDetails = {};
   int categoryIndex;
   int subCategoryIndex;
-  int keyIndex = 3;
+  int keyIndex = 0;
   AdvertDetailsBloc(AdvertDetailsStates initialState) : super(initialState);
 
   @override
@@ -26,8 +26,12 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     }
     if (event is FetchSubCategoriesListEvent) {
       try {
-        categoryIndex = event.index != null ? event.index : categoryIndex;
-        print(categoryIndex);
+        if (event.categoryIndex != null) {
+          categoryIndex = event.categoryIndex;
+        } else {
+          categoryIndex = categoryIndex;
+          keyIndex = 0;
+        }
         yield SubCategoriesListFetchedState(
             subCategoriesDetailsList: categoriesList[categoryIndex].children);
       } catch (_) {
@@ -35,24 +39,83 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
       }
     }
     if (event is FetchCategoryDetailsEvent) {
-      print('category index $categoryIndex');
-      subCategoryIndex = event.index;
+      subCategoryIndex = event.subCategoryIndex;
       print(categoriesList[categoryIndex].children[subCategoryIndex].fields);
       yield CategoryDetailsFetchedState(
-          categoryDetailsMap:
-              categoriesList[categoryIndex].children[subCategoryIndex].fields,
-          key: categoriesList[categoryIndex]
-              .children[subCategoryIndex]
-              .fields
-              .keys.elementAt(keyIndex),
-          values: categoriesList[categoryIndex]
-              .children[subCategoryIndex]
-              .fields
-              .values
-              .elementAt(keyIndex));
+        categoryDetailsMap:
+            categoriesList[categoryIndex].children[subCategoryIndex].fields,
+        key: categoriesList[categoryIndex]
+            .children[subCategoryIndex]
+            .fields
+            .keys
+            .elementAt(keyIndex),
+        values: categoriesList[categoryIndex]
+            .children[subCategoryIndex]
+            .fields
+            .values
+            .elementAt(keyIndex),
+        keyIndex: keyIndex,
+      );
     }
+
+    if (event is FetchNextCategoryDetailsEvent) {
+      if (keyIndex <
+          categoriesList[categoryIndex]
+                  .children[subCategoryIndex]
+                  .fields
+                  .keys
+                  .length -
+              1) {
+        keyIndex++;
+        print('indecremented key index $keyIndex');
+        yield CategoryDetailsFetchedState(
+            categoryDetailsMap:
+                categoriesList[categoryIndex].children[subCategoryIndex].fields,
+            key: categoriesList[categoryIndex]
+                .children[subCategoryIndex]
+                .fields
+                .keys
+                .elementAt(keyIndex),
+            values: categoriesList[categoryIndex]
+                .children[subCategoryIndex]
+                .fields
+                .values
+                .elementAt(keyIndex),
+            keyIndex: keyIndex);
+      }
+    }
+
+    if (event is FetchPreviousCategoryDetailsEvent) {
+      if (keyIndex != 0) {
+        keyIndex--;
+        print('decremented key index $keyIndex');
+      }
+      yield CategoryDetailsFetchedState(
+        categoryDetailsMap:
+            categoriesList[categoryIndex].children[subCategoryIndex].fields,
+        key: categoriesList[categoryIndex]
+            .children[subCategoryIndex]
+            .fields
+            .keys
+            .elementAt(keyIndex),
+        values: categoriesList[categoryIndex]
+            .children[subCategoryIndex]
+            .fields
+            .values
+            .elementAt(keyIndex),
+        keyIndex: keyIndex,
+      );
+    }
+
     if (event is AddDetailEvent) {
-      advertDetails.addAll(event.advertDetail);
+      if (event.advertDetail.containsKey('fields')) {
+        advertDetails.containsKey('fields')
+            ? advertDetails['fields'].addAll(event.advertDetail['fields'])
+            : advertDetails.addAll(event.advertDetail);
+      } else {
+        advertDetails.addAll(event.advertDetail);
+      }
+
       print(advertDetails);
     }
 

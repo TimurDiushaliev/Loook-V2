@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-abstract class AdvertDetailsEvents{}
+abstract class AdvertDetailsEvents {}
 
 class AddDetailEvent extends AdvertDetailsEvents {
   Map<dynamic, dynamic> advertDetail;
@@ -17,11 +17,15 @@ class UploadAdvertEvent extends AdvertDetailsEvents {}
 class FetchCategoriesListEvent extends AdvertDetailsEvents {}
 
 class FetchSubCategoriesListEvent extends AdvertDetailsEvents {
-  int index;
-  FetchSubCategoriesListEvent({@required this.index});
+  int categoryIndex;
+  FetchSubCategoriesListEvent({@required this.categoryIndex});
 }
 
 class FetchCategoryDetailsEvent extends AdvertDetailsEvents {
-  int index;
-  FetchCategoryDetailsEvent({@required this.index});
+  int subCategoryIndex;
+  FetchCategoryDetailsEvent({@required this.subCategoryIndex});
 }
+
+class FetchNextCategoryDetailsEvent extends AdvertDetailsEvents {}
+
+class FetchPreviousCategoryDetailsEvent extends AdvertDetailsEvents {}

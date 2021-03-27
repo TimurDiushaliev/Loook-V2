@@ -28,7 +28,7 @@ class CategoriesList extends StatelessWidget {
                   }));
                   state.categoriesDetailsList[index].children.isNotEmpty
                       ? _advertDetailsBloc
-                          .add(FetchSubCategoriesListEvent(index: index))
+                          .add(FetchSubCategoriesListEvent(categoryIndex: index))
                       : Navigator.push(
                           context,
                           MaterialPageRoute(

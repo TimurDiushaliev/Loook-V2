@@ -28,7 +28,8 @@ class SubCategoriesList extends StatelessWidget {
                       },
                     ),
                   );
-                  _advertDetailsBloc.add(FetchCategoryDetailsEvent(index: index));
+                  _advertDetailsBloc
+                      .add(FetchCategoryDetailsEvent(subCategoryIndex: index));
                 },
                 child: Card(
                   color: Color(0x252837),

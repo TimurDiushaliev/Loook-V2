@@ -27,11 +27,12 @@ class AdvertDetailsIsEmptyState extends AdvertDetailsStates {}
 class CategoryDetailsFetchedState extends AdvertDetailsStates {
   Map<String, dynamic> categoryDetailsMap = {};
   String key;
-  List<dynamic> values;
+  dynamic values;
   int keyIndex;
-  int valueIndex;
-  CategoryDetailsFetchedState(
-      {@required this.categoryDetailsMap,
-      @required this.key,
-      @required this.values});
+  CategoryDetailsFetchedState({
+    @required this.categoryDetailsMap,
+    @required this.key,
+    @required this.values,
+    @required this.keyIndex,
+  });
 }
