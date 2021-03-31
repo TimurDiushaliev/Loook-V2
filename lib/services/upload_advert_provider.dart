@@ -40,9 +40,11 @@ class UploadAdvertProvider {
       body.remove('images');
       print(10);
       body['fields'] = body['fields'].toString();
-      var a = Map<String, String>.from(body);
+      var fieldsJson = Map<String, String>.from(body);
+      fieldsJson['fields'] = jsonEncode(fieldsJson['fields']);
+      print(fieldsJson);
       print(11);
-      request.fields.addAll(a);
+      request.fields.addAll(fieldsJson);
       print(12);
       var response = await request.send();
       print(13);
@@ -53,13 +55,20 @@ class UploadAdvertProvider {
           if (response.statusCode == 401) {
             //TODO: refresh token
             print(14);
-            var refreshTokenResponse = await http.post(
-                Uri.http('192.168.88.208', refreshTokenUrl),
-                body: {'refresh': Hive.box('tokensBox').get('refreshToken')});
-            var tokens = jsonDecode(refreshTokenResponse.body);
-            Hive.box('tokensBox')
-              ..put('accessToken', tokens['access'])
-              ..put('refreshToken', tokens['refresh']);
+            try {
+              if (Hive.box('tokensBox').get('refreshToken') != null) {
+                var refreshTokenResponse = await http
+                    .post(Uri.http('192.168.88.208', refreshTokenUrl), body: {
+                  'refresh': Hive.box('tokensBox').get('refreshToken')
+                });
+                var tokens = jsonDecode(refreshTokenResponse.body);
+                Hive.box('tokensBox')
+                  ..put('accessToken', tokens['access'])
+                  ..put('refreshToken', tokens['refresh']);
+              }
+            } catch (e) {
+              print('refresh token exception $e');
+            }
           }
         },
       );

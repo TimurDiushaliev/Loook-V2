@@ -19,6 +19,7 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     if (event is FetchCategoriesListEvent) {
       try {
         categoriesList = await CategoriesDetailsRepository.categoriesDetails;
+        print(categoriesList);
         yield CategoriesListFetchedState(categoriesDetailsList: categoriesList);
       } catch (_) {
         print('fetching categoires exception $_');

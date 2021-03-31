@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 
 class AdvertsListModel {
@@ -12,7 +14,7 @@ class AdvertsListModel {
   int views;
   bool isVip;
   DateTime createdAt;
-  List<dynamic> fields;
+  Map<String, dynamic> fields;
   bool isActive;
   int owner;
   AdvertsListModel(
@@ -44,7 +46,7 @@ class AdvertsListModel {
       views: json['views'],
       isVip: json['isVip'],
       createdAt: json['createdAt'],
-      fields: json['fields'],
+      fields: jsonDecode(json['fields']),
       isActive: json['isActive'],
       owner: json['owner'],
     );

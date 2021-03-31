@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_states.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
@@ -87,6 +89,7 @@ class MyApp extends StatelessWidget {
                     AdvertsListFetchedState(),
                   ),
                 ),
+                BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
               ],
               child: HomePage(),
             );
@@ -100,6 +103,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(
                 create: (context) => MediaPickerBloc(ImageNotSelectedState()),
               ),
+               BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
             ], child: ChatsPage());
           if (state is AccountPageState)
             return MultiBlocProvider(
@@ -124,6 +128,7 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (context) => MediaPickerBloc(ImageNotSelectedState()),
                 ),
+                 BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
               ],
               child: AccountPage(),
             );

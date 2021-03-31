@@ -15,9 +15,10 @@ class CategoriesDetailsProvider {
           await http.get(Uri.http(baseUrl, apiUrl), headers: headers);
       if (response.statusCode == 200) {
         List<dynamic> _categoriesDetailsListJson = jsonDecode(response.body);
+        print(' asd$_categoriesDetailsListJson');
         if (_categoriesDetailsListJson.isNotEmpty) {
           return _categoriesDetailsListJson
-              .map((e) => AdvertDetailsModel.fromJson(e))
+              .map<AdvertDetailsModel>((e) => AdvertDetailsModel.fromJson(e))
               .toList();
         } else {
           print('_categoriesDetailsListJson is empty');

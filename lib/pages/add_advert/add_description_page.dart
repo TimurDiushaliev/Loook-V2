@@ -16,7 +16,7 @@ class AddDescriptionPage extends StatelessWidget {
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.05,
           ),
-          ChosenDetailsList(),
+          ChosedDetailsList(),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.1,
           ),

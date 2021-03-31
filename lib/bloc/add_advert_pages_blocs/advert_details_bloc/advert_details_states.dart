@@ -36,3 +36,5 @@ class CategoryDetailsFetchedState extends AdvertDetailsStates {
     @required this.keyIndex,
   });
 }
+
+

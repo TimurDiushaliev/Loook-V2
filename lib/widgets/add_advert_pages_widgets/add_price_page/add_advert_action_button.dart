@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'package:loook/main.dart';
 
 class AddAdvertActionButton extends StatelessWidget {
   final TextEditingController price;
@@ -26,6 +27,7 @@ class AddAdvertActionButton extends StatelessWidget {
               'currency': state is CurrencyChangedState ? state.currency : 'KGS'
             }));
             _advertDetailsBloc.add(UploadAdvertEvent());
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> MyApp()), (route) => false);
           }),
     );
   }

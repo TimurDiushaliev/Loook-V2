@@ -21,7 +21,7 @@ class AddMediaPage extends StatelessWidget {
         body: ListView(
           children: [
             SizedBox(height: ResponsiveSizeProvider.height(context) * 0.03),
-            ChosenDetailsList(),
+            ChosedDetailsList(),
             SizedBox(
               height: ResponsiveSizeProvider.height(context) * 0.07,
             ),

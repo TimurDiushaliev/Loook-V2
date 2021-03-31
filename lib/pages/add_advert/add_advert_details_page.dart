@@ -13,6 +13,7 @@ class AddAdvertDetailsPage extends StatelessWidget {
       appBar: AppBar(),
       body: BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
         builder: (context, state) {
+          print(state);
           if (state is CategoriesListFetchedState) return AddCategoryPage();
           if (state is SubCategoriesListFetchedState)
             return AddSubCategoryPage();

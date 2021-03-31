@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_events.dart';
 import 'package:loook/pages/add_advert/add_media_page.dart';
 import 'package:loook/pages/add_advert/add_subcategory_page.dart';
 
@@ -11,6 +13,8 @@ class CategoriesList extends StatelessWidget {
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
         BlocProvider.of<AdvertDetailsBloc>(context);
+    ChosedDetailsBloc _chosedDetailsBloc =
+        BlocProvider.of<ChosedDetailsBloc>(context);
     return BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
       builder: (context, state) {
         if (state is CategoriesListFetchedState) {
@@ -26,9 +30,11 @@ class CategoriesList extends StatelessWidget {
                   _advertDetailsBloc.add(AddDetailEvent(advertDetail: {
                     'category': state.categoriesDetailsList[index].name
                   }));
+                  _chosedDetailsBloc.add(DetailIsChosedEvent(
+                      chosedDetail: state.categoriesDetailsList[index].name));
                   state.categoriesDetailsList[index].children.isNotEmpty
-                      ? _advertDetailsBloc
-                          .add(FetchSubCategoriesListEvent(categoryIndex: index))
+                      ? _advertDetailsBloc.add(
+                          FetchSubCategoriesListEvent(categoryIndex: index))
                       : Navigator.push(
                           context,
                           MaterialPageRoute(
