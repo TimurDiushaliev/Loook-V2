@@ -8,6 +8,7 @@ import 'package:loook/services/upload_advert_provider.dart';
 class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
   List<AdvertDetailsModel> categoriesList = [];
   Map<dynamic, dynamic> advertDetails = {};
+  List<dynamic> imageList = [];
   int categoryIndex;
   int subCategoryIndex;
   int keyIndex = 0;
@@ -19,7 +20,6 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     if (event is FetchCategoriesListEvent) {
       try {
         categoriesList = await CategoriesDetailsRepository.categoriesDetails;
-        print(categoriesList);
         yield CategoriesListFetchedState(categoriesDetailsList: categoriesList);
       } catch (_) {
         print('fetching categoires exception $_');
@@ -41,7 +41,6 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     }
     if (event is FetchCategoryDetailsEvent) {
       subCategoryIndex = event.subCategoryIndex;
-      print(categoriesList[categoryIndex].children[subCategoryIndex].fields);
       yield CategoryDetailsFetchedState(
         categoryDetailsMap:
             categoriesList[categoryIndex].children[subCategoryIndex].fields,
@@ -68,7 +67,6 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
                   .length -
               1) {
         keyIndex++;
-        print('indecremented key index $keyIndex');
         yield CategoryDetailsFetchedState(
             categoryDetailsMap:
                 categoriesList[categoryIndex].children[subCategoryIndex].fields,
@@ -89,7 +87,6 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     if (event is FetchPreviousCategoryDetailsEvent) {
       if (keyIndex != 0) {
         keyIndex--;
-        print('decremented key index $keyIndex');
       }
       yield CategoryDetailsFetchedState(
         categoryDetailsMap:
@@ -116,15 +113,23 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
       } else {
         advertDetails.addAll(event.advertDetail);
       }
+      print('advert details: $advertDetails');
+    }
 
-      print(advertDetails);
+    if (event is AddImageListEvent) {
+      imageList = [...event.imageList];
     }
 
     if (event is ChangeCurrencyEvent) {
       yield CurrencyChangedState(currency: event.currency);
     }
     if (event is UploadAdvertEvent) {
-      UploadAdvertProvider.uploadAdvert(advertDetails);
+      yield AdvertIsUploadingState();
+      try{
+      UploadAdvertProvider.uploadAdvert(advertDetails, imageList);
+      } catch(_){
+        //TODO: error state
+      }
     }
   }
 }

@@ -17,8 +17,8 @@ class AddSubCategoryPage extends StatelessWidget {
         BlocProvider.of<ChosedDetailsBloc>(context);
     return WillPopScope(
       onWillPop: () {
-        _advertDetailsBloc.add(FetchCategoriesListEvent());
         _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
+        _advertDetailsBloc.add(FetchCategoriesListEvent());
       },
       child: ListView(
         children: [

@@ -37,4 +37,4 @@ class CategoryDetailsFetchedState extends AdvertDetailsStates {
   });
 }
 
-
+class AdvertIsUploadingState extends AdvertDetailsStates {}

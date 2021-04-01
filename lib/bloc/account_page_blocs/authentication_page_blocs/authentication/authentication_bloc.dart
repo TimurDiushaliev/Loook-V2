@@ -16,7 +16,6 @@ class AuthenticationBloc
           username: event.username, password: event.password);
       await AuthenticationRepository.accesToken;
       await AuthenticationRepository.refreshToken;
-      print('${AuthenticationRepository.accesToken};');
       yield SignedInState();
     }
     if (event is SignUpEvent) {

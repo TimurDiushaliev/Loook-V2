@@ -26,7 +26,6 @@ class MediaPickerProvider {
       for (int i = 0; i < imageList.length; i++) {
         String path =
             await FlutterAbsolutePath.getAbsolutePath(imageList[i].identifier);
-        print('path $path');
         imageListFiles.add(File(path));
       }
 
@@ -41,7 +40,6 @@ class MediaPickerProvider {
     final _picker = ImagePicker();
     final _pickedFile = await _picker.getVideo(source: ImageSource.gallery);
     if (_pickedFile != null) {
-      print('${_pickedFile.path}');
       return _pickedFile.path;
     } else
       print('video not selected');

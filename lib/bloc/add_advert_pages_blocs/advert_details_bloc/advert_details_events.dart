@@ -7,6 +7,11 @@ class AddDetailEvent extends AdvertDetailsEvents {
   AddDetailEvent({@required this.advertDetail});
 }
 
+class AddImageListEvent extends AdvertDetailsEvents {
+  List<dynamic> imageList = [];
+  AddImageListEvent({@required this.imageList});
+}
+
 class ChangeCurrencyEvent extends AdvertDetailsEvents {
   String currency;
   ChangeCurrencyEvent({@required this.currency});
@@ -29,5 +34,3 @@ class FetchCategoryDetailsEvent extends AdvertDetailsEvents {
 class FetchNextCategoryDetailsEvent extends AdvertDetailsEvents {}
 
 class FetchPreviousCategoryDetailsEvent extends AdvertDetailsEvents {}
-
-

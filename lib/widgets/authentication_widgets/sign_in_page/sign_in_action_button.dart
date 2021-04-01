@@ -36,10 +36,10 @@ class SignInActionButton extends StatelessWidget {
               _authenticationBloc.add(
                 SignInEvent(username: username.text, password: password.text),
               );
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => AccountPage()),
-                  (route) => false);
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => AccountPage()),
+              //     (route) => false);
             }
           },
         ),

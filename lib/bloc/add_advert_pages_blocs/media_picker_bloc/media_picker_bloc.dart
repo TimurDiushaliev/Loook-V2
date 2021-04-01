@@ -18,7 +18,6 @@ class MediaPickerBloc extends Bloc<MediaPickerEvents, MediaPickerStates> {
         imageList.addAll(await MediaPickerRepository.images);
         yield ImagesPickedState(imageList: imageList);
       } catch (_) {
-        print('mediaPickerException $_');
         yield MediaPickerError();
       }
 

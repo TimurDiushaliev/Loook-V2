@@ -46,7 +46,7 @@ class AdvertsListModel {
       views: json['views'],
       isVip: json['isVip'],
       createdAt: json['createdAt'],
-      fields: jsonDecode(json['fields']),
+      fields:  json['fields'],// != null ? jsonDecode(json['fields']) : {},
       isActive: json['isActive'],
       owner: json['owner'],
     );

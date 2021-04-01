@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_bloc.dart';
+import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_states.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_bloc.dart';
@@ -10,7 +12,7 @@ import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
-import 'package:loook/pages/account/account_page.dart';
+import 'package:loook/pages/account/check_user_token.dart';
 import 'package:loook/pages/chat/chats_page.dart';
 import 'package:loook/pages/home/home_page.dart';
 import 'package:path_provider/path_provider.dart';
@@ -50,87 +52,75 @@ class MyApp extends StatelessWidget {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => CategoriesTabBarBloc(
-                    HideTabBarState(),
-                  ),
+                  create: (context) => CategoriesTabBarBloc(HideTabBarState()),
                 ),
                 BlocProvider(
-                  create: (context) => SubCategoriesTabBarBloc(
-                    CategoriesTabBarState(),
-                  ),
+                  create: (context) =>
+                      SubCategoriesTabBarBloc(CategoriesTabBarState()),
                 ),
                 BlocProvider(
-                  create: (context) => FavoriteListBloc(
-                    AdvertNotLikedState(),
-                  ),
+                  create: (context) => FavoriteListBloc(AdvertNotLikedState()),
                 ),
                 BlocProvider(
-                  create: (context) => BottomSheetBloc(
-                    WithRoundedCornersState(),
-                  ),
+                  create: (context) =>
+                      BottomSheetBloc(WithRoundedCornersState()),
                 ),
                 BlocProvider(
-                  create: (context) => IndicatorBloc(
-                    FirstItemSelectedState(),
-                  ),
+                  create: (context) => IndicatorBloc(FirstItemSelectedState()),
                 ),
                 BlocProvider(
-                  create: (context) => AdvertDetailsBloc(
-                    AdvertDetailsIsEmptyState(),
-                  ),
+                  create: (context) =>
+                      AdvertDetailsBloc(AdvertDetailsIsEmptyState()),
                 ),
                 BlocProvider(
-                  create: (context) => MediaPickerBloc(
-                    ImageNotSelectedState(),
-                  ),
+                  create: (context) => MediaPickerBloc(ImageNotSelectedState()),
                 ),
                 BlocProvider(
-                  create: (context) => AdvertsListBloc(
-                    AdvertsListFetchedState(),
-                  ),
-                ),
-                BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
+                    create: (context) =>
+                        AdvertsListBloc(AdvertsListFetchedState())),
+                BlocProvider(
+                    create: (context) =>
+                        ChosedDetailsBloc(DetailsNotChosedState()))
               ],
               child: HomePage(),
             );
           if (state is ChatPageState)
             return MultiBlocProvider(providers: [
               BlocProvider(
-                create: (context) => AdvertDetailsBloc(
-                  AdvertDetailsIsEmptyState(),
-                ),
-              ),
+                  create: (context) => AdvertDetailsBloc(
+                        AdvertDetailsIsEmptyState(),
+                      )),
               BlocProvider(
-                create: (context) => MediaPickerBloc(ImageNotSelectedState()),
-              ),
-               BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
+                  create: (context) =>
+                      MediaPickerBloc(ImageNotSelectedState())),
+              BlocProvider(
+                  create: (context) =>
+                      ChosedDetailsBloc(DetailsNotChosedState()))
             ], child: ChatsPage());
           if (state is AccountPageState)
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => AuthenticationBloc(
-                      Hive.box('tokensBox').get('accessToken') != null
-                          ? SignedInState()
-                          : NotAuthenticatedState()),
-                ),
+                    create: (context) => AuthenticationBloc(
+                        Hive.box('tokensBox').get('accessToken') != null
+                            ? SignedInState()
+                            : NotAuthenticatedState())),
+                BlocProvider(create: (context) => CheckBoxBloc(false)),
+                BlocProvider(create: (context) => VipPageBloc(2)),
                 BlocProvider(
-                  create: (context) => CheckBoxBloc(false),
-                ),
+                    create: (context) =>
+                        AdvertDetailsBloc(AdvertDetailsIsEmptyState())),
                 BlocProvider(
-                  create: (context) => VipPageBloc(2),
-                ),
+                    create: (context) =>
+                        MediaPickerBloc(ImageNotSelectedState())),
                 BlocProvider(
-                  create: (context) => AdvertDetailsBloc(
-                    AdvertDetailsIsEmptyState(),
-                  ),
-                ),
+                    create: (context) =>
+                        ChosedDetailsBloc(DetailsNotChosedState())),
                 BlocProvider(
-                  create: (context) => MediaPickerBloc(ImageNotSelectedState()),
-                ),
-                 BlocProvider(create: (context)=> ChosedDetailsBloc(DetailsNotChosedState()))
+                    create: (context) =>
+                        AccountAdvertsBloc(AccountAdvertsNotFetchedState()))
               ],
-              child: AccountPage(),
+              child: CheckUserToken(),
             );
           return Center(
             child: Text('Возникла непредвиденная ошибка!'),

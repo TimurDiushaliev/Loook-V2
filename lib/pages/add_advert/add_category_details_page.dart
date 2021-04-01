@@ -21,9 +21,10 @@ class AddCategoryDetailsPage extends StatelessWidget {
       builder: (context, state) {
         return WillPopScope(
           onWillPop: () {
+            print('pop');
+            _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
             if (state is CategoryDetailsFetchedState) if (state.keyIndex != 0) {
               _advertDetailsBloc.add(FetchPreviousCategoryDetailsEvent());
-              _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
             } else
               _advertDetailsBloc.add(FetchSubCategoriesListEvent());
           },

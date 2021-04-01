@@ -31,8 +31,8 @@ class AddMediaTitleAndNavigation extends StatelessWidget {
               style: TextStyle(fontSize: 13),
             ),
             onPressed: () {
-              _advertDetailsBloc.add(
-                  AddDetailEvent(advertDetail: {'images': state.imageList}));
+              _advertDetailsBloc
+                  .add(AddImageListEvent(imageList: state.imageList));
               Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -9,7 +9,6 @@ class FavoriteListBloc extends Bloc<FavoriteListEvents, FavoriteListStates> {
   @override
   Stream<FavoriteListStates> mapEventToState(event) async* {
     if (event is AdvertLikedEvent) {
-      print('${event.index}');
       index = event.index;
       yield AdvertLikedState(index: index);
     }

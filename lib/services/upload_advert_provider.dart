@@ -3,23 +3,19 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
+import 'package:loook/services/api_endpoints.dart';
 
 class UploadAdvertProvider {
-  static uploadAdvert(Map<dynamic, dynamic> body) async {
-    final String baseUrl = 'http://192.168.88.208/';
-    final String apiUrl = 'api/v1/ads/';
-    final String refreshTokenUrl = 'api/v1/login/refresh/';
-    Map<String, String> headers = {
-      'Content-type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ${Hive.box('tokensBox').get('accessToken')}',
-    };
+  static uploadAdvert(
+      Map<dynamic, dynamic> body, List<dynamic> imageList) async {
     try {
       print(1);
-      final uri = Uri.parse(baseUrl + apiUrl);
+      final uri = Uri.parse(
+          'http://' + ApiEndpoints.baseUrl + '/' + ApiEndpoints.adsApiUrl);
       print(2);
       final request = http.MultipartRequest('POST', uri);
       print(3);
-      for (var file in body['images']) {
+      for (var file in imageList) {
         String fileName = file.path.split("/").last;
         print(4);
         var stream = http.ByteStream(DelegatingStream(file.openRead()));
@@ -35,9 +31,9 @@ class UploadAdvertProvider {
         request.files.add(multipartFileSign);
       }
       print(8);
-      request.headers.addAll(headers);
+      request.headers.addAll(ApiEndpoints.headersWithToken);
       print(9);
-      body.remove('images');
+      // body.remove('images');
       print(10);
       body['fields'] = body['fields'].toString();
       var fieldsJson = Map<String, String>.from(body);
@@ -57,10 +53,12 @@ class UploadAdvertProvider {
             print(14);
             try {
               if (Hive.box('tokensBox').get('refreshToken') != null) {
-                var refreshTokenResponse = await http
-                    .post(Uri.http('192.168.88.208', refreshTokenUrl), body: {
-                  'refresh': Hive.box('tokensBox').get('refreshToken')
-                });
+                var refreshTokenResponse = await http.post(
+                    Uri.http(
+                        ApiEndpoints.baseUrl, ApiEndpoints.refreshTokenUrl),
+                    body: {
+                      'refresh': Hive.box('tokensBox').get('refreshToken')
+                    });
                 var tokens = jsonDecode(refreshTokenResponse.body);
                 Hive.box('tokensBox')
                   ..put('accessToken', tokens['access'])
