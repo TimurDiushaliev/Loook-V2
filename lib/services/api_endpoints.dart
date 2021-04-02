@@ -15,4 +15,6 @@ class ApiEndpoints {
   static const String loginApiUrl = 'api/v1/login/';
   static const String categoriesApiUrl = 'api/v1/category/list';
   static const String accountAdsApiUrl = 'api/v1/me/ads/';
+  static const String favoritesApiUrl = 'api/v1/ads/favorites/';
+  static const String advertByIdApiUrl = 'api/v1/ads/';
 }

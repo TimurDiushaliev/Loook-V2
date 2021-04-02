@@ -11,6 +11,7 @@ import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_det
 import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
+import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
 import 'package:loook/pages/account/check_user_token.dart';
 import 'package:loook/pages/chat/chats_page.dart';
@@ -23,6 +24,7 @@ import 'bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.da
 import 'bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_states.dart';
 import 'bloc/favorites_page_blocs/favorite_list_bloc.dart';
 import 'bloc/favorites_page_blocs/favorite_list_states.dart';
+import 'bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_states.dart';
 import 'bloc/home_page_blocs/adverts_list_bloc/adverts_list_states.dart';
 import 'bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states.dart';
@@ -80,7 +82,10 @@ class MyApp extends StatelessWidget {
                         AdvertsListBloc(AdvertsListFetchedState())),
                 BlocProvider(
                     create: (context) =>
-                        ChosedDetailsBloc(DetailsNotChosedState()))
+                        ChosedDetailsBloc(DetailsNotChosedState())),
+                BlocProvider(
+                    create: (context) =>
+                        AdvertByIdBloc(AdvertByIdNotFetchedState()))
               ],
               child: HomePage(),
             );

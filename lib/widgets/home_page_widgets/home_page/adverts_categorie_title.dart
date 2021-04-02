@@ -6,7 +6,8 @@ import 'package:loook/values/strings.dart';
 
 class AdvertsByCategorieTitle extends StatelessWidget {
   final int index;
-  AdvertsByCategorieTitle({@required this.index});
+  final String title;
+  AdvertsByCategorieTitle({@required this.title, @required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,10 @@ class AdvertsByCategorieTitle extends StatelessWidget {
             top: ResponsiveSizeProvider.height(context) * 0.03,
             bottom: ResponsiveSizeProvider.height(context) * 0.03,
           ),
-          child: Text(Strings.categoriesList[index],
-              style: HomePageStyle.categoriesTextStyle),
+          child: Text(
+            title,
+            style: HomePageStyle.categoriesTextStyle,
+          ),
         ),
         Spacer(),
         GestureDetector(
@@ -34,8 +37,8 @@ class AdvertsByCategorieTitle extends StatelessWidget {
             );
           },
           child: Container(
-            margin:
-                EdgeInsets.only(right: ResponsiveSizeProvider.width(context) * 0.08),
+            margin: EdgeInsets.only(
+                right: ResponsiveSizeProvider.width(context) * 0.08),
             child: Text(
               'Выбрать',
               style: HomePageStyle.chooseTextButtonStyle,

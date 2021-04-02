@@ -1,8 +1,6 @@
-import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
-import 'package:flutter/cupertino.dart';
-
-class AdvertsListModel {
+class AdvertsModel {
   int id;
   List<dynamic> images;
   String category;
@@ -17,7 +15,7 @@ class AdvertsListModel {
   Map<String, dynamic> fields;
   bool isActive;
   int owner;
-  AdvertsListModel(
+  AdvertsModel(
       {@required this.id,
       @required this.images,
       @required this.category,
@@ -33,8 +31,8 @@ class AdvertsListModel {
       @required this.isActive,
       @required this.owner});
 
-  factory AdvertsListModel.fromJson(Map<String, dynamic> json) {
-    return AdvertsListModel(
+  factory AdvertsModel.fromJson(Map<String, dynamic> json) {
+    return AdvertsModel(
       id: json['id'],
       images: json['images'],
       category: json['category'],

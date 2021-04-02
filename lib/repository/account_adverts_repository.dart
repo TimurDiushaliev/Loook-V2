@@ -1,5 +1,5 @@
-import 'package:loook/services/adverts_list_provider.dart';
+import 'package:loook/services/adverts_provider.dart';
 
 class AccountAdvertsRepository{
-  static get accountAdverts => AdvertsListProvider.fetchAccountAdvertsList();
+  static get accountAdverts => AdvertsProvider.fetchAccountAdvertsList();
 }

@@ -10,7 +10,8 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController password = TextEditingController();
   final TextEditingController phoneCode = TextEditingController(text: '996');
   final TextEditingController phoneNumber = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final formKey;
+  SignUpPage({@required this.formKey});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +49,6 @@ class SignUpPage extends StatelessWidget {
             phoneCode: phoneCode,
             phoneNumber: phoneNumber,
             formKey: formKey,
-          ),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.15,
           ),
         ],
       ),

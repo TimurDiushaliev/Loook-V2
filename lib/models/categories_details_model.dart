@@ -20,7 +20,7 @@ class AdvertDetailsModel {
     List children =
         json['children'].map((e) => AdvertDetailsModel.fromJson(e)).toList();
     List adverts = json['adverts'] != null
-        ? json['adverts'].map((e) => AdvertsListModel.fromJson(e)).toList()
+        ? json['adverts'].map((e) => AdvertsModel.fromJson(e)).toList()
         : null;
     return AdvertDetailsModel(
       name: json['name'],

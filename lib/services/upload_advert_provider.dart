@@ -35,7 +35,7 @@ class UploadAdvertProvider {
       print(9);
       // body.remove('images');
       print(10);
-      body['fields'] = body['fields'].toString();
+      body['fields'] != null ?? body['fields'].toString();
       var fieldsJson = Map<String, String>.from(body);
       fieldsJson['fields'] = jsonEncode(fieldsJson['fields']);
       print(fieldsJson);
@@ -49,7 +49,7 @@ class UploadAdvertProvider {
           print('response $value');
           print('status code ${response.statusCode}');
           if (response.statusCode == 401) {
-            //TODO: refresh token
+            //TODO: recursive
             print(14);
             try {
               if (Hive.box('tokensBox').get('refreshToken') != null) {
@@ -60,9 +60,12 @@ class UploadAdvertProvider {
                       'refresh': Hive.box('tokensBox').get('refreshToken')
                     });
                 var tokens = jsonDecode(refreshTokenResponse.body);
-                Hive.box('tokensBox')
-                  ..put('accessToken', tokens['access'])
-                  ..put('refreshToken', tokens['refresh']);
+                print('tokens $tokens');
+                await Hive.box('tokensBox')
+                    .put('accessToken', tokens['access']);
+                await Hive.box('tokensBox')
+                    .put('refreshToken', tokens['refresh']);
+                await uploadAdvert(body, imageList);
               }
             } catch (e) {
               print('refresh token exception $e');

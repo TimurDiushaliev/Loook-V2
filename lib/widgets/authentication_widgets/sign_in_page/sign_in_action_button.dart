@@ -32,14 +32,10 @@ class SignInActionButton extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           onPressed: () {
-            if (formKey.currentState.validate()) {
+            if (formKey[0].currentState.validate()) {
               _authenticationBloc.add(
                 SignInEvent(username: username.text, password: password.text),
               );
-              // Navigator.pushAndRemoveUntil(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => AccountPage()),
-              //     (route) => false);
             }
           },
         ),

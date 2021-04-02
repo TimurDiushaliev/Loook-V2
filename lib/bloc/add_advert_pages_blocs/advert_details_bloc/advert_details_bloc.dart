@@ -125,9 +125,9 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     }
     if (event is UploadAdvertEvent) {
       yield AdvertIsUploadingState();
-      try{
-      UploadAdvertProvider.uploadAdvert(advertDetails, imageList);
-      } catch(_){
+      try {
+        UploadAdvertProvider.uploadAdvert(advertDetails, imageList);
+      } catch (_) {
         //TODO: error state
       }
     }

@@ -9,10 +9,9 @@ import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_detai
 import 'package:loook/widgets/home_page_widgets/home_page/filter.dart';
 
 class AdvertDetailsPage extends StatelessWidget {
-  final int id;
-  AdvertDetailsPage({@required this.id});
   @override
   Widget build(BuildContext context) {
+    //TODO: advert by id
     FavoriteListBloc _favoriteListBloc =
         BlocProvider.of<FavoriteListBloc>(context);
     return Scaffold(

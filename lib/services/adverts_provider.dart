@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:loook/models/adverts_list_model.dart';
 import 'package:loook/services/api_endpoints.dart';
 
-class AdvertsListProvider {
+class AdvertsProvider {
   static Future<List<dynamic>> fetchAdvertsList() async {
     final response = await http.get(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.adsApiUrl),
         headers: ApiEndpoints.headersWithNoTokens);
     List<dynamic> adverts = jsonDecode(response.body);
-    return adverts.map((json) => AdvertsListModel.fromJson(json)).toList();
+    return adverts.map((json) => AdvertsModel.fromJson(json)).toList();
   }
 
   static Future<List<dynamic>> fetchAccountAdvertsList() async {
@@ -20,6 +20,7 @@ class AdvertsListProvider {
         headers: ApiEndpoints.headersWithToken);
     if (response.statusCode == 200) {
       List<dynamic> accountAdverts = jsonDecode(response.body);
+      return accountAdverts.map((json) => AdvertsModel.fromJson(json)).toList();
     } else if (response.statusCode == 401) {
       try {
         if (Hive.box('tokensBox').get('refreshToken') != null) {
@@ -37,5 +38,13 @@ class AdvertsListProvider {
         print('refresh token exception $e');
       }
     }
+  }
+
+  static Future<AdvertsModel> fetchAdvertById(int id) async {
+    final response = await http.get(
+        Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.advertByIdApiUrl + '$id'),
+        headers: ApiEndpoints.headersWithNoTokens);
+    Map<String, dynamic> advertById = jsonDecode(response.body);
+    return AdvertsModel.fromJson(advertById);
   }
 }

@@ -6,5 +6,6 @@ class AdvertNotLikedEvent extends FavoriteListEvents {}
 
 class AdvertLikedEvent extends FavoriteListEvents {
   int index;
-  AdvertLikedEvent({@required this.index});
+  int id;
+  AdvertLikedEvent({@required this.index, @required this.id});
 }
