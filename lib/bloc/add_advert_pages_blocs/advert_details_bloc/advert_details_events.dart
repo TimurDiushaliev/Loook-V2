@@ -34,3 +34,4 @@ class FetchCategoryDetailsEvent extends AdvertDetailsEvents {
 class FetchNextCategoryDetailsEvent extends AdvertDetailsEvents {}
 
 class FetchPreviousCategoryDetailsEvent extends AdvertDetailsEvents {}
+

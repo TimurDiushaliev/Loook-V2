@@ -23,21 +23,22 @@ class AdvertDetailsPage extends StatelessWidget {
           centerTitle: true,
           actions: [
             BlocBuilder<FavoriteListBloc, FavoriteListStates>(
-                builder: (context, state) {
-              return IconButton(
-                onPressed: () {
-                  _favoriteListBloc.add(state is AdvertNotLikedState
-                      ? AdvertLikedEvent()
-                      : AdvertNotLikedEvent());
-                },
-                icon: Icon(
-                  state is AdvertNotLikedState
-                      ? Icons.favorite_outline
-                      : Icons.favorite,
-                  color: Colors.red,
-                ),
-              );
-            }),
+              builder: (context, state) {
+                return IconButton(
+                  onPressed: () {
+                    _favoriteListBloc.add(state is AdvertNotLikedState
+                        ? AdvertLikedEvent()
+                        : AdvertNotLikedEvent());
+                  },
+                  icon: Icon(
+                    state is AdvertNotLikedState
+                        ? Icons.favorite_outline
+                        : Icons.favorite,
+                    color: Colors.red,
+                  ),
+                );
+              },
+            ),
             Filter(),
           ],
         ),

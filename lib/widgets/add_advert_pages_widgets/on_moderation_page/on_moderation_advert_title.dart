@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class AdvertDetailsTitle extends StatelessWidget {
+class OnModerationAdvertTitle extends StatelessWidget {
   final String title;
-  AdvertDetailsTitle({@required this.title});
+  OnModerationAdvertTitle({@required this.title});
   @override
   Widget build(BuildContext context) {
     return Container(

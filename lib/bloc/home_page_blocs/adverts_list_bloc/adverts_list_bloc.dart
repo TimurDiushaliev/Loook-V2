@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/models/adverts_list_model.dart';
+import 'package:loook/models/adverts_model.dart';
 import 'package:loook/repository/adverts_repository.dart';
 
 import 'adverts_list_events.dart';

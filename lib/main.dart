@@ -13,6 +13,8 @@ import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search-delegate_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search_delegate_states.dart';
 import 'package:loook/pages/account/check_user_token.dart';
 import 'package:loook/pages/chat/chats_page.dart';
 import 'package:loook/pages/home/home_page.dart';
@@ -79,13 +81,16 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                     create: (context) =>
-                        AdvertsListBloc(AdvertsListFetchedState())),
+                        AdvertsListBloc(AdvertsListIsNotFetchedState())),
                 BlocProvider(
                     create: (context) =>
                         ChosedDetailsBloc(DetailsNotChosedState())),
                 BlocProvider(
                     create: (context) =>
-                        AdvertByIdBloc(AdvertByIdNotFetchedState()))
+                        AdvertByIdBloc(AdvertByIdNotFetchedState())),
+                BlocProvider(
+                    create: (context) => SearchDelegateBloc(
+                        AdvertsViaSearchDelegateNotFetchedState()))
               ],
               child: HomePage(),
             );

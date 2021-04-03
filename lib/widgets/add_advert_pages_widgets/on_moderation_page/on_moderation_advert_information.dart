@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class AdvertDetailsInformation extends StatelessWidget {
+class OnModerationAdvertInformation extends StatelessWidget {
   final Map<String, dynamic> fields;
-  AdvertDetailsInformation({@required this.fields});
+  OnModerationAdvertInformation({@required this.fields});
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;

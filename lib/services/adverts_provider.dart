@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:loook/models/adverts_list_model.dart';
+import 'package:loook/models/adverts_model.dart';
 import 'package:loook/services/api_endpoints.dart';
 
 class AdvertsProvider {
@@ -46,5 +46,14 @@ class AdvertsProvider {
         headers: ApiEndpoints.headersWithNoTokens);
     Map<String, dynamic> advertById = jsonDecode(response.body);
     return AdvertsModel.fromJson(advertById);
+  }
+
+  static Future<List<AdvertsModel>> fetchAdvertsBySearchDelegate(String query, int offset) async {
+    final response = await http.get(
+        Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.adsApiUrl,
+            {'title': query, 'limit': '10', 'offset': '$offset'}),
+        headers: ApiEndpoints.headersWithNoTokens);
+    List<dynamic> results = jsonDecode(response.body)['results'];
+    return results.map((e) => AdvertsModel.fromJson(e)).toList();
   }
 }

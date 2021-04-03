@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:loook/models/adverts_list_model.dart';
+import 'package:loook/models/adverts_model.dart';
 
 class AdvertDetailsModel {
   String name;

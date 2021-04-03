@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class AdvertDetailsPriceAndSocialNetworkIcons extends StatelessWidget {
+class OnModerationAdvertPriceAndSocialNetworkIcons extends StatelessWidget {
   final int price;
   final String currency;
-  AdvertDetailsPriceAndSocialNetworkIcons(
+  OnModerationAdvertPriceAndSocialNetworkIcons(
       {@required this.price, @required this.currency});
   @override
   Widget build(BuildContext context) {

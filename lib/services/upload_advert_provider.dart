@@ -44,35 +44,27 @@ class UploadAdvertProvider {
       print(12);
       var response = await request.send();
       print(13);
-      response.stream.transform(utf8.decoder).listen(
-        (value) async {
-          print('response $value');
-          print('status code ${response.statusCode}');
-          if (response.statusCode == 401) {
-            //TODO: recursive
-            print(14);
-            try {
-              if (Hive.box('tokensBox').get('refreshToken') != null) {
-                var refreshTokenResponse = await http.post(
-                    Uri.http(
-                        ApiEndpoints.baseUrl, ApiEndpoints.refreshTokenUrl),
-                    body: {
-                      'refresh': Hive.box('tokensBox').get('refreshToken')
-                    });
-                var tokens = jsonDecode(refreshTokenResponse.body);
-                print('tokens $tokens');
-                await Hive.box('tokensBox')
-                    .put('accessToken', tokens['access']);
-                await Hive.box('tokensBox')
-                    .put('refreshToken', tokens['refresh']);
-                await uploadAdvert(body, imageList);
-              }
-            } catch (e) {
-              print('refresh token exception $e');
-            }
-          }
-        },
-      );
+      print(response.statusCode);
+      if(response.statusCode==401)
+      try {
+        print('object');
+        if (Hive.box('tokensBox').get('refreshToken') != null) {
+          var refreshTokenResponse = await http.post(
+              Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.refreshTokenUrl),
+              body: {'refresh': Hive.box('tokensBox').get('refreshToken')});
+          print('object1');
+          var tokens = jsonDecode(refreshTokenResponse.body);
+          print('tokens $tokens');
+          await Hive.box('tokensBox').put('accessToken', tokens['access']);
+          await Hive.box('tokensBox').put('refreshToken', tokens['refresh']);
+          ApiEndpoints.headersWithToken.update('Authorization',
+              (value) => 'Bearer ${Hive.box('tokensBox').get('accessToken')}');
+          print('new ${Hive.box('tokensBox').get('accessToken')}');
+          await uploadAdvert(body, imageList);
+        }
+      } catch (e) {
+        print('refresh token exception $e');
+      }
     } catch (_) {
       print('$_');
     }
