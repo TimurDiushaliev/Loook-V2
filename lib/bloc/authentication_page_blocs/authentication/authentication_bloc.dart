@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_events.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_states.dart';
 import 'package:loook/repository/authentication_repository.dart';
 import 'package:loook/services/authentification_provider.dart';
+import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_events.dart';
+import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_states.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvents, AuthenticationStates> {
@@ -19,9 +19,13 @@ class AuthenticationBloc
       yield SignedInState();
     }
     if (event is SignUpEvent) {
-      AuthenticationProvider.signUp(username: event.username, password: event.password, phoneNumber: event.phoneNumber);
+      await AuthenticationProvider.signUp(
+          username: event.username,
+          password: event.password,
+          phoneNumber: event.phoneNumber);
+      
       yield SignedUpState();
     }
-    if(event is SignOutEvent) yield NotAuthenticatedState();
+    if (event is SignOutEvent) yield NotAuthenticatedState();
   }
 }

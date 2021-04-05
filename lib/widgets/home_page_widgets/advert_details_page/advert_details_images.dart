@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_states.dart';
-import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class AdvertDetailsImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AdvertsListBloc, AdvertsListStates>(
+    return BlocBuilder<AdvertByIdBloc, AdvertByIdStates>(
       builder: (context, state) {
-        if (state is AdvertsListFetchedState) {
+        if (state is AdvertByIdFetchedState) {
           return Stack(
             children: [
               BlocBuilder<AdvertByIdBloc, AdvertByIdStates>(

@@ -8,6 +8,7 @@ class AdvertDetailsInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
+    print(fields);
     return Column(
       children: [
         Container(
@@ -28,35 +29,39 @@ class AdvertDetailsInformation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: fields.keys
-                    .map<Widget>((e) => Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: ResponsiveSizeProvider.height(context) *
-                                  0.01),
-                          child: Text('$e:',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16)),
-                        ))
-                    .toList(),
-              ),
-              Container(
-                child: Column(
-                  children: fields.values
-                      .map<Widget>((e) => Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical:
-                                    ResponsiveSizeProvider.height(context) *
-                                        0.01),
-                            child: Text('$e',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15)),
-                          ))
-                      .toList(),
-                ),
-              ),
+              fields != null
+                  ? Column(
+                      children: fields.keys
+                          .map<Widget>((e) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical:
+                                        ResponsiveSizeProvider.height(context) *
+                                            0.01),
+                                child: Text('$e:',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16)),
+                              ))
+                          .toList(),
+                    )
+                  : Container(),
+              fields != null
+                  ? Column(
+                      children: fields.values
+                          .map<Widget>((e) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical:
+                                        ResponsiveSizeProvider.height(context) *
+                                            0.01),
+                                child: Text('$e',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15)),
+                              ))
+                          .toList(),
+                    )
+                  : SizedBox(
+                      height: ResponsiveSizeProvider.height(context) * 0.3)
             ],
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
+import 'package:loook/bloc/authentication_page_blocs/check_box_bloc/check_box_bloc.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class SignUpCheckBox extends StatelessWidget {

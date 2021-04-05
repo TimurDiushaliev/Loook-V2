@@ -40,7 +40,7 @@ class Search extends SearchDelegate {
     SearchDelegateBloc _searchDelegateBloc =
         BlocProvider.of<SearchDelegateBloc>(context)
           ..add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
-    return SearchResultList();
+    return SearchResultList(query: query);
   }
 
   @override

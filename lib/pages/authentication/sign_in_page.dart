@@ -4,6 +4,8 @@ import 'package:loook/widgets/authentication_widgets/sign_in_page/navigate_to_si
 import 'package:loook/widgets/authentication_widgets/sign_in_page/sign_in_action_button.dart';
 import 'package:loook/widgets/authentication_widgets/sign_in_page/sign_in_inputs.dart';
 import 'package:loook/widgets/authentication_widgets/authentication_pages_title.dart';
+import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.dart';
+import 'package:loook/widgets/main_floating_action_button/main_floating_action_button.dart';
 
 class SignInPage extends StatelessWidget {
   final TextEditingController username = TextEditingController();
@@ -52,6 +54,9 @@ class SignInPage extends StatelessWidget {
             ),
           ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: MainFloatingActionButton(),
+        bottomNavigationBar: BottomAppBarNavigation(),
       ),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_bloc.dart';
-import 'package:loook/bloc/account_page_blocs/authentication_page_blocs/authentication/authentication_events.dart';
-import 'package:loook/pages/account/account_page.dart';
+import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_bloc.dart';
+import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_events.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
 class SignInActionButton extends StatelessWidget {

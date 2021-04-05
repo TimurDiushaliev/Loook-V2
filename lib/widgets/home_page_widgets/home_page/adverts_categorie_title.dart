@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:loook/pages/home/adverts_by_category.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/styles/home_page_style.dart';
-import 'package:loook/values/strings.dart';
 
 class AdvertsByCategorieTitle extends StatelessWidget {
-  final int index;
-  final String title;
-  AdvertsByCategorieTitle({@required this.title, @required this.index});
+  final String category;
+  final List<dynamic> adverts;
+  AdvertsByCategorieTitle({@required this.category, @required this.adverts});
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +19,20 @@ class AdvertsByCategorieTitle extends StatelessWidget {
             bottom: ResponsiveSizeProvider.height(context) * 0.03,
           ),
           child: Text(
-            title,
+            '$category',
             style: HomePageStyle.categoriesTextStyle,
           ),
         ),
         Spacer(),
         GestureDetector(
           onTap: () {
+            print('$adverts');
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => AdvertsByCategory(
-                  categorie: Strings.categoriesList[index],
+                  category: category,
+                  adverts: adverts,
                 ),
               ),
             );

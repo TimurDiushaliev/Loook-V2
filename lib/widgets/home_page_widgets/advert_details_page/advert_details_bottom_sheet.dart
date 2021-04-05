@@ -8,6 +8,7 @@ import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_states
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/styles/info_page_style.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_description.dart';
+import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_owner_name.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_title.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_views.dart';
 import 'advert_details_information.dart';
@@ -71,6 +72,8 @@ class AdvertDetailsBottomSheet extends StatelessWidget {
                                     description: state.advertById.description),
                                 AdvertDetailsInformation(
                                     fields: state.advertById.fields),
+                                AdvertDetailsOwnerName(
+                                    ownername: state.advertById.owner),
                               ],
                             ),
                           );

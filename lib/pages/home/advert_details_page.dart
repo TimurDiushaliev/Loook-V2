@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_list_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_list_events.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_list_states.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_events.dart';
+import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_bottom_sheet.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_images.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_phones.dart';
@@ -12,8 +12,8 @@ class AdvertDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO: advert by id
-    FavoriteListBloc _favoriteListBloc =
-        BlocProvider.of<FavoriteListBloc>(context);
+    FavoriteAdvertsListBloc _favoriteListBloc =
+        BlocProvider.of<FavoriteAdvertsListBloc>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -22,7 +22,7 @@ class AdvertDetailsPage extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            BlocBuilder<FavoriteListBloc, FavoriteListStates>(
+            BlocBuilder<FavoriteAdvertsListBloc, FavoriteAdvertsListStates>(
               builder: (context, state) {
                 return IconButton(
                   onPressed: () {

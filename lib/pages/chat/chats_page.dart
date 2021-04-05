@@ -3,7 +3,7 @@ import 'package:loook/pages/chat/conversation_page.dart';
 import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.dart';
 import 'package:loook/widgets/chat_page_widgets/chats_page/read_chats.dart';
 import 'package:loook/widgets/chat_page_widgets/chats_page/unread_chats.dart';
-import 'package:loook/widgets/navigate_to_add_advert_pages_button/navigate_to_add_advert_pages_button.dart';
+import 'package:loook/widgets/main_floating_action_button/main_floating_action_button.dart';
 
 class ChatsPage extends StatelessWidget {
   @override
@@ -37,7 +37,7 @@ class ChatsPage extends StatelessWidget {
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:NavigateToAddAdvertPages(),
+        floatingActionButton:MainFloatingActionButton(),
         bottomNavigationBar: BottomAppBarNavigation(),
       ),
     );

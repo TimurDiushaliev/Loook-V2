@@ -11,7 +11,7 @@ class AdvertByIdBloc extends Bloc<FetchAdvertByIdEvent, AdvertByIdStates> {
   Stream<AdvertByIdStates> mapEventToState(FetchAdvertByIdEvent event) async* {
     try {
       AdvertsModel advertById = await AdvertsProvider.fetchAdvertById(event.id);
-      print(advertById.fields);
+      print(advertById.owner);
       yield AdvertByIdFetchedState(advertById: advertById);
     } catch (_) {
       AdvertByIdFetchingErrorState();

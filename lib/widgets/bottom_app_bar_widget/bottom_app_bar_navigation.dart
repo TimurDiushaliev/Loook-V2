@@ -7,7 +7,7 @@ import 'package:loook/responsive_size/responsive_size_provider.dart';
 class BottomAppBarNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    BottomAppBarBloc _bottomAppBarBloc = BlocProvider.of(context);
+    BottomAppBarBloc _bottomAppBarBloc = BlocProvider.of<BottomAppBarBloc>(context);
     return Container(
       height: ResponsiveSizeProvider.height(context) * 0.075,
       child: BottomAppBar(
@@ -25,7 +25,9 @@ class BottomAppBarNavigation extends StatelessWidget {
                   }),
               IconButton(
                   icon: Icon(Icons.favorite, color: Colors.grey[500]),
-                  onPressed: () {}),
+                  onPressed: () {
+                    _bottomAppBarBloc.add(FavoritesPageEvent());
+                  }),
               SizedBox(width: ResponsiveSizeProvider.width(context) * 0.2),
               IconButton(
                   icon: Icon(Icons.message, color: Colors.grey[500]),

@@ -5,13 +5,23 @@ import 'package:loook/widgets/authentication_widgets/sign_up_page/sign_up_action
 import 'package:loook/widgets/authentication_widgets/sign_up_page/sign_up_check_box.dart';
 import 'package:loook/widgets/authentication_widgets/sign_up_page/sign_up_inputs.dart';
 
-class SignUpPage extends StatelessWidget {
-  final TextEditingController username = TextEditingController();
-  final TextEditingController password = TextEditingController();
-  final TextEditingController phoneCode = TextEditingController(text: '996');
-  final TextEditingController phoneNumber = TextEditingController();
+class SignUpPage extends StatefulWidget {
   final formKey;
   SignUpPage({@required this.formKey});
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController username = TextEditingController();
+
+  final TextEditingController password = TextEditingController();
+
+  final TextEditingController phoneCode = TextEditingController(text: '996');
+
+  final TextEditingController phoneNumber = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +42,7 @@ class SignUpPage extends StatelessWidget {
           SignUpInputs(
             username: username,
             password: password,
-            formKey: formKey,
+            formKey: widget.formKey,
             phoneCode: phoneCode,
             phoneNumber: phoneNumber,
           ),
@@ -48,7 +58,7 @@ class SignUpPage extends StatelessWidget {
             password: password,
             phoneCode: phoneCode,
             phoneNumber: phoneNumber,
-            formKey: formKey,
+            formKey: widget.formKey,
           ),
         ],
       ),

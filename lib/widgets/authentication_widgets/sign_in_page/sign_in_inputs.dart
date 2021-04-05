@@ -33,6 +33,7 @@ class SignInInputs extends StatelessWidget {
             ),
             TextFormField(
               controller: password,
+              obscureText: true,
               validator: (value) {
                 if (value.isEmpty) return 'Обязательное поле';
               },
