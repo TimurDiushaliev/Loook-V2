@@ -16,20 +16,22 @@ class AddCategoryPage extends StatelessWidget {
         _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
         Navigator.pop(context);
       },
-      child: ListView(
-        children: [
-          SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
-          ChosedDetailsList(),
-          SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
-          Text(
-            'Выберите Категорию',
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          CategoriesList()
-        ],
+      child: Scaffold(
+        body: ListView(
+          children: [
+            SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
+            ChosedDetailsList(),
+            SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
+            Text(
+              'Выберите Категорию',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.05,
+            ),
+            CategoriesList()
+          ],
+        ),
       ),
     );
   }

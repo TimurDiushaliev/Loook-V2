@@ -38,3 +38,8 @@ class CategoryDetailsFetchedState extends AdvertDetailsStates {
 }
 
 class AdvertIsUploadingState extends AdvertDetailsStates {}
+
+class AdvertState extends AdvertDetailsStates {
+  String advertState;
+  AdvertState({@required this.advertState});
+}

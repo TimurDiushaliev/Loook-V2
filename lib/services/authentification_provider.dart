@@ -7,9 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:loook/services/api_endpoints.dart';
 
 class AuthenticationProvider {
-  static StreamController signUpState = StreamController();
-  static StreamController signInState = StreamController();
-  static Future signIn(
+  static Future<String> signIn(
       {@required String username, @required String password}) async {
     final Map<String, String> body = {
       'username': username,
@@ -25,15 +23,22 @@ class AuthenticationProvider {
         'access': responseBody['access'],
         'refresh': responseBody['refresh'],
       };
-      Hive.box('tokensBox')
-        ..put('accessToken', tokens['access'])
-        ..put('refreshToken', tokens['refresh']);
+      await Hive.box('tokensBox').put('accessToken', tokens['access']);
+      await Hive.box('tokensBox').put('refreshToken', tokens['refresh']);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        return 'Signed in successfully';
+      } else if (response.statusCode == 401) {
+        return 'Such a user is not exist';
+      } else {}
     } catch (e) {
-      print('server exception $e');
+      print('Sign in exception $e');
+      return 'Signed in error';
     }
+    return null;
   }
 
-  static Future signUp(
+  static Future<String> signUp(
       {@required String username,
       @required String password,
       @required String phoneNumber}) async {
@@ -50,16 +55,16 @@ class AuthenticationProvider {
           Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.registerApiUrl),
           headers: headers,
           body: json.encode(body));
+      print('${jsonDecode(response.body)}');
       if (response.statusCode == 201) {
-        //TODO: success auth
-        signUpState.sink.add('signed up successfully');
-        print(jsonDecode(response.body));
-      } else if(response.statusCode==400) {
-        //TODO: error auth
-        print(response.statusCode);
-        signUpState.sink.add('such a user already exists');
+        return 'Signed up successfully';
+      } else if (response.statusCode == 400) {
+        return 'Such a user already exists';
       }
-    } catch (e) {}
+    } catch (e) {
+      print('Sign Up Error $e');
+    }
+    return null;
   }
 
   static signOut() {

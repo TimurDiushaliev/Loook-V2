@@ -18,4 +18,5 @@ class SignUpEvent extends AuthenticationEvents {
       @required this.phoneNumber});
 }
 
+
 class SignOutEvent extends AuthenticationEvents {}

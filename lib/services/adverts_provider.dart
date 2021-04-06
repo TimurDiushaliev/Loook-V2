@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:loook/models/adverts_model.dart';
 import 'package:loook/services/api_endpoints.dart';
-import 'package:loook/services/refresh_token.dart';
+import 'package:loook/services/token_refresher.dart';
 
 class AdvertsProvider {
   static Future<List<dynamic>> fetchAdvertsList() async {

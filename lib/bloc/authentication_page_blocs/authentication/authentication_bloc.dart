@@ -7,24 +7,27 @@ import 'package:loook/bloc/authentication_page_blocs/authentication/authenticati
 class AuthenticationBloc
     extends Bloc<AuthenticationEvents, AuthenticationStates> {
   AuthenticationBloc(AuthenticationStates initialState) : super(initialState);
+  String signInState;
+  String signUpState;
 
   @override
   Stream<AuthenticationStates> mapEventToState(
       AuthenticationEvents event) async* {
     if (event is SignInEvent) {
-      await AuthenticationProvider.signIn(
+      signInState = await AuthenticationProvider.signIn(
           username: event.username, password: event.password);
+      print('$signInState');
       await AuthenticationRepository.accesToken;
       await AuthenticationRepository.refreshToken;
-      yield SignedInState();
+      yield SignInUserState(userState: signInState);
     }
     if (event is SignUpEvent) {
-      await AuthenticationProvider.signUp(
+      signUpState = await AuthenticationProvider.signUp(
           username: event.username,
           password: event.password,
           phoneNumber: event.phoneNumber);
-      
-      yield SignedUpState();
+      print('$signUpState');
+      yield SignUpUserState(userState: signUpState);
     }
     if (event is SignOutEvent) yield NotAuthenticatedState();
   }

@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 import 'package:loook/services/api_endpoints.dart';
-import 'package:loook/services/refresh_token.dart';
+import 'package:loook/services/token_refresher.dart';
 
 class UploadAdvertProvider {
-  static uploadAdvert(
+  static Future<String> uploadAdvert(
       Map<dynamic, dynamic> body, List<dynamic> imageList) async {
     try {
       final uri = Uri.parse(
@@ -27,12 +27,20 @@ class UploadAdvertProvider {
       fieldsJson['fields'] = jsonEncode(fieldsJson['fields']);
       request.fields.addAll(fieldsJson);
       var response = await request.send();
-      if (response.statusCode == 401) {
+      http.Response.fromStream(response)
+          .then((value) => print(jsonDecode(value.body)));
+      if (response.statusCode == 201) {
+        return 'Объявление опубликовано!';
+      } else if (response.statusCode == 401) {
         TokenRefreher.refreshToken();
         uploadAdvert(body, imageList);
+      } else {
+        return 'Возникла ошибка, объявление не опубликовано!';
       }
     } catch (_) {
-      print('$_');
+      print('upload advert exception$_');
+      return 'Возникла ошибка, объявление не опубликовано!';
     }
+    return '';
   }
 }
