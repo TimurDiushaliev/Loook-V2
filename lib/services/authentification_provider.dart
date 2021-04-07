@@ -13,58 +13,50 @@ class AuthenticationProvider {
       'username': username,
       'password': password,
     };
-    try {
-      final response = await http.post(
-          Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.loginApiUrl),
-          headers: ApiEndpoints.headersWithNoTokens,
-          body: json.encode(body));
-      final Map<String, dynamic> responseBody = json.decode(response.body);
-      Map<String, dynamic> tokens = {
-        'access': responseBody['access'],
-        'refresh': responseBody['refresh'],
-      };
-      await Hive.box('tokensBox').put('accessToken', tokens['access']);
-      await Hive.box('tokensBox').put('refreshToken', tokens['refresh']);
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        return 'Signed in successfully';
-      } else if (response.statusCode == 401) {
-        return 'Such a user is not exist';
-      } else {}
-    } catch (e) {
-      print('Sign in exception $e');
-      return 'Signed in error';
+    final response = await http.post(
+        Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.loginApiUrl),
+        headers: ApiEndpoints.headersWithNoTokens,
+        body: json.encode(body));
+    final Map<String, dynamic> responseBody = json.decode(response.body);
+    Map<String, dynamic> tokens = {
+      'access': responseBody['access'],
+      'refresh': responseBody['refresh'],
+    };
+    await Hive.box('tokensBox').put('accessToken', tokens['access']);
+    await Hive.box('tokensBox').put('refreshToken', tokens['refresh']);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      return 'Signed in successfully';
+    } else if (response.statusCode == 401) {
+      return 'Such a user is not exist';
     }
-    return null;
+    return 'Signing in error';
   }
 
   static Future<String> signUp(
       {@required String username,
       @required String password,
       @required String phoneNumber}) async {
-    Map<String, String> headers = {
-      'Content-type': 'application/json; charset=UTF-8'
-    };
     final Map<String, String> body = {
       'username': username,
       'password': password,
       'phone': phoneNumber,
     };
-    try {
-      final response = await http.post(
-          Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.registerApiUrl),
-          headers: headers,
-          body: json.encode(body));
-      print('${jsonDecode(response.body)}');
-      if (response.statusCode == 201) {
-        return 'Signed up successfully';
-      } else if (response.statusCode == 400) {
+    final response = await http.post(
+        Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.registerApiUrl),
+        headers: ApiEndpoints.headersWithNoTokens,
+        body: json.encode(body));
+    print('${json.encode(body)}');
+    print('${jsonDecode(response.body)}');
+    if (response.statusCode == 201) {
+      return 'Signed up successfully';
+    } else if (response.statusCode == 400) {
+      if (jsonDecode(response.body)['username'][0] ==
+          'Пользователь с таким именем уже существует.') {
         return 'Such a user already exists';
       }
-    } catch (e) {
-      print('Sign Up Error $e');
     }
-    return null;
+    return 'Signing up error';
   }
 
   static signOut() {

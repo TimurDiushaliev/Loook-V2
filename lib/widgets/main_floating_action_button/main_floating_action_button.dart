@@ -7,8 +7,6 @@ import 'package:loook/pages/add_advert/add_category_page.dart';
 class MainFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AdvertDetailsBloc _advertDetailsBloc =
-        BlocProvider.of<AdvertDetailsBloc>(context);
     return FloatingActionButton(
       backgroundColor: Colors.red,
       child: Icon(
@@ -16,7 +14,8 @@ class MainFloatingActionButton extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: () {
-        _advertDetailsBloc.add(FetchCategoriesListEvent());
+        BlocProvider.of<AdvertDetailsBloc>(context)
+            .add(FetchCategoriesListEvent());
         Navigator.push(
           context,
           MaterialPageRoute(

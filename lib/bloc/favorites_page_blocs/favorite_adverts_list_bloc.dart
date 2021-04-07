@@ -22,7 +22,6 @@ class FavoriteAdvertsListBloc
     if (event is FetchFavoriteAdvertsListEvent) {
       try {
         List<dynamic> favoriteAdverts = await AdvertsRepository.favoriteAdverts;
-        print(favoriteAdverts[1].images);
         yield FavoriteAdvertsListFetchedState(favoriteAdverts: favoriteAdverts);
       } catch (_) {
         print('favorite list exception $_');

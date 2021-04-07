@@ -40,6 +40,7 @@ class SignUpActionButton extends StatelessWidget {
               onPressed: () {
                 if (state) {
                   if (formKey.currentState.validate()) {
+                    print('validate');
                     _authenticationBloc.add(
                       SignUpEvent(
                           username: username.text,

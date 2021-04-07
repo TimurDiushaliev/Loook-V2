@@ -20,8 +20,23 @@ class SignUpInputs extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationStates>(
       listener: (context, state) {
+        if (state is SignUpProcessingState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.black,
+              content: Row(
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(width: ResponsiveSizeProvider.width(context) * 0.1),
+                  Text(
+                    'Обработка аутентификации',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              )));
+        }
         if (state is SignUpUserState) {
           if (state.userState == 'Signed up successfully') {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
@@ -31,10 +46,15 @@ class SignUpInputs extends StatelessWidget {
             );
             Navigator.pop(context);
           }
-          ;
           if (state.userState == 'Such a user already exists') {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text('Пользователь с таким именем уже существует')));
+          }
+          if (state is AuthenticationErrorState) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Ошибка аутентификации!')));
           }
         }
       },
@@ -52,6 +72,8 @@ class SignUpInputs extends StatelessWidget {
                   validator: (value) {
                     if (value.length > 150) return 'Не более 150 символов';
                     if (value.isEmpty) return 'Обязательное поле';
+                    if (!RegExp(r'^[\w.@+-]+$').hasMatch(value))
+                      return 'Только буквы, цифры и знаки @/./+/-/_.';
                   },
                   decoration: InputDecoration(
                     hintText: 'Ваше имя',

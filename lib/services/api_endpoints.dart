@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 class ApiEndpoints {
   static const String baseUrl = '192.168.88.208';
-  static final Map<String, String> headersWithToken = {
+  static final Map<String, String> headersWithTokens = {
     'Content-type': 'application/json; charset=UTF-8',
     'Authorization': 'Bearer ${Hive.box('tokensBox').get('accessToken')}',
   };

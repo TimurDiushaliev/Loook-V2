@@ -11,10 +11,8 @@ class FavoriteAdvetsProvider {
     Map<String, int> body = {'id': id};
     final response = await http.post(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.favoritesApiUrl),
-        headers: ApiEndpoints.headersWithToken,
+        headers: ApiEndpoints.headersWithTokens,
         body: jsonEncode(body));
-    print('${jsonEncode(body)}');
-    print('${jsonDecode(response.body)}');
     if (response.statusCode == 401) {
       if (Hive.box('tokensBox').get('refreshToken') != null) {
         TokenRefreher.refreshToken();
@@ -26,15 +24,16 @@ class FavoriteAdvetsProvider {
   static Future<List<AdvertsModel>> fetchFavoriteAdvertsList() async {
     final response = await http.get(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.favoritesApiUrl),
-        headers: ApiEndpoints.headersWithToken);
+        headers: ApiEndpoints.headersWithTokens);
     if (response.statusCode == 200) {
       List<dynamic> favoriteAdverts = jsonDecode(response.body);
       print(favoriteAdverts);
       return favoriteAdverts.map((e) => AdvertsModel.fromJson(e)).toList();
     }
     if (response.statusCode == 401) {
-      TokenRefreher.refreshToken();
+      await TokenRefreher.refreshToken();
       fetchFavoriteAdvertsList();
     }
+    throw Exception('Fetching favorite adverts failed');
   }
 }

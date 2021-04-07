@@ -21,18 +21,25 @@ class UploadAdvertProvider {
             http.MultipartFile('images', stream, length, filename: fileName);
         request.files.add(multipartFileSign);
       }
-      request.headers.addAll(ApiEndpoints.headersWithToken);
-      body['fields'] != null ?? body['fields'].toString();
+      request.headers.addAll(ApiEndpoints.headersWithTokens);
+      print(1);
+      if (body['fields'] != null) {
+        body['fields'] = jsonEncode(body['fields']);
+      }
+      print(body['fields'].runtimeType);
       var fieldsJson = Map<String, String>.from(body);
-      fieldsJson['fields'] = jsonEncode(fieldsJson['fields']);
+      print(3);
+      // fieldsJson['fields'] = jsonEncode(body['fields']);
+      print(4);
       request.fields.addAll(fieldsJson);
+      print('${request.fields}');
       var response = await request.send();
       http.Response.fromStream(response)
           .then((value) => print(jsonDecode(value.body)));
       if (response.statusCode == 201) {
         return 'Объявление опубликовано!';
       } else if (response.statusCode == 401) {
-        TokenRefreher.refreshToken();
+        await TokenRefreher.refreshToken();
         uploadAdvert(body, imageList);
       } else {
         return 'Возникла ошибка, объявление не опубликовано!';

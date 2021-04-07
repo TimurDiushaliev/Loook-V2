@@ -125,12 +125,12 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     if (event is UploadAdvertEvent) {
       yield AdvertIsUploadingState();
       try {
-       String advertUploadingResult = await UploadAdvertProvider.uploadAdvert(advertDetails, imageList);
-       yield AdvertState(advertState: advertUploadingResult);
+        String advertUploadingResult =
+            await UploadAdvertProvider.uploadAdvert(advertDetails, imageList);
+        yield AdvertState(advertState: advertUploadingResult);
       } catch (_) {
         //TODO: error state
       }
     }
-
   }
 }

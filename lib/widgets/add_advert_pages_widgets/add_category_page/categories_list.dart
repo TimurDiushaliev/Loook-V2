@@ -32,13 +32,19 @@ class CategoriesList extends StatelessWidget {
                   }));
                   _chosedDetailsBloc.add(DetailIsChosedEvent(
                       chosedDetail: state.categoriesDetailsList[index].name));
-                  state.categoriesDetailsList[index].children.isNotEmpty
-                      ? _advertDetailsBloc.add(
-                          FetchSubCategoriesListEvent(categoryIndex: index))
-                      : Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AddMediaPage()));
+                  if (state.categoriesDetailsList[index].children.isNotEmpty) {
+                    BlocProvider.of<AdvertDetailsBloc>(context).add(FetchSubCategoriesListEvent(categoryIndex: index));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                AddSubCategoryPage(categoryIndex: index)));
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddMediaPage()));
+                  }
                 },
                 child: Card(
                   color: Color(0x252837),

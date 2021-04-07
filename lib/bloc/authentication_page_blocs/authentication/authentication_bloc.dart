@@ -14,20 +14,30 @@ class AuthenticationBloc
   Stream<AuthenticationStates> mapEventToState(
       AuthenticationEvents event) async* {
     if (event is SignInEvent) {
-      signInState = await AuthenticationProvider.signIn(
-          username: event.username, password: event.password);
-      print('$signInState');
-      await AuthenticationRepository.accesToken;
-      await AuthenticationRepository.refreshToken;
-      yield SignInUserState(userState: signInState);
+      yield  SignInProcessingState();
+      try {
+        signInState = await AuthenticationProvider.signIn(
+            username: event.username, password: event.password);
+        print('$signInState');
+        await AuthenticationRepository.accesToken;
+        await AuthenticationRepository.refreshToken;
+        yield SignInUserState(userState: signInState);
+      } catch (_) {
+        yield AuthenticationErrorState();
+      }
     }
     if (event is SignUpEvent) {
-      signUpState = await AuthenticationProvider.signUp(
-          username: event.username,
-          password: event.password,
-          phoneNumber: event.phoneNumber);
-      print('$signUpState');
-      yield SignUpUserState(userState: signUpState);
+      yield SignUpProcessingState();
+      try {
+        signUpState = await AuthenticationProvider.signUp(
+            username: event.username,
+            password: event.password,
+            phoneNumber: event.phoneNumber);
+        print('$signUpState');
+        yield SignUpUserState(userState: signUpState);
+      } catch (_) {
+        yield AuthenticationErrorState();
+      }
     }
     if (event is SignOutEvent) yield NotAuthenticatedState();
   }

@@ -8,3 +8,4 @@ class DetailIsChosedEvent extends ChosedDetailsEvents {
 }
 
 class RemoveLastIndexOfChosedDetailsEvent extends ChosedDetailsEvents {}
+

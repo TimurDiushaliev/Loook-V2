@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/app/app.dart';
 import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_evets.dart';
 import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_events.dart';
@@ -33,6 +34,8 @@ class AccountPage extends StatelessWidget {
               if (value == 'Выйти') {
                 AuthenticationProvider.signOut();
                 _authenticationBloc.add(SignOutEvent());
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => App()));
               }
             }, itemBuilder: (context) {
               return popUpMenuList

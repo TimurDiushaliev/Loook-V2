@@ -13,7 +13,7 @@ class CategoryDetailsTitle extends StatelessWidget {
                 state.key,
                 style: TextStyle(fontSize: 20),
               )
-            : '';
+            : Text('');
       },
     );
   }

@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_bloc.dart';
-import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_details_events.dart';
+import 'package:loook/pages/add_advert/add_category_details_page.dart';
 
 class SubCategoriesList extends StatelessWidget {
+  final int categoryIndex;
+  SubCategoriesList({@required this.categoryIndex});
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
         BlocProvider.of<AdvertDetailsBloc>(context);
-    ChosedDetailsBloc _chosedDetailsBloc =
-        BlocProvider.of<ChosedDetailsBloc>(context);
     return BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
       builder: (context, state) {
         if (state is SubCategoriesListFetchedState)
@@ -25,18 +24,18 @@ class SubCategoriesList extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  _advertDetailsBloc
-                    ..add(
-                      AddDetailEvent(
-                        advertDetail: {
-                          'category': state.subCategoriesDetailsList[index].name
-                        },
-                      ),
-                    )
-                    ..add(FetchCategoryDetailsEvent(subCategoryIndex: index));
-                  _chosedDetailsBloc.add(DetailIsChosedEvent(
-                      chosedDetail:
-                          state.subCategoriesDetailsList[index].name));
+                  _advertDetailsBloc.add(
+                    AddDetailEvent(
+                      advertDetail: {
+                        'category': state.subCategoriesDetailsList[index].name
+                      },
+                    ),
+                  );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              AddCategoryDetailsPage(categoryIndex: categoryIndex,subCategoryIndex: index)));
                 },
                 child: Card(
                   color: Color(0x252837),

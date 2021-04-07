@@ -12,6 +12,10 @@ class SignUpUserState extends AuthenticationStates {
   SignUpUserState({@required this.userState});
 }
 
+class SignInProcessingState extends AuthenticationStates {}
+
+class SignUpProcessingState extends AuthenticationStates {}
+
 class AuthenticationErrorState extends AuthenticationStates {}
 
 class NotAuthenticatedState extends AuthenticationStates {}

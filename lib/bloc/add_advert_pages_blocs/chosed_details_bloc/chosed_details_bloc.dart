@@ -15,7 +15,8 @@ class ChosedDetailsBloc extends Bloc<ChosedDetailsEvents, ChosedDetailsStates> {
     }
 
     if (event is RemoveLastIndexOfChosedDetailsEvent) {
-      if(chosedDetailsList.isNotEmpty) chosedDetailsList.removeLast();
+      if (chosedDetailsList.isNotEmpty) chosedDetailsList.removeLast();
+      yield ChosedDetailsListState(chosedDetailsList: chosedDetailsList);
     }
   }
 }

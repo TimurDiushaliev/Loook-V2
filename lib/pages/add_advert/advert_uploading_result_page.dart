@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/app/app.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
-
 
 class AdvertUploadingResultPage extends StatelessWidget {
   const AdvertUploadingResultPage({Key key}) : super(key: key);
@@ -22,8 +22,12 @@ class AdvertUploadingResultPage extends StatelessWidget {
             body: state is AdvertState
                 ? Center(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('${state.advertState}'),
+                        SizedBox(
+                          height: ResponsiveSizeProvider.height(context) * 0.05,
+                        ),
                         MaterialButton(
                           color: Colors.white,
                           child: Text('Вернуться на главную',
@@ -31,8 +35,7 @@ class AdvertUploadingResultPage extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => App()),
+                                MaterialPageRoute(builder: (context) => App()),
                                 (route) => false);
                           },
                         ),

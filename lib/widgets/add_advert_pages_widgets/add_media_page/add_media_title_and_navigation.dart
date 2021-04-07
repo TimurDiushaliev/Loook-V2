@@ -9,7 +9,6 @@ class AddMediaTitleAndNavigation extends StatelessWidget {
   AddMediaTitleAndNavigation({@required this.state});
   @override
   Widget build(BuildContext context) {
-    print('$state');
     AdvertDetailsBloc _advertDetailsBloc =
         BlocProvider.of<AdvertDetailsBloc>(context);
     return Row(

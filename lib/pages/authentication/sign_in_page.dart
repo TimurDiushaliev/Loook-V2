@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loook/app/app.dart';
 import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_bloc.dart';
 import 'package:loook/bloc/authentication_page_blocs/authentication/authentication_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
@@ -21,10 +22,37 @@ class SignInPage extends StatelessWidget {
       theme: ThemeData.dark(),
       home: BlocListener<AuthenticationBloc, AuthenticationStates>(
         listener: (context, state) {
-          if (state is SignInUserState) if (state.userState ==
-              'Such a user is not exist')
+          if (state is SignInProcessingState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Пользователь с таким именем не существует')));
+                backgroundColor: Colors.black,
+                content: Row(
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                        width: ResponsiveSizeProvider.width(context) * 0.1),
+                    Text(
+                      'Обработка аутентификации',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )));
+          }
+          if (state is SignInUserState) {
+            if (state.userState == 'Signed in successfully') {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => App()));
+            }
+            if (state.userState == 'Such a user is not exist') {
+              ScaffoldMessenger.of(context).removeCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Пользователя с таким именем не существует')));
+            }
+          }
+          if (state is AuthenticationErrorState) {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Ошибка аутентификации!')));
+          }
         },
         child: Scaffold(
           backgroundColor: Color(0xFF252837),

@@ -9,6 +9,8 @@ import 'package:loook/widgets/add_advert_pages_widgets/add_subcategory_page/sub_
 import 'package:loook/widgets/add_advert_pages_widgets/chosen_details_list.dart';
 
 class AddSubCategoryPage extends StatelessWidget {
+  final int categoryIndex;
+  AddSubCategoryPage({@required this.categoryIndex});
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
@@ -19,25 +21,29 @@ class AddSubCategoryPage extends StatelessWidget {
       onWillPop: () {
         _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
         _advertDetailsBloc.add(FetchCategoriesListEvent());
+        Navigator.pop(context);
       },
-      child: ListView(
-        children: [
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          ChosedDetailsList(),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          Text(
-            'Выберите подкатегорию',
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.05,
-          ),
-          SubCategoriesList(),
-        ],
+      child: Scaffold(
+        appBar: AppBar(),
+        body: ListView(
+          children: [
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.05,
+            ),
+            ChosedDetailsList(),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.05,
+            ),
+            Text(
+              'Выберите подкатегорию',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: ResponsiveSizeProvider.height(context) * 0.05,
+            ),
+            SubCategoriesList(categoryIndex: categoryIndex),
+          ],
+        ),
       ),
     );
   }

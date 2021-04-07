@@ -35,3 +35,4 @@ class FetchNextCategoryDetailsEvent extends AdvertDetailsEvents {}
 
 class FetchPreviousCategoryDetailsEvent extends AdvertDetailsEvents {}
 
+

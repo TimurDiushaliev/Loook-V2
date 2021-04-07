@@ -3,28 +3,27 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:loook/models/categories_details_model.dart';
 import 'package:loook/services/api_endpoints.dart';
+import 'package:loook/services/token_refresher.dart';
 
 class CategoriesDetailsProvider {
   static Future<List<AdvertDetailsModel>> getCategoriesDetails() async {
-    try {
-      final response = await http.get(
-          Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.categoriesApiUrl),
-          headers: ApiEndpoints.headersWithNoTokens);
-      if (response.statusCode == 200) {
-        List<dynamic> _categoriesDetailsListJson = jsonDecode(response.body);
-        if (_categoriesDetailsListJson.isNotEmpty) {
-          return _categoriesDetailsListJson
-              .map<AdvertDetailsModel>((e) => AdvertDetailsModel.fromJson(e))
-              .toList();
-        } else {
-          print('_categoriesDetailsListJson is empty');
-        }
+    final response = await http.get(
+        Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.categoriesApiUrl),
+        headers: ApiEndpoints.headersWithTokens);
+    if (response.statusCode == 200) {
+      List<dynamic> _categoriesDetailsListJson = jsonDecode(response.body);
+      if (_categoriesDetailsListJson.isNotEmpty) {
+        return _categoriesDetailsListJson
+            .map<AdvertDetailsModel>((e) => AdvertDetailsModel.fromJson(e))
+            .toList();
       } else {
-        throw Exception('Failed to load categories details');
+        print('_categoriesDetailsListJson is empty');
       }
-    } catch (e) {
-      print('$e');
+    } else if (response.statusCode == 401) {
+      await TokenRefreher.refreshToken();
+      getCategoriesDetails();
+      //TODO: refresh state
     }
-    return null;
+    throw Exception('Fetching categories details failed');
   }
 }

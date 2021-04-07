@@ -37,9 +37,8 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    SearchDelegateBloc _searchDelegateBloc =
-        BlocProvider.of<SearchDelegateBloc>(context)
-          ..add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
+    BlocProvider.of<SearchDelegateBloc>(context)
+        .add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
     return SearchResultList(query: query);
   }
 

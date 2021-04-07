@@ -16,6 +16,7 @@ class AdvertsModel {
   bool isActive;
   String owner;
   String phone;
+  bool isFavorite;
   AdvertsModel(
       {@required this.id,
       @required this.images,
@@ -31,7 +32,8 @@ class AdvertsModel {
       @required this.fields,
       @required this.isActive,
       @required this.owner,
-      @required this.phone});
+      @required this.phone,
+      @required this.isFavorite});
 
   factory AdvertsModel.fromJson(Map<String, dynamic> json) {
     return AdvertsModel(
@@ -46,9 +48,10 @@ class AdvertsModel {
         views: json['views'],
         isVip: json['isVip'],
         createdAt: json['createdAt'],
-        fields: json['fields'], // != null ? jsonDecode(json['fields']) : {},
+        fields: json['fields'],
         isActive: json['isActive'],
         owner: json['owner'],
-        phone: json['phone']);
+        phone: json['phone'],
+        isFavorite: json['is_favorite']);
   }
 }

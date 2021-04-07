@@ -12,8 +12,7 @@ class AccountAdvertsBloc
       AccountAdvertsEvents event) async* {
     if (event is FetchAccountAdvertsEvent) {
       try {
-        List<dynamic> accountAdverts =
-            await AdvertsRepository.accountAdverts;
+        List<dynamic> accountAdverts = await AdvertsRepository.accountAdverts;
         yield AccountAdvertsFetchedState(accountAdverts: accountAdverts);
       } catch (_) {
         FetchingAccountAdvertsFailedState();

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/add_advert_pages_blocs/media_picker_bloc/media_picker_bloc.dart';
@@ -15,7 +13,6 @@ class AddedMediaList extends StatelessWidget {
   Widget build(BuildContext context) {
     MediaPickerBloc _imagePickerBloc =
         BlocProvider.of<MediaPickerBloc>(context);
-    print('$state');
     if (state is ImagesPickedState) {
       return Container(
         margin: EdgeInsets.only(
@@ -28,7 +25,6 @@ class AddedMediaList extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisSpacing: 20, mainAxisSpacing: 20, crossAxisCount: 2),
           itemBuilder: (context, index) {
-            print('${state.imageList}');
             return Container(
               child: Stack(
                 fit: StackFit.expand,
@@ -39,7 +35,7 @@ class AddedMediaList extends StatelessWidget {
                     ),
                     width: ResponsiveSizeProvider.width(context) * 0.4,
                     child: Image.file(
-                     state.imageList[index],
+                      state.imageList[index],
                       fit: BoxFit.cover,
                     ),
                   ),
