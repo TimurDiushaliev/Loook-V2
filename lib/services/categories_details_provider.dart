@@ -21,9 +21,7 @@ class CategoriesDetailsProvider {
       }
     } else if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
-      getCategoriesDetails();
-      //TODO: refresh state
     }
-    throw Exception('Fetching categories details failed');
+    return null;
   }
 }

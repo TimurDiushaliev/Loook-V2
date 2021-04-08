@@ -16,6 +16,7 @@ class AddMediaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ChosedDetailsBloc _chosedDetailsBloc =
         BlocProvider.of<ChosedDetailsBloc>(context);
+
     return WillPopScope(
       onWillPop: () {
         _chosedDetailsBloc.add(RemoveLastIndexOfChosedDetailsEvent());
@@ -23,6 +24,7 @@ class AddMediaPage extends StatelessWidget {
       },
       child: BlocBuilder<MediaPickerBloc, MediaPickerStates>(
           builder: (context, state) {
+        print(state);
         return Scaffold(
           appBar: AppBar(),
           body: ListView(

@@ -27,4 +27,3 @@ class MainFloatingActionButton extends StatelessWidget {
   }
 }
 
-class FetchingCategoriesBloc {}

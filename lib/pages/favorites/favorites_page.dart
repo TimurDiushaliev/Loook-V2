@@ -11,9 +11,8 @@ import 'package:loook/widgets/main_floating_action_button/main_floating_action_b
 class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FavoriteAdvertsListBloc _favoriteListBloc =
-        BlocProvider.of<FavoriteAdvertsListBloc>(context)
-          ..add(FetchFavoriteAdvertsListEvent());
+    BlocProvider.of<FavoriteAdvertsListBloc>(context)
+        .add(FetchFavoriteAdvertsListEvent());
     return MaterialApp(
       theme: ThemeData.dark(),
       home: Scaffold(
@@ -37,7 +36,13 @@ class FavoritesPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: ResponsiveSizeProvider.height(context) * 0.025),
-            BlocBuilder<FavoriteAdvertsListBloc, FavoriteAdvertsListStates>(
+            BlocConsumer<FavoriteAdvertsListBloc, FavoriteAdvertsListStates>(
+              listener: (context, state) {
+                if (state is FavoriteAdvertsNotFetchedState) {
+                  BlocProvider.of<FavoriteAdvertsListBloc>(context)
+                      .add(FetchFavoriteAdvertsListEvent());
+                }
+              },
               builder: (context, state) {
                 if (state is FavoriteAdvertsListFetchedState)
                   return Container(

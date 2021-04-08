@@ -15,7 +15,11 @@ class CategoriesList extends StatelessWidget {
         BlocProvider.of<AdvertDetailsBloc>(context);
     ChosedDetailsBloc _chosedDetailsBloc =
         BlocProvider.of<ChosedDetailsBloc>(context);
-    return BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
+    return BlocConsumer<AdvertDetailsBloc, AdvertDetailsStates>(
+      listener: (context, state) {
+        if (state is CategoriesListNotFetchedState)
+          _advertDetailsBloc.add(FetchCategoriesListEvent());
+      },
       builder: (context, state) {
         if (state is CategoriesListFetchedState) {
           return GridView.builder(
@@ -33,7 +37,8 @@ class CategoriesList extends StatelessWidget {
                   _chosedDetailsBloc.add(DetailIsChosedEvent(
                       chosedDetail: state.categoriesDetailsList[index].name));
                   if (state.categoriesDetailsList[index].children.isNotEmpty) {
-                    BlocProvider.of<AdvertDetailsBloc>(context).add(FetchSubCategoriesListEvent(categoryIndex: index));
+                    BlocProvider.of<AdvertDetailsBloc>(context)
+                        .add(FetchSubCategoriesListEvent(categoryIndex: index));
                     Navigator.push(
                         context,
                         MaterialPageRoute(

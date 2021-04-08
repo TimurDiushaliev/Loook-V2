@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:loook/models/adverts_model.dart';
 import 'package:loook/services/api_endpoints.dart';
@@ -14,10 +12,8 @@ class FavoriteAdvetsProvider {
         headers: ApiEndpoints.headersWithTokens,
         body: jsonEncode(body));
     if (response.statusCode == 401) {
-      if (Hive.box('tokensBox').get('refreshToken') != null) {
-        TokenRefreher.refreshToken();
-        addAdvertToFavoritesList(id);
-      }
+      TokenRefreher.refreshToken();
+      //TODO: refresh state
     }
   }
 
@@ -27,13 +23,11 @@ class FavoriteAdvetsProvider {
         headers: ApiEndpoints.headersWithTokens);
     if (response.statusCode == 200) {
       List<dynamic> favoriteAdverts = jsonDecode(response.body);
-      print(favoriteAdverts);
       return favoriteAdverts.map((e) => AdvertsModel.fromJson(e)).toList();
     }
     if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
-      fetchFavoriteAdvertsList();
     }
-    throw Exception('Fetching favorite adverts failed');
+    return null;
   }
 }

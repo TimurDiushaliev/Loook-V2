@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_events.dart';
 import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search-delegate_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search_delegate_events.dart';
 import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search_delegate_states.dart';
 import 'package:loook/pages/home/advert_details_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
@@ -12,8 +11,15 @@ class SearchResultList extends StatelessWidget {
   SearchResultList({@required this.query});
   @override
   Widget build(BuildContext context) {
-    AdvertByIdBloc _advertByIdBloc = BlocProvider.of<AdvertByIdBloc>(context);
-    return BlocBuilder<SearchDelegateBloc, SearchDelegateStates>(
+    BlocProvider.of<SearchDelegateBloc>(context)
+        .add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
+    return BlocConsumer<SearchDelegateBloc, SearchDelegateStates>(
+      listener: (context, state) {
+        if (state is AdvertsViaSearchDelegateTokenNotValidState) {
+          BlocProvider.of<SearchDelegateBloc>(context)
+              .add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
+        }
+      },
       builder: (context, state) {
         if (state is AdvertsViaSearchDelegateFetchedState) {
           return Scaffold(
@@ -21,9 +27,35 @@ class SearchResultList extends StatelessWidget {
             body: ListView(
               children: [
                 SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
-                Text(
-                  'Надейно ${state.searchDelegateResultsList.length} объявлений по поиску $query',
-                  style: TextStyle(color: Colors.black, fontSize: 17),
+                Container(
+                  margin: EdgeInsets.only(
+                      left: ResponsiveSizeProvider.width(context) * 0.05),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: 'Найдено ',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 16)),
+                        TextSpan(
+                            text: '${state.searchDelegateResultsList.length}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: 'объявлений по поиску: ',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 16)),
+                        TextSpan(
+                            text: '$query',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(height: ResponsiveSizeProvider.height(context) * 0.05),
                 Container(
@@ -42,12 +74,12 @@ class SearchResultList extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          _advertByIdBloc.add(FetchAdvertByIdEvent(
-                              id: state.searchDelegateResultsList[index].id));
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AdvertDetailsPage()));
+                                  builder: (context) => AdvertDetailsPage(
+                                      id: state.searchDelegateResultsList[index]
+                                          .id)));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

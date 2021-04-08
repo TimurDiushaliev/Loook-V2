@@ -24,6 +24,11 @@ class SubCategoriesListFetchedState extends AdvertDetailsStates {
 
 class AdvertDetailsIsEmptyState extends AdvertDetailsStates {}
 
+class CategoriesListNotFetchedState extends AdvertDetailsStates {
+  //refresh token
+}
+
+
 class CategoryDetailsFetchedState extends AdvertDetailsStates {
   Map<String, dynamic> categoryDetailsMap = {};
   String key;

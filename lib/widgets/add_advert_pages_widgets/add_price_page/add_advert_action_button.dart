@@ -7,21 +7,22 @@ import 'package:loook/pages/add_advert/advert_uploading_result_page.dart';
 
 class AddAdvertActionButton extends StatelessWidget {
   final TextEditingController price;
-  AddAdvertActionButton({@required this.price});
+  final GlobalKey<FormState> priceKey;
+  AddAdvertActionButton({@required this.price, @required this.priceKey});
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
         BlocProvider.of<AdvertDetailsBloc>(context);
     return BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
       builder: (context, state) => MaterialButton(
-          color: Colors.white,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          child: Text(
-            'Подать',
-            style: TextStyle(color: Colors.black),
-          ),
-          onPressed: () {
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        child: Text(
+          'Подать',
+          style: TextStyle(color: Colors.black),
+        ),
+        onPressed: () {
+          if (priceKey.currentState.validate()) {
             _advertDetailsBloc
               ..add(AddDetailEvent(advertDetail: {
                 'price': price.text,
@@ -33,7 +34,9 @@ class AddAdvertActionButton extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => AdvertUploadingResultPage()));
-          }),
+          }
+        },
+      ),
     );
   }
 }

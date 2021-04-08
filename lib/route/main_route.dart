@@ -43,10 +43,6 @@ class MainRoute extends StatelessWidget {
               providers: [
                 BlocProvider(
                   create: (context) =>
-                      FavoriteAdvertsListBloc(AdvertNotLikedState()),
-                ),
-                BlocProvider(
-                  create: (context) =>
                       BottomSheetBloc(WithRoundedCornersState()),
                 ),
                 BlocProvider(
@@ -71,6 +67,9 @@ class MainRoute extends StatelessWidget {
                 BlocProvider(
                     create: (context) => SearchDelegateBloc(
                         AdvertsViaSearchDelegateNotFetchedState())),
+                BlocProvider(
+                    create: (context) =>
+                        FavoriteAdvertsListBloc(AdvertNotLikedState())),
               ],
               child: HomePage(),
             );
@@ -83,6 +82,12 @@ class MainRoute extends StatelessWidget {
               BlocProvider(
                   create: (context) =>
                       FavoriteAdvertsListBloc(AdvertNotLikedState())),
+              BlocProvider(
+                  create: (context) =>
+                      ChosedDetailsBloc(DetailsNotChosedState())),
+              BlocProvider(
+                  create: (context) =>
+                      MediaPickerBloc(ImageNotSelectedState())),
             ], child: FavoritesPage());
           if (state is ChatPageState)
             return MultiBlocProvider(providers: [

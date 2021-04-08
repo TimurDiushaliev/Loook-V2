@@ -12,9 +12,16 @@ class SearchDelegateBloc
       SearchDelegateEvents event) async* {
     if (event is FetchAdvertsViaQueryEvent) {
       try {
-        List<dynamic> searchDelegateResultsList = await AdvertsProvider.fetchAdvertsBySearchDelegate(event.query, event.offset);
-        print(searchDelegateResultsList[0].images);
-        yield AdvertsViaSearchDelegateFetchedState(searchDelegateResultsList: searchDelegateResultsList);
+        List<dynamic> searchDelegateResultsList =
+            await AdvertsProvider.fetchAdvertsBySearchDelegate(
+                event.query, event.offset);
+        print(searchDelegateResultsList);
+        if (searchDelegateResultsList != null) {
+          yield AdvertsViaSearchDelegateFetchedState(
+              searchDelegateResultsList: searchDelegateResultsList);
+        } else {
+          yield AdvertsViaSearchDelegateTokenNotValidState();
+        }
       } catch (_) {
         SearchDelegateFetchingErrorState();
       }

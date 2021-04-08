@@ -5,6 +5,7 @@ import 'package:loook/widgets/add_advert_pages_widgets/add_price_page/add_price_
 import 'package:loook/widgets/add_advert_pages_widgets/chosen_details_list.dart';
 
 class AddPricePage extends StatelessWidget {
+  final GlobalKey<FormState> priceKey = GlobalKey<FormState>();
   final TextEditingController price = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -25,12 +26,14 @@ class AddPricePage extends StatelessWidget {
           ),
           AddPriceTextFieldAndCurrencyDropDownButton(
             price: price,
+            priceKey: priceKey,
           ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.15,
           ),
           AddAdvertActionButton(
             price: price,
+            priceKey: priceKey,
           ),
         ],
       ),

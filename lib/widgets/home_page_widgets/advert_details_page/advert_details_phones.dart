@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_states.dart';
+import 'package:loook/services/phone_call_provider.dart';
 
 class AdvertDetailsPhones extends StatelessWidget {
   @override
@@ -10,7 +11,6 @@ class AdvertDetailsPhones extends StatelessWidget {
     return BlocBuilder<AdvertByIdBloc, AdvertByIdStates>(
       builder: (context, state) {
         if (state is AdvertByIdFetchedState) {
-          print(state.advertById.phone);
           return SpeedDial(
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
@@ -21,12 +21,10 @@ class AdvertDetailsPhones extends StatelessWidget {
                 backgroundColor: Colors.green,
                 labelBackgroundColor: Colors.green,
                 label: '${state.advertById.phone}',
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://www.megacom.kg/uploads/ckeditor/pictures/1665/content_ru_Исходники.png',
-                  ),
-                ),
-              ),
+                onTap: () {
+                  PhoneCallProvider.phoneCall('${state.advertById.phone}');
+                },
+              )
             ],
           );
         }

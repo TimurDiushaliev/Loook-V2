@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 class AdvertsModel {
@@ -48,7 +50,7 @@ class AdvertsModel {
         views: json['views'],
         isVip: json['isVip'],
         createdAt: json['createdAt'],
-        fields: json['fields'],
+        fields: json['fields'] == null ? {} : jsonDecode(json['fields']),
         isActive: json['isActive'],
         owner: json['owner'],
         phone: json['phone'],

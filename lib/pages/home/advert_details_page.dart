@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_events.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
+import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_events.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_bottom_sheet.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_images.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_phones.dart';
-import 'package:loook/widgets/home_page_widgets/home_page/filter.dart';
 
 class AdvertDetailsPage extends StatelessWidget {
+  final int id;
+  AdvertDetailsPage({@required this.id});
   @override
   Widget build(BuildContext context) {
-    //TODO: advert by id
-    FavoriteAdvertsListBloc _favoriteListBloc =
-        BlocProvider.of<FavoriteAdvertsListBloc>(context);
+               BlocProvider.of<AdvertByIdBloc>(context)
+                .add(FetchAdvertByIdEvent(id: id));
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -21,31 +20,11 @@ class AdvertDetailsPage extends StatelessWidget {
             style: TextStyle(letterSpacing: 6),
           ),
           centerTitle: true,
-          actions: [
-            BlocBuilder<FavoriteAdvertsListBloc, FavoriteAdvertsListStates>(
-              builder: (context, state) {
-                return IconButton(
-                  onPressed: () {
-                    _favoriteListBloc.add(state is AdvertNotLikedState
-                        ? AdvertLikedEvent()
-                        : AdvertNotLikedEvent());
-                  },
-                  icon: Icon(
-                    state is AdvertNotLikedState
-                        ? Icons.favorite_outline
-                        : Icons.favorite,
-                    color: Colors.red,
-                  ),
-                );
-              },
-            ),
-            Filter(),
-          ],
         ),
         body: Stack(
           children: [
             AdvertDetailsImages(),
-            AdvertDetailsBottomSheet(),
+            AdvertDetailsBottomSheet(id: id),
           ],
         ),
         floatingActionButton: AdvertDetailsPhones());

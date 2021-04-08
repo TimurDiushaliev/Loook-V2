@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_events.dart';
-import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_bloc.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_events.dart';
+import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
+import 'package:loook/pages/home/advert_details_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
 
@@ -13,8 +14,6 @@ class AdvertsByCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteAdvertsListBloc _favoriteListBloc =
-        BlocProvider.of<FavoriteAdvertsListBloc>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,51 +46,60 @@ class AdvertsByCategory extends StatelessWidget {
                   Stack(
                     alignment: Alignment.topRight,
                     children: [
-                      Container(
-                        width: ResponsiveSizeProvider.width(context) * 0.43,
-                        child: AspectRatio(
-                          aspectRatio: 4 / 4.5,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: adverts[index].images.isNotEmpty
-                                ? Image.network(
-                                    adverts[index].images[0]['file'],
-                                    fit: BoxFit.cover,
-                                  )
-                                :
-                                //otherwise return default image
-                                Image.network(
-                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/488px-No-Image-Placeholder.svg.png',
-                                    fit: BoxFit.cover,
-                                  ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdvertDetailsPage(
+                                      id: adverts[index].id)));
+                        },
+                        child: Container(
+                          width: ResponsiveSizeProvider.width(context) * 0.43,
+                          child: AspectRatio(
+                            aspectRatio: 4 / 4.5,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: adverts[index].images.isNotEmpty
+                                  ? Image.network(
+                                      adverts[index].images[0]['file'],
+                                      fit: BoxFit.cover,
+                                    )
+                                  :
+                                  //otherwise return default image
+                                  Image.network(
+                                      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/488px-No-Image-Placeholder.svg.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
                           ),
                         ),
                       ),
-                      BlocBuilder<FavoriteAdvertsListBloc, FavoriteAdvertsListStates>(
-                        builder: (context, state) {
-                          if (state is AdvertLikedState) if (state.index ==
-                              index)
-                            return IconButton(
-                                icon: Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () {
-                                  _favoriteListBloc.add(AdvertNotLikedEvent());
-                                });
+                      //TODO:
+                      // BlocConsumer<AdvertDetailsBloc, AdvertDetailsStates>(
+                      //   listener: (context, state) {
+                      //     if (state is CategoriesListNotFetchedState) {
+                      //       BlocProvider.of<AdvertDetailsBloc>(context)
+                      //           .add(FetchCategoriesListEvent());
+                      //     }
+                      //   },
+                      //   builder: (context, state) {
+                      //     return IconButton(
+                      //       icon: Icon(
+                      //         adverts[index].isFavorite
+                      //             ? Icons.favorite
+                      //             : Icons.favorite_outline,
+                      //         color: Colors.red,
+                      //       ),
+                      //       onPressed: () {
+                      //         BlocProvider.of<AdvertDetailsBloc>(context)
+                      //             .add(LikeAdvertEvent(id: adverts[index].id));
 
-                          return IconButton(
-                            icon: Icon(
-                              Icons.favorite_outline,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              _favoriteListBloc
-                                  .add(AdvertLikedEvent(index: index));
-                            },
-                          );
-                        },
-                      )
+                      //         print(adverts[index].id);
+                      //       },
+                      //     );
+                      //   },
+                      // ),
                     ],
                   ),
                   Container(

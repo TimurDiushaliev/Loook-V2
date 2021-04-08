@@ -51,11 +51,21 @@ class SignUpInputs extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text('Пользователь с таким именем уже существует')));
           }
-          if (state is AuthenticationErrorState) {
+          if (state.userState == 'Such a phone number already exists') {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Пользователь с номером именем уже существует')));
+          }
+          if (state.userState == 'Signing up error') {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Ошибка аутентификации!')));
           }
+        }
+        if (state is AuthenticationErrorState) {
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Ошибка аутентификации!')));
         }
       },
       builder: (context, state) {
@@ -73,7 +83,7 @@ class SignUpInputs extends StatelessWidget {
                     if (value.length > 150) return 'Не более 150 символов';
                     if (value.isEmpty) return 'Обязательное поле';
                     if (!RegExp(r'^[\w.@+-]+$').hasMatch(value))
-                      return 'Только буквы, цифры и знаки @/./+/-/_.';
+                      return 'Только латинские буквы, цифры и знаки @/./+/-/_.';
                   },
                   decoration: InputDecoration(
                     hintText: 'Ваше имя',

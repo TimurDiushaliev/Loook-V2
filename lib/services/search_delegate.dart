@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search-delegate_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/search_delegate_bloc/search_delegate_events.dart';
 import 'package:loook/widgets/search_results_widgets/search_result_list.dart';
 
 class Search extends SearchDelegate {
@@ -37,8 +34,7 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    BlocProvider.of<SearchDelegateBloc>(context)
-        .add(FetchAdvertsViaQueryEvent(query: query, offset: 0));
+  
     return SearchResultList(query: query);
   }
 

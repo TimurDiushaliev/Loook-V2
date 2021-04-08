@@ -12,6 +12,11 @@ class AddImageListEvent extends AdvertDetailsEvents {
   AddImageListEvent({@required this.imageList});
 }
 
+class LikeAdvertEvent extends AdvertDetailsEvents {
+  int id;
+  LikeAdvertEvent({@required this.id});
+}
+
 class ChangeCurrencyEvent extends AdvertDetailsEvents {
   String currency;
   ChangeCurrencyEvent({@required this.currency});
@@ -34,5 +39,3 @@ class FetchCategoryDetailsEvent extends AdvertDetailsEvents {
 class FetchNextCategoryDetailsEvent extends AdvertDetailsEvents {}
 
 class FetchPreviousCategoryDetailsEvent extends AdvertDetailsEvents {}
-
-

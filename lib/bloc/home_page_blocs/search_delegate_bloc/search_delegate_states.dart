@@ -10,3 +10,5 @@ class AdvertsViaSearchDelegateFetchedState extends SearchDelegateStates {
 class SearchDelegateFetchingErrorState extends SearchDelegateStates {}
 
 class AdvertsViaSearchDelegateNotFetchedState extends SearchDelegateStates {}
+
+class AdvertsViaSearchDelegateTokenNotValidState extends SearchDelegateStates {}

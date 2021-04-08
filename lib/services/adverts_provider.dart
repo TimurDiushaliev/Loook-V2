@@ -16,7 +16,6 @@ class AdvertsProvider {
     }
     if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
-      fetchAdvertsList();
     }
     throw Exception('Fetching adverts list failed');
   }
@@ -27,28 +26,28 @@ class AdvertsProvider {
         headers: ApiEndpoints.headersWithTokens);
     if (response.statusCode == 200) {
       List<dynamic> accountAdverts = jsonDecode(response.body);
+      print(accountAdverts);
       return accountAdverts.map((json) => AdvertsModel.fromJson(json)).toList();
     } else if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
-      fetchAccountAdvertsList();
     }
-    throw Exception('Fetching user adverts failed');
+    return null;
   }
 
   static Future<AdvertsModel> fetchAdvertById(int id) async {
     final response = await http.get(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.advertByIdApiUrl + '$id'),
         headers: ApiEndpoints.headersWithTokens);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       Map<String, dynamic> advertById = jsonDecode(response.body);
       return AdvertsModel.fromJson(advertById);
     }
-
     if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
       fetchAdvertsList();
     }
-    throw Exception('Fetching advert by id failed');
+    return null;
   }
 
   static Future<List<AdvertsModel>> fetchAdvertsBySearchDelegate(
@@ -62,8 +61,7 @@ class AdvertsProvider {
       return results.map((e) => AdvertsModel.fromJson(e)).toList();
     } else if (response.statusCode == 401) {
       await TokenRefreher.refreshToken();
-      fetchAdvertsBySearchDelegate(query, offset);
     }
-    throw Exception('Fetching adverts by search delegate failed');
+    return null;
   }
 }

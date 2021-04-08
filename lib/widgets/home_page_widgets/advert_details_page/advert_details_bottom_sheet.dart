@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_events.dart';
 import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_states.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_events.dart';
@@ -15,6 +16,8 @@ import 'advert_details_information.dart';
 import 'advert_details_price_and_social_network_icons.dart';
 
 class AdvertDetailsBottomSheet extends StatelessWidget {
+  final int id;
+  AdvertDetailsBottomSheet({@required this.id});
   @override
   Widget build(BuildContext context) {
     BottomSheetBloc _bottomSheetBloc =
@@ -35,7 +38,13 @@ class AdvertDetailsBottomSheet extends StatelessWidget {
                 decoration: state is WithRoundedCornersState
                     ? AdvertDetailsPageStyle.bottomSheetStyleWithRoundedCorners
                     : AdvertDetailsPageStyle.bottomSheetStyleWithUsualCorners,
-                child: BlocBuilder<AdvertByIdBloc, AdvertByIdStates>(
+                child: BlocConsumer<AdvertByIdBloc, AdvertByIdStates>(
+                  listener: (context, state) {
+                    if (state is AdvertByIdTokenNoValidState) {
+                      BlocProvider.of<AdvertByIdBloc>(context)
+                          .add(FetchAdvertByIdEvent(id: id));
+                    }
+                  },
                   builder: (context, state) {
                     if (state is AdvertByIdFetchedState)
                       return ListView.builder(

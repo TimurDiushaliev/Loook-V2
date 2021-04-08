@@ -45,15 +45,18 @@ class AuthenticationProvider {
     final response = await http.post(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.registerApiUrl),
         headers: ApiEndpoints.headersWithNoTokens,
-        body: json.encode(body));
-    print('${json.encode(body)}');
+        body: jsonEncode(body));
     print('${jsonDecode(response.body)}');
+    print(response.statusCode);
     if (response.statusCode == 201) {
       return 'Signed up successfully';
     } else if (response.statusCode == 400) {
       if (jsonDecode(response.body)['username'][0] ==
           'Пользователь с таким именем уже существует.') {
         return 'Such a user already exists';
+      } else if (jsonDecode(response.body)['phone'][0] ==
+          'Пользователь с таким номером уже существует') {
+        return 'Such a phone number already exists';
       }
     }
     return 'Signing up error';

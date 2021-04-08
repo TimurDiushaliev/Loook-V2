@@ -24,7 +24,8 @@ class AdvertUploadingResultPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('${state.advertState}'),
+                        Text('Объявление успешно подано!',
+                            style: TextStyle(fontSize: 18)),
                         SizedBox(
                           height: ResponsiveSizeProvider.height(context) * 0.05,
                         ),

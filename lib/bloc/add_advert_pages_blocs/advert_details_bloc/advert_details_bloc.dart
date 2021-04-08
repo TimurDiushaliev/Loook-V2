@@ -3,6 +3,7 @@ import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_det
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
 import 'package:loook/models/categories_details_model.dart';
 import 'package:loook/repository/categories_details_repository.dart';
+import 'package:loook/services/favorites_adverts_provider.dart';
 import 'package:loook/services/upload_advert_provider.dart';
 
 class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
@@ -20,7 +21,12 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
     if (event is FetchCategoriesListEvent) {
       try {
         categoriesList = await CategoriesDetailsRepository.categoriesDetails;
-        yield CategoriesListFetchedState(categoriesDetailsList: categoriesList);
+        if (categoriesList != null) {
+          yield CategoriesListFetchedState(
+              categoriesDetailsList: categoriesList);
+        } else {
+          yield CategoriesListNotFetchedState();
+        }
       } catch (_) {
         print('fetching categoires exception $_');
       }
@@ -57,7 +63,16 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
         keyIndex: keyIndex,
       );
     }
-
+    if (event is LikeAdvertEvent) {
+      FavoriteAdvetsProvider.addAdvertToFavoritesList(event.id);
+      categoriesList = await CategoriesDetailsRepository.categoriesDetails;
+      print(categoriesList);
+      if (categoriesList != null) {
+        yield CategoriesListFetchedState(categoriesDetailsList: categoriesList);
+      } else {
+        yield CategoriesListNotFetchedState();
+      }
+    }
     if (event is FetchNextCategoryDetailsEvent) {
       if (keyIndex <
           categoriesList[categoryIndex]

@@ -15,9 +15,6 @@ class HomeBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     BottomSheetBloc _bottomSheetBloc =
         BlocProvider.of<BottomSheetBloc>(context);
-    AdvertDetailsBloc _advertDetailsBloc =
-        BlocProvider.of<AdvertDetailsBloc>(context)
-          ..add(FetchCategoriesListEvent());
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (notification) {
         if (notification.extent == 1) {
@@ -36,7 +33,13 @@ class HomeBottomSheet extends StatelessWidget {
                 decoration: state is WithRoundedCornersState
                     ? HomePageStyle.bottomSheetStyleWithRoundedCorners
                     : HomePageStyle.bottomSheetStyleWithUsualCorners,
-                child: BlocBuilder<AdvertDetailsBloc, AdvertDetailsStates>(
+                child: BlocConsumer<AdvertDetailsBloc, AdvertDetailsStates>(
+                  listener: (context, state) {
+                    if (state is CategoriesListNotFetchedState) {
+                      BlocProvider.of<AdvertDetailsBloc>(context)
+                          .add(FetchCategoriesListEvent());
+                    }
+                  },
                   builder: (context, state) {
                     if (state is CategoriesListFetchedState) {
                       return ListView.builder(
@@ -60,6 +63,7 @@ class HomeBottomSheet extends StatelessWidget {
                                   child: Adverts(
                                     adverts: state
                                         .categoriesDetailsList[index].adverts,
+                                    categoryIndex: index,
                                   ),
                                 ),
                                 Divider(

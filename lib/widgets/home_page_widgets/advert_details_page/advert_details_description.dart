@@ -6,10 +6,8 @@ class AdvertDetailsDescription extends StatelessWidget {
   AdvertDetailsDescription({@required this.description});
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
     return Container(
-      width: _width * 0.9,
+      width: ResponsiveSizeProvider.width(context) * 0.9,
       margin:
           EdgeInsets.only(left: ResponsiveSizeProvider.width(context) * 0.05),
       child: Column(

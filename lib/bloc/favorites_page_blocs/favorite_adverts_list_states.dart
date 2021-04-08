@@ -4,12 +4,18 @@ abstract class FavoriteAdvertsListStates {}
 
 class AdvertLikedState extends FavoriteAdvertsListStates {
   int index;
-  AdvertLikedState({@required this.index});
+  int categoryIndex;
+  AdvertLikedState({@required this.index, @required this.categoryIndex});
 }
 
 class AdvertNotLikedState extends FavoriteAdvertsListStates {}
 
 class FavoriteAdvertsListFetchedState extends FavoriteAdvertsListStates {
   List<dynamic> favoriteAdverts;
-  FavoriteAdvertsListFetchedState({@required this.favoriteAdverts}) : assert(favoriteAdverts!=null);
+  FavoriteAdvertsListFetchedState({@required this.favoriteAdverts})
+      : assert(favoriteAdverts != null);
+}
+
+class FavoriteAdvertsNotFetchedState extends FavoriteAdvertsListStates {
+  //refresh token
 }

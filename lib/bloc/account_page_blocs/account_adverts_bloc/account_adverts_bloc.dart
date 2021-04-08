@@ -13,7 +13,11 @@ class AccountAdvertsBloc
     if (event is FetchAccountAdvertsEvent) {
       try {
         List<dynamic> accountAdverts = await AdvertsRepository.accountAdverts;
-        yield AccountAdvertsFetchedState(accountAdverts: accountAdverts);
+        if (accountAdverts != null) {
+          yield AccountAdvertsFetchedState(accountAdverts: accountAdverts);
+        } else {
+          yield TokenRefreshedState();
+        }
       } catch (_) {
         FetchingAccountAdvertsFailedState();
       }
