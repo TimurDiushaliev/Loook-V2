@@ -56,14 +56,11 @@ class SignInPage extends StatelessWidget {
         },
         child: Scaffold(
           backgroundColor: Color(0xFF252837),
-          appBar: AppBar(
-            backgroundColor: Color(0xFF252837),
-          ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: ResponsiveSizeProvider.height(context) * 0.2,
+                height: ResponsiveSizeProvider.height(context) * 0.3,
               ),
               AuthenticationPagesTitle(),
               SizedBox(

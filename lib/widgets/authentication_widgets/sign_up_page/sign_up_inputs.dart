@@ -98,6 +98,10 @@ class SignUpInputs extends StatelessWidget {
                   validator: (value) {
                     if (value.length > 128) return 'Не более 128 символов';
                     if (value.isEmpty) return 'Обязательное поле';
+                    if (value.length < 8) return 'Минимум 8 символов';
+                    if (!RegExp(r'^(?=.*[0-9])(?=.*[a-z])([a-z0-9_-]+)$')
+                        .hasMatch(value))
+                      return 'Пароль должен содержать и буквы,и цифры';
                   },
                   decoration: InputDecoration(
                     hintText: 'Ваш пароль',
@@ -114,7 +118,7 @@ class SignUpInputs extends StatelessWidget {
                       child: TextFormField(
                         controller: phoneCode,
                         validator: (value) {
-                          if (value.length < 1) return '1';
+                          if (value.length < 3) return '3';
                         },
                         decoration: InputDecoration(
                           prefixIcon: Text('+'),

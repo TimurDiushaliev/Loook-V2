@@ -25,15 +25,12 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF252837),
-      ),
       backgroundColor: Color(0xFF252837),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: ResponsiveSizeProvider.height(context) * 0.1,
+            height: ResponsiveSizeProvider.height(context) * 0.2,
           ),
           AuthenticationPagesTitle(),
           SizedBox(
