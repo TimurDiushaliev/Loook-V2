@@ -26,7 +26,7 @@ dependencies:
   flutter_bloc: ^6.1.2
   carousel_slider: ^3.0.0
   flutter_speed_dial: ^2.1.1
-  flutter_svg: ^0.19.3
+  flutter_svg: ^0.21.0+1
   image_picker: ^0.7.2+1
   multi_image_picker: ^4.8.0
   web_socket_channel: ^2.0.0
@@ -36,6 +36,7 @@ dependencies:
   hive: ^2.0.0
   path_provider: ^2.0.1
   url_launcher: ^6.0.3
+  flutter_launcher_icons: ^0.9.0
 
 
   # The following adds the Cupertino Icons font to your application.

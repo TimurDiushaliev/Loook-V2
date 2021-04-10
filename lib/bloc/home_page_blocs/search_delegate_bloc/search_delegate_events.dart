@@ -9,3 +9,5 @@ class FetchAdvertsViaQueryEvent extends SearchDelegateEvents {
 }
 
 class FetchNextAdvertsViaQueryEvent extends SearchDelegateEvents {}
+
+class LikeAdvertBySearchDelegateEvent extends SearchDelegateEvents {}

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_events.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
+import 'package:loook/pages/home/advert_details_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
 import 'package:loook/widgets/bottom_app_bar_widget/bottom_app_bar_navigation.dart';
@@ -59,6 +60,13 @@ class FavoritesPage extends StatelessWidget {
                           crossAxisSpacing: 10),
                       itemBuilder: (context, index) {
                         return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AdvertDetailsPage(
+                                        id: state.favoriteAdverts[index].id)));
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [

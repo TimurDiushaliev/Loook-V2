@@ -9,19 +9,24 @@ import 'package:loook/services/api_endpoints.dart';
 class AuthenticationProvider {
   static Future<String> signIn(
       {@required String username, @required String password}) async {
+    print('object');
     final Map<String, String> body = {
       'username': username,
       'password': password,
     };
+    print(body);
     final response = await http.post(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.loginApiUrl),
         headers: ApiEndpoints.headersWithNoTokens,
         body: json.encode(body));
+    print(response.statusCode);
     final Map<String, dynamic> responseBody = json.decode(response.body);
     Map<String, dynamic> tokens = {
       'access': responseBody['access'],
       'refresh': responseBody['refresh'],
     };
+    print(response.statusCode);
+    print(jsonDecode(response.body));
     await Hive.box('tokensBox').put('accessToken', tokens['access']);
     await Hive.box('tokensBox').put('refreshToken', tokens['refresh']);
     print(response.statusCode);
@@ -42,11 +47,14 @@ class AuthenticationProvider {
       'password': password,
       'phone': phoneNumber,
     };
+    print(jsonEncode(body));
     final response = await http.post(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.registerApiUrl),
         headers: ApiEndpoints.headersWithNoTokens,
         body: jsonEncode(body));
-    print('${jsonDecode(response.body)}');
+
+    print(response.statusCode);
+    print(jsonDecode(response.body));
     print(response.statusCode);
     if (response.statusCode == 201) {
       return 'Signed up successfully';

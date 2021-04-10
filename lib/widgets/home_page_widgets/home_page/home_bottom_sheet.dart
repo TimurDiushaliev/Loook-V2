@@ -55,9 +55,7 @@ class HomeBottomSheet extends StatelessWidget {
                                   child: AdvertsByCategorieTitle(
                                       category: state
                                           .categoriesDetailsList[index].name,
-                                      adverts: state
-                                          .categoriesDetailsList[index]
-                                          .adverts),
+                                      categoryIndex: index),
                                 ),
                                 Expanded(
                                   child: Adverts(

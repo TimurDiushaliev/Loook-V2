@@ -5,7 +5,7 @@ import 'package:loook/services/api_endpoints.dart';
 import 'package:loook/services/token_refresher.dart';
 
 class FavoriteAdvetsProvider {
-  static void addAdvertToFavoritesList(int id) async {
+  static Future<void> addAdvertToFavoritesList(int id) async {
     Map<String, int> body = {'id': id};
     final response = await http.post(
         Uri.http(ApiEndpoints.baseUrl, ApiEndpoints.favoritesApiUrl),
@@ -13,7 +13,7 @@ class FavoriteAdvetsProvider {
         body: jsonEncode(body));
     if (response.statusCode == 401) {
       TokenRefreher.refreshToken();
-      //TODO: refresh state
+      await addAdvertToFavoritesList(id);
     }
   }
 

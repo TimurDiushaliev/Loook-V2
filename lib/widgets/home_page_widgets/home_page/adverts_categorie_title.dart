@@ -5,8 +5,8 @@ import 'package:loook/styles/home_page_style.dart';
 
 class AdvertsByCategorieTitle extends StatelessWidget {
   final String category;
-  final List<dynamic> adverts;
-  AdvertsByCategorieTitle({@required this.category, @required this.adverts});
+  final int categoryIndex;
+  AdvertsByCategorieTitle({@required this.category, @required this.categoryIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,12 @@ class AdvertsByCategorieTitle extends StatelessWidget {
         Spacer(),
         GestureDetector(
           onTap: () {
-            print('$adverts');
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => AdvertsByCategory(
                   category: category,
-                  adverts: adverts,
+                  categoryIndex: categoryIndex,
                 ),
               ),
             );

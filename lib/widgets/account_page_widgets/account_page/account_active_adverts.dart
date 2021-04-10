@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_bloc.dart';
 import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_evets.dart';
 import 'package:loook/bloc/account_page_blocs/account_adverts_bloc/account_adverts_states.dart';
+import 'package:loook/pages/home/advert_details_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 import 'package:loook/pages/account/premium_account_page.dart';
 
@@ -27,7 +28,14 @@ class AccountActiveAdverts extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 0.6, crossAxisCount: 2),
             itemBuilder: (context, index) {
-              return Container(
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AdvertDetailsPage(
+                              id: state.accountAdverts[index].id)));
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

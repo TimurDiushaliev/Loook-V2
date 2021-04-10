@@ -64,7 +64,7 @@ class AdvertDetailsBloc extends Bloc<AdvertDetailsEvents, AdvertDetailsStates> {
       );
     }
     if (event is LikeAdvertEvent) {
-      FavoriteAdvetsProvider.addAdvertToFavoritesList(event.id);
+      await FavoriteAdvetsProvider.addAdvertToFavoritesList(event.id);
       categoriesList = await CategoriesDetailsRepository.categoriesDetails;
       print(categoriesList);
       if (categoriesList != null) {

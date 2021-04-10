@@ -16,8 +16,9 @@ import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_bloc.dart';
 import 'package:loook/bloc/bottom_app_bar_bloc/bottom_app_bar_states.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart';
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
-import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
-import 'package:loook/bloc/home_page_blocs/advert_by_id_bloc/advert_by_id_states.dart';
+import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_states.dart';
+import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_details_images_bloc/advert_details_images_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_states.dart';
 import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
@@ -70,6 +71,9 @@ class MainRoute extends StatelessWidget {
                 BlocProvider(
                     create: (context) =>
                         FavoriteAdvertsListBloc(AdvertNotLikedState())),
+                BlocProvider(
+                  create: (context) => AdvertDetailsImagesBloc(1),
+                ),
               ],
               child: HomePage(),
             );
@@ -88,6 +92,15 @@ class MainRoute extends StatelessWidget {
               BlocProvider(
                   create: (context) =>
                       MediaPickerBloc(ImageNotSelectedState())),
+              BlocProvider(
+                  create: (context) =>
+                      AdvertByIdBloc(AdvertByIdNotFetchedState())),
+              BlocProvider(
+                create: (context) => BottomSheetBloc(WithRoundedCornersState()),
+              ),
+              BlocProvider(
+                create: (context) => AdvertDetailsImagesBloc(1),
+              ),
             ], child: FavoritesPage());
           if (state is ChatPageState)
             return MultiBlocProvider(providers: [
@@ -122,7 +135,17 @@ class MainRoute extends StatelessWidget {
                 BlocProvider(
                   create: (context) =>
                       AuthenticationBloc(NotAuthenticatedState()),
-                )
+                ),
+                BlocProvider(
+                    create: (context) =>
+                        AdvertByIdBloc(AdvertByIdNotFetchedState())),
+                BlocProvider(
+                  create: (context) =>
+                      BottomSheetBloc(WithRoundedCornersState()),
+                ),
+                BlocProvider(
+                  create: (context) => AdvertDetailsImagesBloc(1),
+                ),
               ],
               child: AccountPage(),
             );

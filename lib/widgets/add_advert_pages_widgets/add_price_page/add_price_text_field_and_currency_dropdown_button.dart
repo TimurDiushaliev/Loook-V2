@@ -25,8 +25,8 @@ class AddPriceTextFieldAndCurrencyDropDownButton extends StatelessWidget {
             child: TextFormField(
               controller: price,
               validator: (value) {
-                if (value.runtimeType != int)
-                  return 'Допустимы только целые числа';
+                if (!RegExp(r'^-?(([0-9]*)|(([0-9]*)\.([0-9]*)))$')
+                    .hasMatch(value)) return 'Допустимы только целые числа';
               },
               inputFormatters: [LengthLimitingTextInputFormatter(2147483647)],
               decoration: InputDecoration(hintText: 'Цена'),

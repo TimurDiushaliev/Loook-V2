@@ -17,6 +17,7 @@ class SearchDelegateBloc
                 event.query, event.offset);
         print(searchDelegateResultsList);
         if (searchDelegateResultsList != null) {
+          print(searchDelegateResultsList[0].isFavorite);
           yield AdvertsViaSearchDelegateFetchedState(
               searchDelegateResultsList: searchDelegateResultsList);
         } else {
