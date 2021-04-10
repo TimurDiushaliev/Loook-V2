@@ -19,8 +19,8 @@ class GoldAds extends StatelessWidget {
       children: [
         CarouselSlider(
           items: [
-            Image.asset(_imgList[0]),
-            Image.asset(_imgList[1]),
+            Image.asset(_imgList[0], fit: BoxFit.contain),
+            Image.asset(_imgList[1],fit: BoxFit.contain),
           ],
           options: CarouselOptions(
               height: ResponsiveSizeProvider.height(context) * 0.4,

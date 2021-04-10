@@ -8,6 +8,9 @@ class Filter extends StatelessWidget {
         Icons.more_vert,
         color: Colors.white,
       ),
+      onPressed: (){
+        //TODO: filter adverts
+      },
     );
   }
 }
