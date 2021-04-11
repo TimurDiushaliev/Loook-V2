@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_events.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_bloc.dart';
+import 'package:loook/bloc/home_page_blocs/bottom_sheet_bloc/bottom_sheet_events.dart';
 import 'package:loook/widgets/app_bar/app_bar_title.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_bottom_sheet.dart';
 import 'package:loook/widgets/home_page_widgets/advert_details_page/advert_details_images.dart';
@@ -13,6 +15,7 @@ class AdvertDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<AdvertByIdBloc>(context).add(FetchAdvertByIdEvent(id: id));
+    BlocProvider.of<BottomSheetBloc>(context).add(WithRoundedCornersEvent());
     return Scaffold(
         appBar: AppBar(
           title: AppBarTitle(),
