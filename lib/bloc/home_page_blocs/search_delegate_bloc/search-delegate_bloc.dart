@@ -15,11 +15,15 @@ class SearchDelegateBloc
         List<dynamic> searchDelegateResultsList =
             await AdvertsProvider.fetchAdvertsBySearchDelegate(
                 event.query, event.offset);
-        print(searchDelegateResultsList);
+        print(searchDelegateResultsList != null);
+
         if (searchDelegateResultsList != null) {
-          print(searchDelegateResultsList[0].isFavorite);
-          yield AdvertsViaSearchDelegateFetchedState(
-              searchDelegateResultsList: searchDelegateResultsList);
+          if (searchDelegateResultsList.isNotEmpty) {
+            yield AdvertsViaSearchDelegateFetchedState(
+                searchDelegateResultsList: searchDelegateResultsList);
+          } else {
+            yield AdvertsViaSearchDelegateIsEmptyState();
+          }
         } else {
           yield AdvertsViaSearchDelegateTokenNotValidState();
         }

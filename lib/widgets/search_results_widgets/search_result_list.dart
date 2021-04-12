@@ -29,6 +29,7 @@ class _SearchResultListState extends State<SearchResultList> {
         }
       },
       builder: (context, state) {
+        print(state);
         if (state is AdvertsViaSearchDelegateFetchedState) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -156,6 +157,29 @@ class _SearchResultListState extends State<SearchResultList> {
                   ),
                 ),
               ],
+            ),
+          );
+        }
+        if (state is AdvertsViaSearchDelegateIsEmptyState) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'По запросу: ',
+                        style: TextStyle(color: Colors.black)),
+                    TextSpan(
+                        text: '${widget.query}',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    TextSpan(
+                        text: ' ничего не найдено!',
+                        style: TextStyle(color: Colors.black)),
+                  ],
+                ),
+              ),
             ),
           );
         }
