@@ -18,6 +18,7 @@ import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_bloc.dart'
 import 'package:loook/bloc/favorites_page_blocs/favorite_adverts_list_states.dart';
 import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_by_id_bloc/advert_by_id_states.dart';
+import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_details_bottom_sheet_bloc/advert_details_bottom_sheet_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_details_images_bloc/advert_details_images_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_bloc.dart';
 import 'package:loook/bloc/home_page_blocs/adverts_list_bloc/adverts_list_states.dart';
@@ -31,6 +32,7 @@ import 'package:loook/pages/account/account_page.dart';
 import 'package:loook/pages/chat/chats_page.dart';
 import 'package:loook/pages/favorites/favorites_page.dart';
 import 'package:loook/pages/home/home_page.dart';
+import 'package:loook/bloc/home_page_blocs/advert_details_blocs/advert_details_bottom_sheet_bloc/advert_details_bottom_sheet_states.dart';
 
 class MainRoute extends StatelessWidget {
   @override
@@ -74,6 +76,7 @@ class MainRoute extends StatelessWidget {
                 BlocProvider(
                   create: (context) => AdvertDetailsImagesBloc(1),
                 ),
+                BlocProvider(create: (context)=> AdvertDetailsBottomSheetBloc(AdvertDetailsWithRoundedCornersState()))
               ],
               child: HomePage(),
             );

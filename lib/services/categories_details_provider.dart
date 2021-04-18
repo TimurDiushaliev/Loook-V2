@@ -12,6 +12,7 @@ class CategoriesDetailsProvider {
         headers: ApiEndpoints.headersWithTokens);
     if (response.statusCode == 200) {
       List<dynamic> _categoriesDetailsListJson = jsonDecode(response.body);
+      print(_categoriesDetailsListJson);
       if (_categoriesDetailsListJson.isNotEmpty) {
         return _categoriesDetailsListJson
             .map<AdvertDetailsModel>((e) => AdvertDetailsModel.fromJson(e))

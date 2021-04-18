@@ -1,0 +1,5 @@
+abstract class AdvertDetailsBottomSheetEvents {}
+
+class AdvertDetailsWithRoundedCornersEvent extends AdvertDetailsBottomSheetEvents {}
+
+class AdvertDetailsWithUsualCornersEvent extends AdvertDetailsBottomSheetEvents {}

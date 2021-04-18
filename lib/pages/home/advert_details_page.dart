@@ -15,7 +15,6 @@ class AdvertDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<AdvertByIdBloc>(context).add(FetchAdvertByIdEvent(id: id));
-    BlocProvider.of<BottomSheetBloc>(context).add(WithRoundedCornersEvent());
     return Scaffold(
         appBar: AppBar(
           title: AppBarTitle(),

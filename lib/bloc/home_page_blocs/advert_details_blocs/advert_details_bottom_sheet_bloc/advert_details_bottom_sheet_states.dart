@@ -1,0 +1,5 @@
+abstract class AdvertDetailsBottomSheetStates {}
+
+class AdvertDetailsWithRoundedCornersState extends AdvertDetailsBottomSheetStates {}
+
+class AdvertDetailsWithUsualCornersState extends AdvertDetailsBottomSheetStates {}
