@@ -6,11 +6,19 @@ import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_det
 import 'package:loook/bloc/add_advert_pages_blocs/advert_details_bloc/advert_details_states.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class AddPriceTextFieldAndCurrencyDropDownButton extends StatelessWidget {
+class AddPriceTextFieldAndCurrencyDropDownButton extends StatefulWidget {
   final TextEditingController price;
   final GlobalKey<FormState> priceKey;
   AddPriceTextFieldAndCurrencyDropDownButton(
       {@required this.price, @required this.priceKey});
+
+  @override
+  _AddPriceTextFieldAndCurrencyDropDownButtonState createState() =>
+      _AddPriceTextFieldAndCurrencyDropDownButtonState();
+}
+
+class _AddPriceTextFieldAndCurrencyDropDownButtonState
+    extends State<AddPriceTextFieldAndCurrencyDropDownButton> {
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
@@ -19,12 +27,13 @@ class AddPriceTextFieldAndCurrencyDropDownButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Form(
-          key: priceKey,
+          key: widget.priceKey,
           child: Container(
             width: ResponsiveSizeProvider.width(context) * 0.7,
             child: TextFormField(
-              controller: price,
+              controller: widget.price,
               validator: (value) {
+                if (value.isEmpty) return 'Обязательное поле!';
                 if (!RegExp(r'^-?(([0-9]*)|(([0-9]*)\.([0-9]*)))$')
                     .hasMatch(value)) return 'Допустимы только целые числа';
               },

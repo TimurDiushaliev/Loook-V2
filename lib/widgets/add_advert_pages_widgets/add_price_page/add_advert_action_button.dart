@@ -22,19 +22,16 @@ class AddAdvertActionButton extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         onPressed: () {
-          if (priceKey.currentState.validate()) {
-            _advertDetailsBloc
-              ..add(AddDetailEvent(advertDetail: {
-                'price': price.text,
-                'currency':
-                    state is CurrencyChangedState ? state.currency : 'KGS'
-              }))
-              ..add(UploadAdvertEvent());
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AdvertUploadingResultPage()));
-          }
+          _advertDetailsBloc
+            ..add(AddDetailEvent(advertDetail: {
+              'price': price.text,
+              'currency': state is CurrencyChangedState ? state.currency : 'KGS'
+            }))
+            ..add(UploadAdvertEvent());
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AdvertUploadingResultPage()));
         },
       ),
     );

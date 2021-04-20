@@ -8,8 +8,11 @@ import 'package:loook/responsive_size/responsive_size_provider.dart';
 class AutoFillSwitchAndNavigationButton extends StatelessWidget {
   final TextEditingController title;
   final TextEditingController description;
+  final GlobalKey<FormState> formKey;
   AutoFillSwitchAndNavigationButton(
-      {@required this.title, @required this.description});
+      {@required this.title,
+      @required this.description,
+      @required this.formKey});
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDescriptionBloc =
@@ -37,12 +40,14 @@ class AutoFillSwitchAndNavigationButton extends StatelessWidget {
               style: TextStyle(fontSize: 13),
             ),
             onPressed: () {
-              _advertDescriptionBloc.add(AddDetailEvent(advertDetail: {
-                'title': title.text,
-                'description': description.text
-              }));
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddPricePage()));
+              if (formKey.currentState.validate()) {
+                _advertDescriptionBloc.add(AddDetailEvent(advertDetail: {
+                  'title': title.text,
+                  'description': description.text
+                }));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddPricePage()));
+              }
             }),
         SizedBox(
           width: ResponsiveSizeProvider.width(context) * 0.05,

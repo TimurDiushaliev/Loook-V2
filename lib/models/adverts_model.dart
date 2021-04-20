@@ -50,7 +50,7 @@ class AdvertsModel {
         views: json['views'],
         isVip: json['isVip'],
         createdAt: json['createdAt'],
-        fields: json['fields'] == null ? {} : jsonDecode(json['fields']),
+        fields: json['fields'],
         isActive: json['isActive'],
         owner: json['owner'],
         phone: json['phone'],

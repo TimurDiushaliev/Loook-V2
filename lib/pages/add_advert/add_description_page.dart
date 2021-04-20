@@ -11,7 +11,7 @@ class AddDescriptionPage extends StatefulWidget {
 
 class _AddDescriptionPageState extends State<AddDescriptionPage> {
   final TextEditingController title = TextEditingController();
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController description = TextEditingController();
 
   @override
@@ -30,11 +30,12 @@ class _AddDescriptionPageState extends State<AddDescriptionPage> {
           AutoFillSwitchAndNavigationButton(
             title: title,
             description: description,
+            formKey: formKey,
           ),
           SizedBox(
             height: ResponsiveSizeProvider.height(context) * 0.1,
           ),
-          AddDescriptionTextFields(title: title, description: description),
+          AddDescriptionTextFields(title: title, description: description, formKey: formKey,),
         ],
       ),
     );

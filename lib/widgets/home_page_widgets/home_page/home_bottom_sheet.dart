@@ -25,7 +25,6 @@ class HomeBottomSheet extends StatelessWidget {
       },
       child: BlocBuilder<BottomSheetBloc, BottomSheetStates>(
         builder: (context, state) {
-          print(state);
           return DraggableScrollableSheet(
             initialChildSize: 0.6,
             minChildSize: 0.6,

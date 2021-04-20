@@ -8,8 +8,14 @@ import 'package:loook/bloc/add_advert_pages_blocs/chosed_details_bloc/chosed_det
 import 'package:loook/pages/add_advert/add_media_page.dart';
 import 'package:loook/responsive_size/responsive_size_provider.dart';
 
-class CategoryDetailsList extends StatelessWidget {
+class CategoryDetailsList extends StatefulWidget {
+  @override
+  _CategoryDetailsListState createState() => _CategoryDetailsListState();
+}
+
+class _CategoryDetailsListState extends State<CategoryDetailsList> {
   final TextEditingController detailInputController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     AdvertDetailsBloc _advertDetailsBloc =
@@ -53,38 +59,47 @@ class CategoryDetailsList extends StatelessWidget {
               },
             );
           } else {
-            return Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: ResponsiveSizeProvider.width(context) * 0.1),
-                  child: TextField(
-                    controller: detailInputController,
-                    decoration: InputDecoration(
-                      hintText: '${state.key}',
+            return Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveSizeProvider.width(context) * 0.1),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) return 'Обязательное поле!';
+                      },
+                      controller: detailInputController,
+                      decoration: InputDecoration(
+                        hintText: '${state.key}',
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: ResponsiveSizeProvider.height(context) * 0.05,
-                ),
-                MaterialButton(
-                  color: Colors.white,
-                  child: Text(
-                    'Продолжить',
-                    style: TextStyle(color: Colors.black),
+                  SizedBox(
+                    height: ResponsiveSizeProvider.height(context) * 0.05,
                   ),
-                  onPressed: () {
-                    _advertDetailsBloc.add(AddDetailEvent(advertDetail: {
-                      "fields": {state.key: detailInputController.text}
-                    }));
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddMediaPage()));
-                  },
-                ),
-              ],
+                  MaterialButton(
+                    color: Colors.white,
+                    child: Text(
+                      'Продолжить',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState.validate()) {
+                        _advertDetailsBloc.add(AddDetailEvent(advertDetail: {
+                          "fields": {state.key: detailInputController.text}
+                        }));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddMediaPage()));
+                      }
+                    },
+                  ),
+                ],
+              ),
             );
           }
         }

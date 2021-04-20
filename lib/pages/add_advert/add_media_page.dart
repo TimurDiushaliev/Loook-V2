@@ -24,7 +24,7 @@ class AddMediaPage extends StatelessWidget {
       },
       child: BlocBuilder<MediaPickerBloc, MediaPickerStates>(
           builder: (context, state) {
-        print(state);
+     
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
